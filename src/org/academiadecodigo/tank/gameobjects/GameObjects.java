@@ -1,12 +1,19 @@
 package org.academiadecodigo.tank.gameobjects;
 
-import org.academiadecodigo.tank.grid.Representation;
+import org.academiadecodigo.tank.grid.position.GridPosition;
+import org.academiadecodigo.tank.gfx.simplegfx.Representation;
 
 /**
  * Created by codecadet on 23/05/16.
  */
-public abstract class GameObjects implements Destroyable {
+public abstract class GameObjects implements Destroyable, GridPosition {
 
     private Representation pos;
+
+    public void move(int col, int row){
+
+
+
+    }
 
 }

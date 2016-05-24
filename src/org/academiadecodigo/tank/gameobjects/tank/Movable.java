@@ -1,4 +1,4 @@
-package org.academiadecodigo.tank.gameobjects;
+package org.academiadecodigo.tank.gameobjects.tank;
 
 import org.academiadecodigo.tank.grid.GridDirection;
 

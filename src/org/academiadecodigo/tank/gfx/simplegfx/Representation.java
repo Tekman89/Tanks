@@ -1,11 +1,13 @@
-package org.academiadecodigo.tank.grid;
+package org.academiadecodigo.tank.gfx.simplegfx;
 
-import org.academiadecodigo.tank.grid.Representable;
+import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
+import org.academiadecodigo.tank.grid.GridColor;
+import org.academiadecodigo.tank.grid.position.GridPosition;
 
 /**
  * Created by codecadet on 23/05/16.
  */
-public class Representation implements Representable {
+public class Representation implements GridPosition {
 
     private int col;
     private int row;
@@ -46,7 +48,7 @@ public class Representation implements Representable {
     }
 
     @Override
-    public boolean equals(GridPosition position) {
+    public boolean equals(AbstractGridPosition position) {
         return false;
     }
 }

@@ -1,6 +1,7 @@
-package org.academiadecodigo.tank.gameobjects;
+package org.academiadecodigo.tank.gameobjects.tank;
 
-import org.academiadecodigo.tank.grid.Representation;
+import org.academiadecodigo.tank.gameobjects.GameObjects;
+import org.academiadecodigo.tank.gfx.simplegfx.Representation;
 
 /**
  * Created by codecadet on 23/05/16.

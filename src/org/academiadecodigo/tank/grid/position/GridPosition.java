@@ -1,9 +1,11 @@
-package org.academiadecodigo.tank.grid;
+package org.academiadecodigo.tank.grid.position;
+
+import org.academiadecodigo.tank.grid.GridColor;
 
 /**
  * Created by codecadet on 23/05/16.
  */
-public interface Representable {
+public interface GridPosition {
 
 
     int getCol();
@@ -20,7 +22,7 @@ public interface Representable {
 
     void hide();
 
-    boolean equals(GridPosition position);
+    boolean equals(AbstractGridPosition position);
 
 
 }
