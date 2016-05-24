@@ -9,9 +9,20 @@ import org.academiadecodigo.tank.gfx.simplegfx.Representation;
 public abstract class Tank extends GameObjects implements Movable {
 
     private Representation myRep;
+    private boolean isDestroyed;
 
     @Override
     public void hit() {
         myRep.hide();
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return isDestroyed;
+    }
+
+    @Override
+    public void destroyed() {
+        this.isDestroyed = true;
     }
 }
