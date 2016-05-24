@@ -5,5 +5,8 @@ package org.academiadecodigo.tank.grid;
  */
 public enum GridColor {
 
-
+    BLUE,
+    GREEN,
+    RED,
+    MAGENTA;
 }
