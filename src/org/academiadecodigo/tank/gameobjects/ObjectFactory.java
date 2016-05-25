@@ -1,6 +1,7 @@
 package org.academiadecodigo.tank.gameobjects;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.graphics.Shape;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 
 /**
@@ -10,14 +11,15 @@ public class ObjectFactory {
 
         public GridPosition createObject(GameObjectType myObject){
 
-                GridPosition myForm;
+                Shape myForm;
                 switch (myObject){
                         case TANK:
                                 myForm = new Rectangle();
+                                break;
                 }
 
 
-
+                return myForm;
         }
 
 
