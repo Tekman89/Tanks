@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+<<<<<<< HEAD
+      <module fileurl="file://$PROJECT_DIR$/GameGroupProject.iml" filepath="$PROJECT_DIR$/GameGroupProject.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/Tanks.iml" filepath="$PROJECT_DIR$/Tanks.iml" />
+>>>>>>> 0e11158e0c645c59c7f7f9eab6544f4a44fe735f
+    </modules>
+  </component>
+</project>

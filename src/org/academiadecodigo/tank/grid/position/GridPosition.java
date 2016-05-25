@@ -1,6 +1,7 @@
 package org.academiadecodigo.tank.grid.position;
 
 import org.academiadecodigo.tank.grid.GridColor;
+import org.academiadecodigo.tank.grid.GridDirection;
 
 /**
  * Created by codecadet on 23/05/16.
@@ -23,6 +24,8 @@ public interface GridPosition {
     void hide();
 
     boolean equals(AbstractGridPosition position);
+
+    void moveInDirection(GridDirection direction, int distance);
 
 
 }

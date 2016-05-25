@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gfx.simplegfx;
 
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.position.GridPosition;
@@ -7,10 +8,23 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
 /**
  * Created by codecadet on 23/05/16.
  */
-public class Representation implements GridPosition {
+public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private int col;
     private int row;
+    private Rectangle rectangle;
+
+    public SimpleGfxGridPosition (int col, int row, SimpleGfxGrid grid){
+
+        super(col, row, grid);
+
+        rectangle = new Rectangle(toPixel(col),toPixel(row),100,100);
+
+    }
+
+    private int toPixel(int n){
+        return n * getGrid().getCellSize();
+    }
 
     @Override
     public int getCol() {
