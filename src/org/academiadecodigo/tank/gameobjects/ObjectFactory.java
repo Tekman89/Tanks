@@ -9,18 +9,19 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
  */
 public class ObjectFactory {
 
-        public GridPosition createObject(GameObjectType myObject){
 
-                Shape myForm;
-                switch (myObject){
-                        case TANK:
-                                myForm = new Rectangle();
-                                break;
-                }
+    public GridPosition createObject(GameObjectType myObject) {
 
+        switch (myObject) {
 
-                return myForm;
+            case TANK:
+
+            default:
+                return new Rectangle();
         }
+
+
+    }
 
 
 }
