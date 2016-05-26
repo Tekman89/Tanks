@@ -37,8 +37,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         return row;
     }
 
-
-    public void 
+    
 
 
     @Override
