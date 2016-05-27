@@ -37,7 +37,10 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         return row;
     }
 
-    
+
+    public void moveUp(int distance) {
+
+    }
 
 
     @Override
