@@ -1,6 +1,7 @@
 package org.academiadecodigo.tank.gfx.simplegfx;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.graphics.Shape;
 import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.position.GridPosition;
@@ -10,9 +11,7 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
  */
 public class SimpleGfxGridPosition extends AbstractGridPosition {
 
-    private int col;
-    private int row;
-    private Rectangle rectangle;
+    private Shape rectangle;
 
     public SimpleGfxGridPosition (int col, int row, SimpleGfxGrid grid){
 
