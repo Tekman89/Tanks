@@ -7,15 +7,33 @@ import org.academiadecodigo.tank.gameobjects.GameObjects;
  */
 public class Shell extends GameObjects {
 
-    private TankType myTank;
+    private boolean isDestroyed;
+    private Tank myTank;
 
-    public Shell (TankType myTank){
+    public Shell (Tank myTank){
 
         this.myTank = myTank;
     }
 
-    public TankType whoFired() {
+    public Tank whoFired() {
         return myTank;
     }
+
+    @Override
+    public void hit() {
+
+
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return isDestroyed;
+    }
+
+    @Override
+    public void setDestroyed() {
+        isDestroyed = true;
+    }
+
 
 }

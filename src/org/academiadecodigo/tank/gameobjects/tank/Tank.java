@@ -22,7 +22,7 @@ public abstract class Tank extends GameObjects implements Movable {
     }
 
     @Override
-    public void destroyed() {
+    public void setDestroyed() {
         this.isDestroyed = true;
     }
 }

@@ -111,6 +111,13 @@ public abstract class AbstractGridPosition implements GridPosition {
 
      */
 
-
+    @Override
+    public String toString() {
+        return "GridPosition{" +
+                "col=" + col +
+                ", row=" + row +
+                ", getColor=" + color +
+                '}';
+    }
 }
 

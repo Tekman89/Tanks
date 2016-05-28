@@ -16,7 +16,7 @@ public class SimpleGfxGrid  implements Grid {
     private int cols;
     private int rows;
 
-    private int CELL_SIZE = 1;
+    private int CELL_SIZE = 10;
 
 
     public SimpleGfxGrid(int cols, int rows) {
@@ -66,7 +66,6 @@ public class SimpleGfxGrid  implements Grid {
         }
 
     }
-
 
 
     private int generateCol() {

@@ -15,7 +15,8 @@ public class StaticObjects extends GameObjects {
     }
 
     @Override
-    public void destroyed() {
+    public void setDestroyed() {
 
     }
+
 }

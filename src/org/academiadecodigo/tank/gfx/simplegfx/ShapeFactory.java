@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gfx.simplegfx;
 
+import org.academiadecodigo.simplegraphics.graphics.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Shape;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
@@ -15,7 +16,8 @@ public class ShapeFactory {
             case ENEMY:
                 int width = 10;
                 int height = 10;
-                return new Rectangle(x, y, width, height);
+                //return new Rectangle(x, y, width, height);
+                return new Rectangle(0, 0, width, height);
 
             case PLAYER:
                 int n = 10;
@@ -23,7 +25,7 @@ public class ShapeFactory {
 
 
             case SHELL:
-                return null; // TODO make shell
+                return null;
 
             default:
                 return null;

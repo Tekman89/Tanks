@@ -10,58 +10,21 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
  */
 public class Enemy extends Tank {
 
-    public Enemy(GridPosition position){
+    private GridPosition pos;
+
+
+    public Enemy(GridPosition position) {
         pos = position;
 
     }
 
     @Override
-    public void move(GridDirection direction) {
-
-    }
-
-    @Override
-    public int getCol() {
-        return 0;
-    }
-
-    @Override
-    public int getRow() {
-        return 0;
-    }
-
-    @Override
-    public void setPos(int col, int row) {
-
-    }
-
-    @Override
-    public GridColor getColor() {
-        return null;
-    }
-
-    @Override
-    public void setColor(GridColor color) {
-
-    }
-
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public boolean equals(AbstractGridPosition position) {
-        return false;
-    }
-
-    @Override
     public void moveInDirection(GridDirection direction, int distance) {
+
+    }
+
+    @Override
+    public void setDestroyed() {
 
     }
 }

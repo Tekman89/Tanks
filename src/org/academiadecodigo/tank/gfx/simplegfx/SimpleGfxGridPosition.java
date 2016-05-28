@@ -1,5 +1,7 @@
 package org.academiadecodigo.tank.gfx.simplegfx;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Shape;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
@@ -12,16 +14,14 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
  */
 public class SimpleGfxGridPosition extends AbstractGridPosition {
 
-    private int col;
-    private int row;
     private Shape shape;
-    ShapeFactory factory;
+    ShapeFactory factory = new ShapeFactory();
 
     public SimpleGfxGridPosition (int col, int row, GameObjectType objectType, SimpleGfxGrid grid){
 
         super(col, row, grid);
-        factory = new ShapeFactory();
-        shape = ;
+        shape = factory.createShape(toPixel(col), toPixel(row), objectType) ;
+        show();
 
     }
 
@@ -29,33 +29,63 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         return n * ((SimpleGfxGrid)getGrid()).getCellSize();
     }
 
-    @Override
-    public int getCol() {
-        return col;
+
+    public void moveDown(int distance) {
+
+        if (shape instanceof Movable) {
+
+            int maxRowsDown = distance > getGrid().getRows() - (getRow() + 1) ? getGrid().getRows() - (getRow() + 1) : distance;
+            ((Movable) shape).translate(0, toPixel(maxRowsDown));
+            setPos(getCol(), getRow() + maxRowsDown);
+
+        }
     }
 
-    @Override
-    public int getRow() {
-        return row;
+    public  void moveUp(int distance) {
+
+        if (shape instanceof Movable) {
+            int maxRowsUp = distance < getRow() ? distance : getRow();
+            ((Movable) shape).translate(0, toPixel(-maxRowsUp));
+            setPos(getCol(), getRow() - maxRowsUp);
+        }
     }
 
+    public void moveLeft(int distance) {
 
-    public void moveUp(int distance) {
+        if (shape instanceof Movable) {
+
+            int maxColsLeft = distance < getCol() ? distance : getCol();
+            ((Movable) shape).translate(- toPixel(maxColsLeft), 0);
+            setPos(getCol() - maxColsLeft, getRow());
+        }
 
     }
 
+    public void moveRight(int distance) {
 
-    @Override
-    public void setPos(int col, int row) {
+        if (shape instanceof Movable) {
 
+            int maxColsRight = distance > getGrid().getCols() - (getCol() + 1) ? getGrid().getCols() - (getCol()+1) : distance;
+            ((Movable) shape).translate(toPixel(maxColsRight),0);
+            setPos(getCol() + maxColsRight, getRow());
+
+        }
     }
+
 
     @Override
     public void show() {
+        /*if(shape instanceof Rectangle) {
+            ((Rectangle) shape).setColor(Color.BLUE);
+            ((Rectangle) shape).fill();
+        }*/
+        shape.draw();
+
     }
 
     @Override
     public void hide() {
+
         shape.delete();
     }
 

@@ -7,7 +7,7 @@ import org.academiadecodigo.tank.grid.GridDirection;
  */
 public interface Movable {
 
-    void move(GridDirection direction);
+    void moveInDirection(GridDirection direction, int speed);
 
 
 

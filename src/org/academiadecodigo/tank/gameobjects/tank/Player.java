@@ -8,64 +8,23 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
 /**
  * Created by codecadet on 23/05/16.
  */
-public class Player extends Tank{
+public class Player extends Tank {
 
+    private GridPosition pos;
 
-
-    public Player(GridPosition position){
+    public Player(GridPosition position) {
         pos = position;
 
     }
 
 
     @Override
-    public void move(GridDirection direction) {
-
-    }
-
-
-    @Override
-    public int getCol() {
-        return 0;
-    }
-
-    @Override
-    public int getRow() {
-        return 0;
-    }
-
-    @Override
-    public void setPos(int col, int row) {
+    public void moveInDirection(GridDirection direction, int speed) {
 
     }
 
     @Override
-    public GridColor getColor() {
-        return null;
-    }
-
-    @Override
-    public void setColor(GridColor color) {
-
-    }
-
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public boolean equals(AbstractGridPosition position) {
-        return false;
-    }
-
-    @Override
-    public void moveInDirection(GridDirection direction, int distance) {
+    public void setDestroyed() {
 
     }
 }
