@@ -5,7 +5,8 @@ package org.academiadecodigo.tank.gameobjects;
  */
 public enum GameObjectType {
 
-    TANK,
+    PLAYER,
+    ENEMY,
     SHELL;
 
 

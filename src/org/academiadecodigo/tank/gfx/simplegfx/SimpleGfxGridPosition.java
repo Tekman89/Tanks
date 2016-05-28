@@ -2,6 +2,7 @@ package org.academiadecodigo.tank.gfx.simplegfx;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Shape;
+import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.position.GridPosition;
@@ -14,12 +15,13 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     private int col;
     private int row;
     private Shape shape;
+    ShapeFactory factory;
 
-    public SimpleGfxGridPosition (int col, int row, SimpleGfxGrid grid){
+    public SimpleGfxGridPosition (int col, int row, GameObjectType objectType, SimpleGfxGrid grid){
 
         super(col, row, grid);
-
-        //shape = some shape
+        factory = new ShapeFactory();
+        shape = ;
 
     }
 
