@@ -15,14 +15,15 @@ public class SimpleGfxGrid  implements Grid {
     private Rectangle grid;
     private int cols;
     private int rows;
+    private final int MARGIN = 10;
 
-    private int CELL_SIZE = 10;
+    private final int CELL_SIZE = 10;
 
 
     public SimpleGfxGrid(int cols, int rows) {
         this.cols = cols;
         this.rows = rows;
-        grid = new Rectangle(0, 0, cols * CELL_SIZE, rows * CELL_SIZE);
+        grid = new Rectangle(MARGIN, MARGIN, cols * CELL_SIZE, rows * CELL_SIZE);
     }
 
 
@@ -45,6 +46,8 @@ public class SimpleGfxGrid  implements Grid {
     public int getCellSize() {
         return CELL_SIZE;
     }
+
+    public int getMARGIN(){ return MARGIN;}
 
     @Override
     public GridPosition makeGridPosition(GameObjectType objectType) {
