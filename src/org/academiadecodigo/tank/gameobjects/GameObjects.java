@@ -9,13 +9,16 @@ import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
  */
 public abstract class GameObjects implements Destroyable {
 
-    private AbstractGridPosition pos;
+    private GridPosition pos;
     // size
 
-    public void move(int col, int row){
-
+    public GameObjects(GridPosition pos){
+        this.pos = pos;
     }
-    public AbstractGridPosition getPos() {
+
+
+    public GridPosition getPos() {
+        System.out.println("!");
         return pos;
     }
 

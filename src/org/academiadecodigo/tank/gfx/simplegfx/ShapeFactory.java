@@ -32,7 +32,7 @@ public class ShapeFactory {
             case PLAYER:
                 int n = 10;
                 //return new Rectangle(x, y, 3 * grid.getCellSize(), 3 * grid.getCellSize() );
-
+                return new Picture(10,10, "http://0.s3.envato.com/files/85653535/Thumbnail.jpg");
 
             case SHELL:
                 return null;

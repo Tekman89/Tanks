@@ -30,12 +30,12 @@ public class ObjectFactory implements Factory{
 
             case PLAYER:
 
-                return new Player(grid.makeGridPosition()); // TODO: 27/05/16 add permanent coordinates to be born
+                return new Player(grid.makeGridPosition(GameObjectType.PLAYER)); // TODO: 27/05/16 add permanent coordinates to be born
 
 
             case ENEMY:
 
-                return new Enemy(grid.makeGridPosition(generateCol(), 0)); // TODO: 27/05/16 add enemy constructor
+                return new Enemy(grid.makeGridPosition(GameObjectType.ENEMY)); // TODO: 27/05/16 add enemy constructor
 
 
 
@@ -48,27 +48,7 @@ public class ObjectFactory implements Factory{
     }
 
 
-    private int generateCol(){
 
-
-
-        switch (RNG.rng(3)){
-
-            case 0:
-                return 0;
-            case 1:
-                return grid.getCols()/2;
-            case 2:
-                return grid.getCols();
-            default:
-                System.out.println("Something went wrong with the rng");
-                return -1;
-
-
-        }
-
-
-    }
 
 
 }

@@ -1,6 +1,12 @@
 package org.academiadecodigo.tank.test;
 
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
+import org.academiadecodigo.tank.gameobjects.GameObjects;
+import org.academiadecodigo.tank.gameobjects.ObjectFactory;
+import org.academiadecodigo.tank.gameobjects.tank.Enemy;
+import org.academiadecodigo.tank.gameobjects.tank.Player;
+import org.academiadecodigo.tank.gameobjects.tank.Tank;
+import org.academiadecodigo.tank.gfx.simplegfx.Input;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
 import org.academiadecodigo.tank.grid.Grid;
@@ -40,14 +46,37 @@ public class Test {
 
         SimpleGfxGrid g = new SimpleGfxGrid(80, 45);
         g.init();
+        ObjectFactory factory = new ObjectFactory(g);
+        GameObjects objects = factory.createObject(GameObjectType.PLAYER);
+        Input input = new Input();
+
         GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
-        //test(10, pos);
+      //  test(10, pos);
 
-        GridPosition pos2 = new SimpleGfxGridPosition(3, 0, GameObjectType.ENEMY, g);
-        System.out.println("Horizontal: " + pos.isAdjacent((AbstractGridPosition) pos2));
+//        GridPosition pos2 = new SimpleGfxGridPosition(3, 0, GameObjectType.ENEMY, g);
+//        System.out.println("Horizontal: " + pos.isAdjacent((AbstractGridPosition) pos2));
 
-        GridPosition pos3 = new SimpleGfxGridPosition(0, 3, GameObjectType.ENEMY, g);
-        System.out.println("vertical: " + pos.isAdjacent((AbstractGridPosition) pos3));
+//        GridPosition pos3 = new SimpleGfxGridPosition(0, 3, GameObjectType.ENEMY, g);
+//        System.out.println("vertical: " + pos.isAdjacent((AbstractGridPosition) pos3));
+
+//        ((Player) objects).move();
+
+        switch (input.getDirection()){
+            case UP:
+                ((Player) objects).move(GridDirection.UP);
+                break;
+            case DOWN:
+                ((Player) objects).move(GridDirection.DOWN);
+                break;
+            case LEFT:
+                ((Player) objects).move(GridDirection.LEFT);
+                break;
+            case RIGHT:
+                ((Player) objects).move(GridDirection.RIGHT);
+                break;
+        }
+
+
     }
 
 

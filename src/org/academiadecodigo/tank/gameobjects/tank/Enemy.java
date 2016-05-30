@@ -11,40 +11,51 @@ import org.academiadecodigo.tank.utilities.RNG;
  */
 public class Enemy extends Tank {
 
-    private GridPosition pos;
 
 
-    public Enemy(GridPosition position) {
-        pos = position;
-
+    public Enemy(GridPosition pos){
+        super(pos);
     }
 
 
-    public void chooseDirection (){
+    private GridDirection chooseDirection (){
 
         switch (RNG.rng(4)){
             case 0 :
-                super.getPos().moveInDirection(GridDirection.UP, DISTANCE);
-                break;
+                System.out.println("UP");
+                super.setDirection(GridDirection.UP);
+                return GridDirection.UP;
 
             case 1 :
-                super.getPos().moveInDirection(GridDirection.DOWN, DISTANCE);
-                break;
+                System.out.println("Down");
+                super.setDirection(GridDirection.DOWN);
+                return GridDirection.DOWN;
 
             case 2 :
-                super.getPos().moveInDirection(GridDirection.RIGHT, DISTANCE);
-                break;
+                System.out.println("Right");
+                super.setDirection(GridDirection.RIGHT);
+                return GridDirection.RIGHT;
 
             case 3 :
-                super.getPos().moveInDirection(GridDirection.LEFT, DISTANCE);
-                break;
+                System.out.println("Left");
+                super.setDirection(GridDirection.LEFT);
+                return GridDirection.LEFT;
 
+            default:
+                System.out.println("Something went wrong");
+                return null;
         }
+
     }
 
     @Override
-    public void moveInDirection(GridDirection direction, int distance) {
-
+    public void move() {
+        System.out.println(getPos());
+        super.
+                getPos().
+                moveInDirection(
+                        chooseDirection(),
+                        SPEED);
     }
 
     @Override

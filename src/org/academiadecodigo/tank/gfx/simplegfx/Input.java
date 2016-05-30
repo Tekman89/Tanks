@@ -4,11 +4,12 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.tank.grid.GridDirection;
 
 /**
  * Created by codecadet on 24/05/16.
  */
-public abstract class Input implements KeyboardHandler {
+public class Input implements KeyboardHandler, org.academiadecodigo.tank.utilities.Input {
 
     private Keyboard myKey = new Keyboard(this);
     private KeyboardEvent leftPress = new KeyboardEvent();
@@ -17,15 +18,16 @@ public abstract class Input implements KeyboardHandler {
     private KeyboardEvent upPress = new KeyboardEvent();
     private KeyboardEvent spacePress = new KeyboardEvent();
     private KeyboardEvent spaceRelease = new KeyboardEvent();
+    private GridDirection direction = GridDirection.RIGHT;
+    private boolean fire;
 
 
-
-    public Input(){
+    public Input() {
         setEvent();
     }
 
 
-    public void setEvent(){
+    public void setEvent() {
 
         /*
          * set the event types
@@ -67,29 +69,37 @@ public abstract class Input implements KeyboardHandler {
     }
 
 
+    public GridDirection getDirection() {
 
+        return this.direction;
+
+    }
+
+    public boolean getFire(){
+        return fire;
+    }
 
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
 
-        switch (keyboardEvent.getKey()){
+        switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_LEFT:
-
+                direction = GridDirection.LEFT;
                 break;
             case KeyboardEvent.KEY_RIGHT:
-
+                direction = GridDirection.RIGHT;
                 break;
             case KeyboardEvent.KEY_UP:
-
+                direction = GridDirection.UP;
                 break;
             case KeyboardEvent.KEY_DOWN:
-
+                direction = GridDirection.DOWN;
                 break;
             case KeyboardEvent.KEY_SPACE:
-
+                fire = true;
                 break;
 
 
@@ -99,12 +109,7 @@ public abstract class Input implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey()){
-
-            case KeyboardEvent.KEY_SPACE:
-
-                break;
-        }
-
     }
+
 }
+

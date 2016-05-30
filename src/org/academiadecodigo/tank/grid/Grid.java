@@ -13,7 +13,7 @@ public interface Grid {
 
     public int getCols();
 
-    public  int getRows();
+    public int getRows();
 
     // public GridPosition makeGridPosition();
 

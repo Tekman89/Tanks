@@ -57,7 +57,7 @@ public abstract class AbstractGridPosition implements GridPosition {
     }
 
     public void moveInDirection(GridDirection direction, int distance){
-
+        System.out.println(direction);
         switch (direction){
 
             case UP:
