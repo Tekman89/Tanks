@@ -101,15 +101,29 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     public void moveRight(int distance){
 
-        int maxColsRight = distance > getGrid().getCols() -(getCol()+1) ? getGrid().getCols() - (getCol()+1) : distance;
+        int maxColsRight = distance > getGrid().getCols() - (getCol()+1) ? getGrid().getCols() - (getCol()+1) : distance;
         setPos(getCol() + maxColsRight, getRow());
 
     }
-    /*
 
-    Verificar se é necessario implementar equals para as colisões
+    public boolean isAdjacent(AbstractGridPosition position){
+        int objWidth = 3; // obj size to do
+        int objHeight = 3; // obj size to do
 
-     */
+        double center2 = objWidth / 2.0;
+        double center1 = objWidth / 2.0;
+
+        double centerCol1 = col + center1;
+        double centerCol2 = position.getCol() + center2;
+
+        double centerRow1 = col + objHeight / 2.0;
+        double centerRow2 = position.getRow() + objHeight / 2.0;
+
+
+        return Math.abs(centerCol1 - centerCol2) <= (center1 + center2) &&
+                Math.abs(centerRow1 - centerRow2) <= (objHeight/2.0 + objHeight/2.0);
+
+    }
 
     @Override
     public String toString() {

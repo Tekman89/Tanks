@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gameobjects;
 
+import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
 
@@ -8,12 +9,14 @@ import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
  */
 public abstract class GameObjects implements Destroyable {
 
-    private SimpleGfxGridPosition pos;
+    private AbstractGridPosition pos;
+    // size
 
     public void move(int col, int row){
 
-
-
+    }
+    public AbstractGridPosition getPos() {
+        return pos;
     }
 
 }

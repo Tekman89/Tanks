@@ -10,4 +10,25 @@ public enum GridDirection {
     LEFT,
     RIGHT;
 
+    public GridDirection oppositeDirection() {
+        switch (this) {
+
+            case UP:
+                return DOWN;
+
+            case DOWN:
+                return UP;
+
+            case LEFT:
+                return RIGHT;
+
+            case RIGHT:
+                return LEFT;
+
+            default:
+                return null;
+        }
+    }
 }
+
+

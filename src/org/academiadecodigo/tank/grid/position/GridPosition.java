@@ -9,6 +9,8 @@ import org.academiadecodigo.tank.grid.GridDirection;
 public interface GridPosition {
 
 
+
+
     int getCol();
 
     int getRow();
@@ -23,7 +25,7 @@ public interface GridPosition {
 
     void hide();
 
-    boolean equals(AbstractGridPosition position);
+    boolean isAdjacent(AbstractGridPosition position);
 
     void moveInDirection(GridDirection direction, int distance);
 

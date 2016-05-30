@@ -4,6 +4,7 @@ import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
 import org.academiadecodigo.tank.grid.Grid;
+import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
@@ -40,8 +41,13 @@ public class Test {
         SimpleGfxGrid g = new SimpleGfxGrid(80, 45);
         g.init();
         GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
-        test(10, pos);
+        //test(10, pos);
 
+        GridPosition pos2 = new SimpleGfxGridPosition(3, 0, GameObjectType.ENEMY, g);
+        System.out.println("Horizontal: " + pos.isAdjacent((AbstractGridPosition) pos2));
+
+        GridPosition pos3 = new SimpleGfxGridPosition(0, 3, GameObjectType.ENEMY, g);
+        System.out.println("vertical: " + pos.isAdjacent((AbstractGridPosition) pos3));
     }
 
 

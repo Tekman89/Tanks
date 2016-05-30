@@ -61,7 +61,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     public void moveRight(int distance) {
 
         if (shape instanceof Movable) {
-            
+
             int shapeWidth = shape.getWidth() / ((SimpleGfxGrid)getGrid()).getCellSize();
             int maxColsRight = distance > getGrid().getCols() - (getCol() + shapeWidth) ? getGrid().getCols() - (getCol() + shapeWidth) : distance;
             setPos(maxColsRight, 0);
@@ -94,8 +94,10 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         shape.delete();
     }
 
-    @Override
-    public boolean equals(AbstractGridPosition position) {
+    /*@Override
+    public boolean isAdjacent(AbstractGridPosition position) {
+
+
         return false;
-    }
+    }*/
 }
