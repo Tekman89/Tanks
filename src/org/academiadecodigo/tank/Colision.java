@@ -18,7 +18,7 @@ public class Colision {
         this.gameObjects = gameObjects;
     }
 
-    public boolean hasColided(GameObjects object){
+    public boolean hasColided(Tank object){
 
         for(GameObjects obj: gameObjects) {
 
@@ -32,6 +32,8 @@ public class Colision {
             }
 
             if(obj instanceof StaticObjects) {
+
+                return object.
 
             }
         }

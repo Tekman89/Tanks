@@ -19,6 +19,12 @@ public abstract class Input implements KeyboardHandler {
     private KeyboardEvent spaceRelease = new KeyboardEvent();
 
 
+
+    public Input(){
+        setEvent();
+    }
+
+
     public void setEvent(){
 
         /*

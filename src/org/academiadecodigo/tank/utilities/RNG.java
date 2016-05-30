@@ -5,7 +5,7 @@ package org.academiadecodigo.tank.utilities;
  */
 public abstract class RNG {
 
-    public int rng(int maxNumber){
+    public static int rng(int maxNumber){
         return (int) Math.floor(Math.random() * maxNumber);
     }
 
