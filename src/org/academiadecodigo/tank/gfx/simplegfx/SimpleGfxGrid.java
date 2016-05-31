@@ -47,6 +47,7 @@ public class SimpleGfxGrid  implements Grid {
         return CELL_SIZE;
     }
 
+    @Override
     public int getMARGIN(){ return MARGIN;}
 
     @Override

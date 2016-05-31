@@ -30,13 +30,17 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         return n * ((SimpleGfxGrid) getGrid()).getCellSize();
     }
 
+    private int toRows(int n) {
+        return n / (((SimpleGfxGrid) getGrid()).getCellSize());
+    }
+
 
     public void moveDown(int distance) { // TODO: 31/05/16 check the problem in the cols & rows
 
         if (shape instanceof Movable) {
 
             int shapeHeight = shape.getHeight() / ((SimpleGfxGrid) getGrid()).getCellSize();
-            int maxRowsDown = distance > getGrid().getRows() - (getRow() + shapeHeight) ? getGrid().getRows() - (getRow() + shapeHeight) : distance;
+            int maxRowsDown = distance > (getGrid().getRows() + toRows(getGrid().getMARGIN() * 2) - (getRow() + shapeHeight)) ? getGrid().getRows() + toRows(getGrid().getMARGIN()) * 2 - (getRow() + shapeHeight) : distance;
             setPos(0, maxRowsDown);
         }
     }
@@ -44,7 +48,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     public void moveUp(int distance) {
 
         if (shape instanceof Movable) {
-            int maxRowsUp = distance < getRow() ? distance : getRow();
+            int maxRowsUp = distance < getRow() - toRows(getGrid().getMARGIN() * 2) ? distance : getRow() - toRows(getGrid().getMARGIN() * 2);
             setPos(0, -maxRowsUp);
         }
     }
@@ -52,8 +56,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     public void moveLeft(int distance) {
 
         if (shape instanceof Movable) {
-            int maxColsLeft = distance < getCol() ? distance : getCol();
-            setPos(-maxColsLeft , 0);
+            int maxColsLeft = distance < getCol() - toRows(getGrid().getMARGIN()) ? distance : getCol() - toRows(getGrid().getMARGIN());
+            setPos(-maxColsLeft, 0);
         }
 
     }
@@ -63,8 +67,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         if (shape instanceof Movable) {
 
             int shapeWidth = shape.getWidth() / ((SimpleGfxGrid) getGrid()).getCellSize();
-            int maxColsRight = distance > getGrid().getCols() - (getCol() + shapeWidth) ? getGrid().getCols() - (getCol() + shapeWidth) : distance;
-            setPos(maxColsRight  , 0);
+
+            int maxColsRight = distance > (getGrid().getCols() + toRows(getGrid().getMARGIN()) - (getCol() + shapeWidth)) ?
+                    getGrid().getCols() + toRows(getGrid().getMARGIN()) - (getCol() + shapeWidth) : distance;
+
+            setPos(maxColsRight, 0);
 
         }
     }
