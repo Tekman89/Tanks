@@ -8,6 +8,7 @@ public enum GridDirection {
     UP,
     DOWN,
     LEFT,
+    STILL,
     RIGHT;
 
     public GridDirection oppositeDirection() {
@@ -26,7 +27,7 @@ public enum GridDirection {
                 return LEFT;
 
             default:
-                return null;
+                return STILL;
         }
     }
 }

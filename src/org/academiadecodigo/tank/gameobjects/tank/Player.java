@@ -22,15 +22,11 @@ public class Player extends Tank {
 
     @Override
     public void move() {
+        System.out.println(super.getPos());
         super.getPos().moveInDirection(input.getDirection(), SPEED);
 
     }
 
-    public void move(GridDirection direction){
-        System.out.println(direction);
-        System.out.println(super.getPos());
-        super.getPos().moveInDirection(direction, SPEED);
-    }
 
     @Override
     public void setDestroyed() {

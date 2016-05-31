@@ -18,30 +18,30 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     private Shape shape;
     ShapeFactory factory = new ShapeFactory();
 
-    public SimpleGfxGridPosition (int col, int row, GameObjectType objectType, SimpleGfxGrid grid){
+    public SimpleGfxGridPosition(int col, int row, GameObjectType objectType, SimpleGfxGrid grid) {
 
         super(col, row, grid);
-        shape = factory.createShape(toPixel(col) + grid.getMARGIN(), toPixel(row) + grid.getMARGIN(), objectType, grid) ;
+        shape = factory.createShape(toPixel(col) + grid.getMARGIN(), toPixel(row) + grid.getMARGIN(), objectType, grid);
         show();
 
     }
 
-    private int toPixel(int n){
-        return n * ((SimpleGfxGrid)getGrid()).getCellSize();
+    private int toPixel(int n) {
+        return n * ((SimpleGfxGrid) getGrid()).getCellSize();
     }
 
 
-    public void moveDown(int distance) {
+    public void moveDown(int distance) { // TODO: 31/05/16 check the problem in the cols & rows
 
         if (shape instanceof Movable) {
 
-            int shapeHeight = shape.getHeight() / ((SimpleGfxGrid)getGrid()).getCellSize();
+            int shapeHeight = shape.getHeight() / ((SimpleGfxGrid) getGrid()).getCellSize();
             int maxRowsDown = distance > getGrid().getRows() - (getRow() + shapeHeight) ? getGrid().getRows() - (getRow() + shapeHeight) : distance;
             setPos(0, maxRowsDown);
         }
     }
 
-    public  void moveUp(int distance) {
+    public void moveUp(int distance) {
 
         if (shape instanceof Movable) {
             int maxRowsUp = distance < getRow() ? distance : getRow();
@@ -53,7 +53,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         if (shape instanceof Movable) {
             int maxColsLeft = distance < getCol() ? distance : getCol();
-            setPos(-maxColsLeft, 0);
+            setPos(-maxColsLeft , 0);
         }
 
     }
@@ -62,16 +62,17 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         if (shape instanceof Movable) {
 
-            int shapeWidth = shape.getWidth() / ((SimpleGfxGrid)getGrid()).getCellSize();
+            int shapeWidth = shape.getWidth() / ((SimpleGfxGrid) getGrid()).getCellSize();
             int maxColsRight = distance > getGrid().getCols() - (getCol() + shapeWidth) ? getGrid().getCols() - (getCol() + shapeWidth) : distance;
-            setPos(maxColsRight, 0);
+            setPos(maxColsRight  , 0);
 
         }
     }
+
     @Override
     public void setPos(int deltaCol, int deltaRow) {
 
-        if(shape instanceof Movable) {
+        if (shape instanceof Movable) {
             super.setPos(getCol() + deltaCol, getRow() + deltaRow);
             ((Movable) shape).translate(toPixel(deltaCol), toPixel(deltaRow));
 

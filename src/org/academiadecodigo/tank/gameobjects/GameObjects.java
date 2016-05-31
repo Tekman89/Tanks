@@ -18,7 +18,6 @@ public abstract class GameObjects implements Destroyable {
 
 
     public GridPosition getPos() {
-        System.out.println("!");
         return pos;
     }
 

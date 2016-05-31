@@ -47,11 +47,14 @@ public class Test {
         SimpleGfxGrid g = new SimpleGfxGrid(80, 45);
         g.init();
         ObjectFactory factory = new ObjectFactory(g);
-        GameObjects objects = factory.createObject(GameObjectType.PLAYER);
-        Input input = new Input();
+        GameObjects[] objects = new GameObjects[20];
 
-        GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
-      //  test(10, pos);
+//        for (int i = 0; i < 20; i++) {
+//            objects[i] = factory.createObject(GameObjectType.ENEMY);
+//        }
+
+       // GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
+        //test(10, pos);
 
 //        GridPosition pos2 = new SimpleGfxGridPosition(3, 0, GameObjectType.ENEMY, g);
 //        System.out.println("Horizontal: " + pos.isAdjacent((AbstractGridPosition) pos2));
@@ -59,23 +62,18 @@ public class Test {
 //        GridPosition pos3 = new SimpleGfxGridPosition(0, 3, GameObjectType.ENEMY, g);
 //        System.out.println("vertical: " + pos.isAdjacent((AbstractGridPosition) pos3));
 
-//        ((Player) objects).move();
 
-        switch (input.getDirection()){
-            case UP:
-                ((Player) objects).move(GridDirection.UP);
-                break;
-            case DOWN:
-                ((Player) objects).move(GridDirection.DOWN);
-                break;
-            case LEFT:
-                ((Player) objects).move(GridDirection.LEFT);
-                break;
-            case RIGHT:
-                ((Player) objects).move(GridDirection.RIGHT);
-                break;
+        objects[0] = factory.createObject(GameObjectType.PLAYER);
+
+        while(true){
+            try {
+                Thread.sleep(40);
+//                for(GameObjects game: objects)
+                ((Player) objects[0]).move();
+            } catch (InterruptedException e){
+                System.out.println(e);
+            }
         }
-
 
     }
 
