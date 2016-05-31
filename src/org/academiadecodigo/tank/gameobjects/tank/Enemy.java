@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
+import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
 import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
@@ -23,6 +24,10 @@ public class Enemy extends Tank {
         switch (RNG.rng(4)){
             case 0 :
                 System.out.println("UP");
+                if(getDirection() != GridDirection.UP){
+                    getPos().replace(GridDirection.UP, GameObjectType.ENEMY);
+
+                }
                 super.setDirection(GridDirection.UP);
                 return GridDirection.UP;
 

@@ -1,6 +1,7 @@
 package org.academiadecodigo.tank.grid.position;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
@@ -71,7 +72,7 @@ public abstract class AbstractGridPosition implements GridPosition {
                 moveLeft(distance);
                 break;
 
-            case  RIGHT:
+            case RIGHT:
                 moveRight(distance);
                 break;
         }
@@ -123,6 +124,7 @@ public abstract class AbstractGridPosition implements GridPosition {
                 Math.abs(centerRow1 - centerRow2) <= (objHeight/2.0 + objHeight/2.0);
 
     }
+
 
     @Override
     public String toString() {

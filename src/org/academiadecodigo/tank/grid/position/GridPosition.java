@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.grid.position;
 
+import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
 
@@ -28,6 +29,8 @@ public interface GridPosition {
     boolean isAdjacent(AbstractGridPosition position);
 
     void moveInDirection(GridDirection direction, int distance);
+
+    void replace(GridDirection direction, GameObjectType objType);
 
 
 }

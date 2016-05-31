@@ -6,6 +6,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Shape;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.grid.Grid;
+import org.academiadecodigo.tank.grid.GridDirection;
 import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.position.GridPosition;
@@ -84,6 +85,28 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
             ((Movable) shape).translate(toPixel(deltaCol), toPixel(deltaRow));
 
         }
+    }
+    @Override
+    public void replace(GridDirection direction, GameObjectType objType) {
+
+        switch(direction) {
+
+            case UP:
+                Shape tempShape = factory.createShape(shape, objType, GridDirection.UP);
+                hide();
+                shape = tempShape;
+                show();
+                break;
+
+            case DOWN:
+
+            case RIGHT:
+
+            case LEFT:
+
+        }
+
+
     }
 
     @Override

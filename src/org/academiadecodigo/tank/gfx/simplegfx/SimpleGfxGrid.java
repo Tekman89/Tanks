@@ -56,7 +56,7 @@ public class SimpleGfxGrid  implements Grid {
         switch(objectType) {
 
             case ENEMY:
-                return new SimpleGfxGridPosition(generateCol(), 0, objectType, this);
+                return new SimpleGfxGridPosition(1, 2, objectType, this);
 
             case PLAYER:
                 return new SimpleGfxGridPosition(1, 2, objectType, this); // TODO set player position

@@ -14,6 +14,9 @@ import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
+
+import java.awt.*;
+
 /**
  * Created by codecadet on 23/05/16.
  */
@@ -47,7 +50,7 @@ public class Test {
         SimpleGfxGrid g = new SimpleGfxGrid(80, 45);
         g.init();
         ObjectFactory factory = new ObjectFactory(g);
-        GameObjects objects = factory.createObject(GameObjectType.PLAYER);
+        GameObjects objects = factory.createObject(GameObjectType.ENEMY);
 
       //  GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
         // test(10, pos);
@@ -61,7 +64,7 @@ public class Test {
         while(true){
             try {
                 Thread.sleep(30);
-                ((Player) objects).move();
+                ((Enemy) objects).move();
             } catch (InterruptedException e){
                 System.out.println(e);
             }
