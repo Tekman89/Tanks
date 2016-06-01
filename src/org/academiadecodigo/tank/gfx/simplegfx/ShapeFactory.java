@@ -25,16 +25,16 @@ public class ShapeFactory {
             switch (direction) {
 
                 case UP:
-                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_U.png");
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Tanks/images/images/Player_Tank_U.png");
 
                 case DOWN:
-                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_D.png");
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Tanks/images/images/Player_Tank_D.png");
 
                 case RIGHT:
-                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_R.png");
+                    return new Picture(shape.getX(), shape.getY(), "//Users/codecadet/Tanks/images/images/Player_Tank_R.png");
 
                 case LEFT:
-                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_L.png");
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Tanks/images/images/Player_Tank_L.png");
 
             }
 
@@ -43,13 +43,13 @@ public class ShapeFactory {
             switch (direction) {
 
                 case UP:
-                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_U.png");
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Tanks/images/images/Enemy_Tank3_U.png");
                 case DOWN:
-                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_D.png");
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Tanks/images/images/Enemy_Tank3_D.png");
                 case LEFT:
-                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_L.png");
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Tanks/images/images/Enemy_Tank3_L.png");
                 case RIGHT:
-                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_R.png");
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Tanks/images/images/Enemy_Tank3_R.png");
             }
 
         }
@@ -67,7 +67,7 @@ public class ShapeFactory {
                 int width = 10;
                 int height = 10;
                 //return new Rectangle(x, y, 3 * grid.getCellSize(), 3 * grid.getCellSize() );
-                return new Picture(10, 10, "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_D.png");
+                return new Picture(10, 10, "/Users/codecadet/Tanks/images/images/Enemy_Tank3_D.png");
 
 
             //return new Rectangle(0, 0, width, height);
@@ -75,7 +75,7 @@ public class ShapeFactory {
             case PLAYER:
                 int n = 10;
                 //return new Rectangle(x, y, 3 * grid.getCellSize(), 3 * grid.getCellSize() );
-                return new Picture(10, 10, "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_U.png");
+                return new Picture(10, 10, "/Users/codecadet/Tanks/images/images/Player_Tank_U.png");
 
             case SHELL:
                 return null;
