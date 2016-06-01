@@ -12,7 +12,7 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
 
     private boolean isDestroyed;
     public static final int SPEED = 1;
-    private GridDirection direction;
+    private GridDirection direction = GridDirection.STILL;
 
 
 

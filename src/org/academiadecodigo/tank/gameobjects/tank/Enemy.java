@@ -69,17 +69,15 @@ public class Enemy extends Tank {
      */
 
     @Override
-    public void move() {
+    public boolean move() {
 
-        if(RNG.rng(PROBABILITY) < 2) {
-            System.out.println(getPos());
-            super.
-                    getPos().
-                    moveInDirection(
-                            chooseDirection(),
-                            SPEED);
+        if(RNG.rng(PROBABILITY) < 2 || super.getDirection() == null) {
+           // System.out.println(getPos());
+            return super.getPos().move(chooseDirection(), SPEED);
+
         } else {
-            super.getPos().moveInDirection(super.getDirection(),SPEED);
+
+            return super.getPos().move(super.getDirection(),SPEED);
         }
 
     }

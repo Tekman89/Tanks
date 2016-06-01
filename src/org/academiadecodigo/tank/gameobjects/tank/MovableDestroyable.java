@@ -10,7 +10,7 @@ public interface MovableDestroyable extends Destroyable {
 
 
 
-        void move();
+        boolean move();
 
 
 

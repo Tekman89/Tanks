@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
+import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gfx.simplegfx.Input;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
@@ -21,10 +22,29 @@ public class Player extends Tank {
 
 
     @Override
-    public void move() {
-        System.out.println(super.getPos());
-        super.getPos().moveInDirection(input.getDirection(), SPEED);
+    public boolean move() {
 
+        if(input.getDirection() != super.getDirection()){
+            getPos().replace(input.getDirection(), GameObjectType.PLAYER);
+        }
+       // System.out.println(super.getPos());
+        return super.getPos().move(input.getDirection(), SPEED);
+
+    }
+
+
+    public boolean fire() {
+        if (input.getFire()) {
+            System.out.println("Entering here");
+
+            return true;
+        }
+
+        return false;
+    }
+
+    protected GridDirection getInput(){
+        return input.getDirection();
     }
 
 

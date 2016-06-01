@@ -11,12 +11,15 @@ import org.academiadecodigo.tank.grid.GridDirection;
  */
 public abstract class AbstractGridPosition implements GridPosition {
 
-    private  int col;
+    private int col;
     private int row;
     private Grid grid;
     private GridColor color;
+    private int height;
+    private int width;
 
-    public AbstractGridPosition(int col, int row , Grid grid){
+
+    public AbstractGridPosition(int col, int row, Grid grid) {
 
         this.col = col;
         this.row = row;
@@ -24,89 +27,105 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     }
 
-    public void setPos(int col, int row){
+    public void setPos(int col, int row) {
 
         this.col = col;
         this.row = row;
         show();
     }
 
-    public void setColor(GridColor color){
+    public void setColor(GridColor color) {
 
         this.color = color;
         show();
     }
 
-    public Grid getGrid(){
+    public Grid getGrid() {
 
         return grid;
     }
 
-    public int getCol(){
+    public int getCol() {
 
         return col;
     }
 
-    public int getRow(){
+    public int getRow() {
 
         return row;
 
     }
-    public GridColor getColor(){
+
+    public GridColor getColor() {
 
         return color;
     }
 
-    public void moveInDirection(GridDirection direction, int distance){
-        switch (direction){
+    public boolean move(GridDirection direction, int speed) {
 
-            case UP:
-                moveUp(distance);
-                break;
 
-            case DOWN:
-                moveDown(distance);
-                break;
+        while (speed > 0) {
 
-            case LEFT:
-                moveLeft(distance);
-                break;
+            if (!moveInDirection(direction, 1)) {
+                return false;
+            }
+            speed--;
 
-            case RIGHT:
-                moveRight(distance);
-                break;
         }
+
+        return true;
 
     }
 
-    public void moveUp(int distance){
+    public boolean moveInDirection(GridDirection direction, int distance) {
+        switch (direction) {
+
+            case UP:
+                return moveUp(distance);
+
+            case DOWN:
+                return moveDown(distance);
+
+            case LEFT:
+                return moveLeft(distance);
+
+            case RIGHT:
+                return moveRight(distance);
+        }
+
+        return false;
+    }
+
+    public boolean moveUp(int distance) {
 
         int maxRowsUp = distance < getRow() ? distance : getRow();
         setPos(getCol(), getRow() - maxRowsUp);
-
+        return !(maxRowsUp == 0);
     }
 
-    public void moveDown(int distance){
+    public boolean moveDown(int distance) {
 
-        int maxRowsUp = distance > getGrid().getRows() - (getRow() +1)  ?  getGrid().getRows() - (getRow() +1) : distance;
-        setPos(getCol(), getRow() + maxRowsUp);
+        int maxRowsDown = distance > getGrid().getRows() - (getRow() + 1) ? getGrid().getRows() - (getRow() + 1) : distance;
+        setPos(getCol(), getRow() + maxRowsDown);
+        return !(maxRowsDown == 0);
     }
 
-    public void moveLeft(int distance){
+    public boolean moveLeft(int distance) {
 
         int maxColsLeft = distance < getCol() ? distance : getCol();
         setPos(getCol() - maxColsLeft, getRow());
-
+        return !(maxColsLeft == 0);
     }
 
-    public void moveRight(int distance){
+    public boolean moveRight(int distance) {
 
-        int maxColsRight = distance > getGrid().getCols() - (getCol()+1) ? getGrid().getCols() - (getCol()+1) : distance;
+        int maxColsRight = distance > getGrid().getCols() - (getCol() + 1) ? getGrid().getCols() - (getCol() + 1) : distance;
         setPos(getCol() + maxColsRight, getRow());
+        return !(maxColsRight == 0);
 
     }
 
-    public boolean isAdjacent(AbstractGridPosition position){
+    public boolean isAdjacent(AbstractGridPosition position) {
         int objWidth = 3; // obj size to do
         int objHeight = 3; // obj size to do
 
@@ -121,8 +140,32 @@ public abstract class AbstractGridPosition implements GridPosition {
 
 
         return Math.abs(centerCol1 - centerCol2) <= (center1 + center2) &&
-                Math.abs(centerRow1 - centerRow2) <= (objHeight/2.0 + objHeight/2.0);
+                Math.abs(centerRow1 - centerRow2) <= (objHeight / 2.0 + objHeight / 2.0);
 
+    }
+
+    protected void setHeight(int height) {
+        this.height = height;
+    }
+
+    protected void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public boolean onEdge() {
+        return (col <= getGrid().getMARGIN() ||
+                col + width >= getGrid().getCols() + width - getGrid().getMARGIN() ||
+                row <= getGrid().getMARGIN() ||
+                row + height >= getGrid().getRows() + height - getGrid().getMARGIN());
     }
 
 
@@ -134,5 +177,6 @@ public abstract class AbstractGridPosition implements GridPosition {
                 ", getColor=" + color +
                 '}';
     }
+
 }
 
