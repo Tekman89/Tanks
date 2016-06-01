@@ -3,6 +3,7 @@ package org.academiadecodigo.tank.gfx.simplegfx;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
+import org.academiadecodigo.tank.gameobjects.tank.Tank;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 
@@ -17,7 +18,7 @@ public class SimpleGfxGrid  implements Grid {
     private int rows;
     private final int MARGIN = 10;
 
-    private final int CELL_SIZE = 10;
+    private final int CELL_SIZE = MARGIN/2;
 
 
     public SimpleGfxGrid(int cols, int rows) {
@@ -61,11 +62,24 @@ public class SimpleGfxGrid  implements Grid {
             case PLAYER:
                 return new SimpleGfxGridPosition(1, 2, objectType, this); // TODO set player position
 
-            case SHELL:
-            // TODO see tank position
-                return  null;
 
             default:
+                return null;
+        }
+
+    }
+
+    @Override
+    public GridPosition makeGridPosition(GameObjectType objectType, Tank myTank){
+
+        switch (objectType){
+
+            case SHELL:
+                System.out.println(myTank.getPos().getCol() * CELL_SIZE + " " + myTank.getPos().getRow() * CELL_SIZE);
+                return new SimpleGfxGridPosition(myTank.getPos().getCol(), myTank.getPos().getRow(), objectType, this);
+
+            default:
+                System.out.println("Pos bug");
                 return null;
         }
 

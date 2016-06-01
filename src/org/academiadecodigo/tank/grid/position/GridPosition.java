@@ -28,9 +28,13 @@ public interface GridPosition {
 
     boolean isAdjacent(AbstractGridPosition position);
 
-    void moveInDirection(GridDirection direction, int distance);
+    boolean moveInDirection(GridDirection direction, int distance);
+
+    boolean move(GridDirection direction, int speed);
 
     void replace(GridDirection direction, GameObjectType objType);
+
+    boolean onEdge();
 
 
 }

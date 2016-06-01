@@ -44,17 +44,20 @@ public class ShapeFactory {
 
                 case UP:
                     return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_U.png");
+
                 case DOWN:
                     return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_D.png");
+
                 case LEFT:
                     return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_L.png");
+
                 case RIGHT:
                     return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_R.png");
             }
 
         }
 
-        return new Picture();
+        return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/sprite_bullet.png");
 
     }
 
@@ -78,13 +81,16 @@ public class ShapeFactory {
                 return new Picture(10, 10, "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_U.png");
 
             case SHELL:
-                return null;
+                return new Picture(x, y, "images/images/sprite_bullet.png");
 
-            default:
-                return null;
+
         }
 
+
+        return new Picture(10,10,"images/images/Player_Tank2.png" );
     }
+
+
 
 
 }

@@ -2,6 +2,8 @@ package org.academiadecodigo.tank.gameobjects;
 
 import org.academiadecodigo.tank.gameobjects.tank.Enemy;
 import org.academiadecodigo.tank.gameobjects.tank.Player;
+import org.academiadecodigo.tank.gameobjects.tank.Shell;
+import org.academiadecodigo.tank.gameobjects.tank.Tank;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.utilities.Factory;
 import org.academiadecodigo.tank.utilities.RNG;
@@ -37,8 +39,6 @@ public class ObjectFactory implements Factory{
 
                 return new Enemy(grid.makeGridPosition(GameObjectType.ENEMY)); // TODO: 27/05/16 add enemy constructor
 
-
-
             default:
                 System.out.println("Something went wrong in the factory!");
                 return null;
@@ -47,8 +47,8 @@ public class ObjectFactory implements Factory{
 
     }
 
-
-
-
+    public GameObjects createShell(Tank tank) {
+        return new Shell(grid.makeGridPosition(GameObjectType.SHELL, tank), tank);
+    }
 
 }

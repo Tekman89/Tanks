@@ -47,7 +47,7 @@ public class Input implements KeyboardHandler, org.academiadecodigo.tank.utiliti
         upPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         upReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        spacePress.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        spaceRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
 
         /*
@@ -137,7 +137,7 @@ public class Input implements KeyboardHandler, org.academiadecodigo.tank.utiliti
                 direction = GridDirection.STILL;
                 break;
             case KeyboardEvent.KEY_SPACE:
-
+                fire = false;
                 break;
         }
 

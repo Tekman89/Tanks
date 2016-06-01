@@ -3,9 +3,7 @@ package org.academiadecodigo.tank.test;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.gameobjects.ObjectFactory;
-import org.academiadecodigo.tank.gameobjects.tank.Enemy;
-import org.academiadecodigo.tank.gameobjects.tank.Player;
-import org.academiadecodigo.tank.gameobjects.tank.Tank;
+import org.academiadecodigo.tank.gameobjects.tank.*;
 import org.academiadecodigo.tank.gfx.simplegfx.Input;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
@@ -50,7 +48,18 @@ public class Test {
         SimpleGfxGrid g = new SimpleGfxGrid(80, 45);
         g.init();
         ObjectFactory factory = new ObjectFactory(g);
-        GameObjects objects = factory.createObject(GameObjectType.ENEMY);
+        GameObjects[] objects = new GameObjects[20];
+
+
+        for (int i = 0; i < objects.length; i++) {
+
+            if (i == 0){
+                objects[i] = factory.createObject(GameObjectType.PLAYER);
+            }// else if( i < 19){
+            //  objects[i] = factory.createObject(GameObjectType.ENEMY);
+           // }
+
+        }
 
       //  GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
         // test(10, pos);
@@ -61,15 +70,60 @@ public class Test {
 //        GridPosition pos3 = new SimpleGfxGridPosition(0, 3, GameObjectType.ENEMY, g);
 //        System.out.println("vertical: " + pos.isAdjacent((AbstractGridPosition) pos3));
 
+
+
         while(true){
-            try {
-                Thread.sleep(300);
-                ((Enemy) objects).move();
+            try{
+                Thread.sleep(30);
+
+                for( int i = 0; i < objects.length; i++) {
+
+                    if(objects[i] instanceof MovableDestroyable){
+
+
+                        if(objects[i] instanceof Shell && !((MovableDestroyable)objects[i]).move()){
+                            objects[i].getPos().hide();
+                            objects[i] = null;
+
+                        }
+
+                        if(objects[i] != null) {
+                            ((MovableDestroyable) objects[i]).move();
+                        }
+
+
+                        if(objects[i] instanceof Player){
+                            Player player = (Player) objects[i];
+
+                            if(player.fire() && objects[19] == null){
+                                 objects[19]= factory.createShell(((Tank) objects[0]));
+
+                                ((Shell) objects[19]).move();
+
+                            }
+
+                        }
+
+                    }
+                }
+
             } catch (InterruptedException e){
-                System.out.println(e);
+                e.getMessage();
             }
+
+
         }
 
+
+//        while(true){
+//            try {
+//                Thread.sleep(30);
+//                ((Player) objects).move();
+//            } catch (InterruptedException e){
+//                System.out.println(e);
+//            }
+//        }
+//
     }
 
 

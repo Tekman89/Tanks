@@ -1,6 +1,7 @@
 package org.academiadecodigo.tank.grid;
 
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
+import org.academiadecodigo.tank.gameobjects.tank.Tank;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 
 /**
@@ -22,5 +23,7 @@ public interface Grid {
     //public GridPosition makeGridPosition(int col, int row);
 
     public GridPosition makeGridPosition(GameObjectType objectType);
+
+    public GridPosition makeGridPosition(GameObjectType objectType, Tank myTank);
 
 }
