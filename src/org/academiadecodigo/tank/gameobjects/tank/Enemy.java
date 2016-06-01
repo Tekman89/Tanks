@@ -13,6 +13,9 @@ import org.academiadecodigo.tank.utilities.RNG;
 public class Enemy extends Tank {
 
 
+    private final int PROBABILITY = 10;
+
+
 
     public Enemy(GridPosition pos){
         super(pos);
@@ -23,7 +26,6 @@ public class Enemy extends Tank {
 
         switch (RNG.rng(4)){
             case 0 :
-                System.out.println("UP");
                 if(getDirection() != GridDirection.UP){
                     getPos().replace(GridDirection.UP, GameObjectType.ENEMY);
 
@@ -32,17 +34,26 @@ public class Enemy extends Tank {
                 return GridDirection.UP;
 
             case 1 :
-                System.out.println("Down");
+                if(getDirection() != GridDirection.DOWN){
+                    getPos().replace(GridDirection.DOWN, GameObjectType.ENEMY);
+
+                }
                 super.setDirection(GridDirection.DOWN);
                 return GridDirection.DOWN;
 
             case 2 :
-                System.out.println("Right");
+                if(getDirection() != GridDirection.RIGHT){
+                    getPos().replace(GridDirection.RIGHT, GameObjectType.ENEMY);
+
+                }
                 super.setDirection(GridDirection.RIGHT);
                 return GridDirection.RIGHT;
 
             case 3 :
-                System.out.println("Left");
+                if(getDirection() != GridDirection.LEFT){
+                    getPos().replace(GridDirection.LEFT, GameObjectType.ENEMY);
+
+                }
                 super.setDirection(GridDirection.LEFT);
                 return GridDirection.LEFT;
 
@@ -53,14 +64,24 @@ public class Enemy extends Tank {
 
     }
 
+    /**
+     * Weight defined to choose a new direction
+     */
+
     @Override
     public void move() {
-        System.out.println(getPos());
-        super.
-                getPos().
-                moveInDirection(
-                        chooseDirection(),
-                        SPEED);
+
+        if(RNG.rng(PROBABILITY) < 2) {
+            System.out.println(getPos());
+            super.
+                    getPos().
+                    moveInDirection(
+                            chooseDirection(),
+                            SPEED);
+        } else {
+            super.getPos().moveInDirection(super.getDirection(),SPEED);
+        }
+
     }
 
     @Override

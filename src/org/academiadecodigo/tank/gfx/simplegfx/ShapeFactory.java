@@ -18,24 +18,47 @@ public class ShapeFactory {
     // TODO: 31/05/16 in accordance with the direction add a different picture.
 
 
-    public Shape createShape(Shape shape, GameObjectType objectType, GridDirection direction){
+    public Shape createShape(Shape shape, GameObjectType objectType, GridDirection direction) {
 
+        if (objectType == GameObjectType.PLAYER) {
 
-        switch(direction) {
+            switch (direction) {
 
-            case UP:
-                System.out.println(direction);
-                return new Picture(shape.getX(), shape.getY(), "http://st.depositphotos.com/1742172/2152/v/110/depositphotos_21528171-Shocked-cartoon-rat-raster-version.jpg");
+                case UP:
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_U.png");
+
+                case DOWN:
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_D.png");
+
+                case RIGHT:
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_R.png");
+
+                case LEFT:
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_L.png");
+
+            }
+
+        } else if (objectType == GameObjectType.ENEMY) {
+
+            switch (direction) {
+
+                case UP:
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_U.png");
+                case DOWN:
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_D.png");
+                case LEFT:
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_L.png");
+                case RIGHT:
+                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_R.png");
+            }
+
         }
 
-        return new Picture(10,10, "http://0.s3.envato.com/files/85653535/Thumbnail.jpg");
-
-
+        return new Picture();
 
     }
 
-    public Shape createShape(int x, int y, GameObjectType objectType, SimpleGfxGrid grid){
-
+    public Shape createShape(int x, int y, GameObjectType objectType, SimpleGfxGrid grid) {
 
 
         switch (objectType) {
@@ -44,18 +67,15 @@ public class ShapeFactory {
                 int width = 10;
                 int height = 10;
                 //return new Rectangle(x, y, 3 * grid.getCellSize(), 3 * grid.getCellSize() );
-                return new Picture(10,10, "http://0.s3.envato.com/files/85653535/Thumbnail.jpg");
+                return new Picture(10, 10, "/Users/codecadet/Projects/Tanks/Tanks/images/images/Enemy_Tank3_D.png");
 
 
-
-
-
-                //return new Rectangle(0, 0, width, height);
+            //return new Rectangle(0, 0, width, height);
 
             case PLAYER:
                 int n = 10;
                 //return new Rectangle(x, y, 3 * grid.getCellSize(), 3 * grid.getCellSize() );
-                return new Picture(10,10, "http://0.s3.envato.com/files/85653535/Thumbnail.jpg");
+                return new Picture(10, 10, "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_U.png");
 
             case SHELL:
                 return null;

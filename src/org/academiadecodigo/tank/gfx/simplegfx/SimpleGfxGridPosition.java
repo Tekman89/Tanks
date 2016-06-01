@@ -89,20 +89,38 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     @Override
     public void replace(GridDirection direction, GameObjectType objType) {
 
+        Shape tempShape;
+
         switch(direction) {
 
+
             case UP:
-                Shape tempShape = factory.createShape(shape, objType, GridDirection.UP);
+                tempShape = factory.createShape(shape, objType, GridDirection.UP);
                 hide();
                 shape = tempShape;
                 show();
                 break;
 
             case DOWN:
+                tempShape = factory.createShape(shape, objType, GridDirection.DOWN);
+                hide();
+                shape = tempShape;
+                show();
+                break;
 
             case RIGHT:
+                tempShape = factory.createShape(shape, objType, GridDirection.RIGHT);
+                hide();
+                shape = tempShape;
+                show();
+                break;
 
             case LEFT:
+                tempShape = factory.createShape(shape, objType, GridDirection.LEFT);
+                hide();
+                shape = tempShape;
+                show();
+                break;
 
         }
 

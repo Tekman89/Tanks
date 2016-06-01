@@ -63,7 +63,7 @@ public class Test {
 
         while(true){
             try {
-                Thread.sleep(30);
+                Thread.sleep(300);
                 ((Enemy) objects).move();
             } catch (InterruptedException e){
                 System.out.println(e);
