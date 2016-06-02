@@ -1,6 +1,7 @@
 package org.academiadecodigo.tank.grid.position;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.tank.Colision;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.grid.GridColor;
@@ -65,7 +66,7 @@ public abstract class AbstractGridPosition implements GridPosition {
 
 
         while (speed > 0) {
-
+            Colision.checkColision();
             if (!moveInDirection(direction, 1)) {
                 return false;
             }
@@ -126,22 +127,21 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     }
 
-    public boolean isAdjacent(AbstractGridPosition position) {
-        int objWidth = 3; // obj size to do
-        int objHeight = 3; // obj size to do
+    public boolean isAdjacent(GridPosition position) {
 
-        double center2 = objWidth / 2.0;
-        double center1 = objWidth / 2.0;
+
+        double center2 = width / 2.0;
+        double center1 = height/ 2.0;
 
         double centerCol1 = col + center1;
         double centerCol2 = position.getCol() + center2;
 
-        double centerRow1 = col + objHeight / 2.0;
-        double centerRow2 = position.getRow() + objHeight / 2.0;
+        double centerRow1 = col + height / 2.0;
+        double centerRow2 = position.getRow() + height / 2.0;
 
 
-        return Math.abs(centerCol1 - centerCol2) <= (center1 + center2) &&
-                Math.abs(centerRow1 - centerRow2) <= (objHeight / 2.0 + objHeight / 2.0);
+        return Math.abs(centerCol1 - centerCol2) <= (width/2 + getWidth()/2) &&
+                Math.abs(centerRow1 - centerRow2) <= (height / 2.0 + getHeight() / 2.0);
 
     }
 
@@ -160,6 +160,10 @@ public abstract class AbstractGridPosition implements GridPosition {
     public int getWidth() {
         return width;
     }
+
+
+
+
 
     @Override
     public boolean onEdge() {

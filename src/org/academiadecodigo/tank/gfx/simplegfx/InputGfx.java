@@ -9,7 +9,7 @@ import org.academiadecodigo.tank.grid.GridDirection;
 /**
  * Created by codecadet on 24/05/16.
  */
-public class Input implements KeyboardHandler, org.academiadecodigo.tank.utilities.Input {
+public class InputGfx implements KeyboardHandler, org.academiadecodigo.tank.utilities.Input {
 
     private Keyboard myKey = new Keyboard(this);
     private KeyboardEvent leftPress = new KeyboardEvent();
@@ -26,7 +26,7 @@ public class Input implements KeyboardHandler, org.academiadecodigo.tank.utiliti
     private boolean fire;
 
 
-    public Input() {
+    public InputGfx() {
         setEvent();
     }
 
