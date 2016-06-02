@@ -25,9 +25,10 @@ public class Player extends Tank {
     public boolean move() {
 
         if(input.getDirection() != super.getDirection()){
+
             getPos().replace(input.getDirection(), GameObjectType.PLAYER);
         }
-       // System.out.println(super.getPos());
+       System.out.println("player " + super.getPos());
         return super.getPos().move(input.getDirection(), SPEED);
 
     }
@@ -35,7 +36,7 @@ public class Player extends Tank {
 
     public boolean fire() {
         if (input.getFire()) {
-            System.out.println("Entering here");
+            //System.out.println("Entering here");
 
             return true;
         }

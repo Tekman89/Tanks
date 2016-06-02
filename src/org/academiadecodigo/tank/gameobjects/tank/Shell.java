@@ -22,7 +22,7 @@ public class Shell extends GameObjects implements MovableDestroyable{
         super(pos);
         this.myTank = tank;
         this.direction = myTank.getDirection();
-        System.out.println(getPos());
+        //System.out.println(getPos());
 
     }
 
@@ -36,12 +36,12 @@ public class Shell extends GameObjects implements MovableDestroyable{
 
             Player player = (Player) myTank;
             direction = player.getInput();
-            System.out.println(((AbstractGridPosition) getPos()).getHeight() + " " + ((AbstractGridPosition) getPos()).getWidth());
+            //System.out.println(((AbstractGridPosition) getPos()).getHeight() + " " + ((AbstractGridPosition) getPos()).getWidth());
 
 
-        } return getPos().move(direction, SPEED);
-
-
+        }
+        //System.out.println("shell " + getPos());
+        return getPos().move(direction, SPEED);
     }
 
     @Override

@@ -45,7 +45,7 @@ public class Test {
     public static void main(String[] args) {
 
 
-        SimpleGfxGrid g = new SimpleGfxGrid(80, 45);
+        SimpleGfxGrid g = new SimpleGfxGrid(120, 80);
         g.init();
         ObjectFactory factory = new ObjectFactory(g);
         GameObjects[] objects = new GameObjects[20];
@@ -55,9 +55,9 @@ public class Test {
 
             if (i == 0){
                 objects[i] = factory.createObject(GameObjectType.PLAYER);
-            }// else if( i < 19){
-            //  objects[i] = factory.createObject(GameObjectType.ENEMY);
-           // }
+            } else if( i < 19){
+              objects[i] = factory.createObject(GameObjectType.ENEMY);
+            }
 
         }
 
@@ -96,7 +96,9 @@ public class Test {
                             Player player = (Player) objects[i];
 
                             if(player.fire() && objects[19] == null){
-                                 objects[19]= factory.createShell(((Tank) objects[0]));
+                                 objects[19] = factory.createShell(((Tank) objects[0]));
+
+
 
                                 ((Shell) objects[19]).move();
 
