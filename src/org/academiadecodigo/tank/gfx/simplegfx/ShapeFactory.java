@@ -25,7 +25,6 @@ public class ShapeFactory {
             switch (direction) {
 
                 case UP:
-                    return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Projects/Tanks/Tanks/images/images/Player_Tank_U.png");
                     return new Picture(shape.getX(), shape.getY(), "/Users/codecadet/Tanks/images/images/Player_Tank_U.png");
 
                 case DOWN:

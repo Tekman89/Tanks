@@ -18,7 +18,7 @@ public class SimpleGfxGrid  implements Grid {
     private int rows;
     private final int MARGIN = 10;
 
-    private final int CELL_SIZE = MARGIN/2;
+    private final int CELL_SIZE = MARGIN;
 
 
     public SimpleGfxGrid(int cols, int rows) {
@@ -60,7 +60,7 @@ public class SimpleGfxGrid  implements Grid {
                 return new SimpleGfxGridPosition(1, 2, objectType, this);
 
             case PLAYER:
-                return new SimpleGfxGridPosition(1, 2, objectType, this); // TODO set player position
+                return new SimpleGfxGridPosition(0,1, objectType, this); // TODO set player position
 
 
             default:
