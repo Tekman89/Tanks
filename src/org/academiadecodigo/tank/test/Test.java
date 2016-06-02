@@ -4,16 +4,15 @@ import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.gameobjects.ObjectFactory;
 import org.academiadecodigo.tank.gameobjects.tank.*;
-import org.academiadecodigo.tank.gfx.simplegfx.Input;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
-import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
-import org.academiadecodigo.tank.grid.Grid;
-import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
+import org.academiadecodigo.tank.utilities.InputType;
 
-import java.awt.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * Created by codecadet on 23/05/16.
@@ -54,7 +53,7 @@ public class Test {
         for (int i = 0; i < objects.length; i++) {
 
             if (i == 0){
-                objects[i] = factory.createObject(GameObjectType.PLAYER);
+                objects[i] = factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX);
             } else if( i < 19){
               objects[i] = factory.createObject(GameObjectType.ENEMY);
             }

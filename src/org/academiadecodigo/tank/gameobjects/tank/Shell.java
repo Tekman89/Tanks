@@ -21,7 +21,7 @@ public class Shell extends GameObjects implements MovableDestroyable{
     public Shell (GridPosition pos, Tank tank){
         super(pos);
         this.myTank = tank;
-        this.direction = myTank.getDirection();
+        this.direction = myTank.getPreviousDirection();
         //System.out.println(getPos());
 
     }
@@ -35,7 +35,7 @@ public class Shell extends GameObjects implements MovableDestroyable{
         if(myTank instanceof Player && direction == GridDirection.STILL){
 
             Player player = (Player) myTank;
-            direction = player.getInput();
+            direction = player.getPreviousDirection();
             //System.out.println(((AbstractGridPosition) getPos()).getHeight() + " " + ((AbstractGridPosition) getPos()).getWidth());
 
 

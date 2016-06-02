@@ -63,7 +63,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
             setPos(0, -maxRowsUp);
         }
         if(type == GameObjectType.PLAYER){
-        System.out.println("X " + shape.getX() + " Y " + shape.getY());}
+        // System.out.println("X " + shape.getX() + " Y " + shape.getY());
+        }
         return !(maxRowsUp == 0);
     }
 
