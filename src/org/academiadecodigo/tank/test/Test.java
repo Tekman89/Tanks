@@ -4,16 +4,14 @@ import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.gameobjects.ObjectFactory;
 import org.academiadecodigo.tank.gameobjects.tank.*;
-import org.academiadecodigo.tank.gfx.simplegfx.Input;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
-import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
-import org.academiadecodigo.tank.grid.Grid;
-import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
 
-import java.awt.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * Created by codecadet on 23/05/16.

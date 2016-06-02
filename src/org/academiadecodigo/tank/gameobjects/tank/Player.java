@@ -1,18 +1,17 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
-import org.academiadecodigo.tank.gfx.simplegfx.Input;
-import org.academiadecodigo.tank.grid.GridColor;
+import org.academiadecodigo.tank.gfx.simplegfx.InputGfx;
 import org.academiadecodigo.tank.grid.GridDirection;
-import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
+import org.academiadecodigo.tank.utilities.Input;
 
 /**
  * Created by codecadet on 23/05/16.
  */
 public class Player extends Tank {
 
-    private Input input = new Input();
+    private Input input = new InputGfx();
 
 
     public Player(GridPosition position) {
@@ -24,11 +23,17 @@ public class Player extends Tank {
     @Override
     public boolean move() {
 
-        if(input.getDirection() != super.getDirection()){
+        if (input.getDirection() != super.getDirection()) {
 
             getPos().replace(input.getDirection(), GameObjectType.PLAYER);
+            setDirection(input.getDirection());
         }
-       System.out.println("player " + super.getPos());
+        //System.out.println("player " + super.getPos());
+
+        if(super.getDirection() != GridDirection.STILL || super.getDirection() != null){
+            super.setPreviousDirection(super.getDirection());
+        }
+
         return super.getPos().move(input.getDirection(), SPEED);
 
     }
@@ -44,7 +49,7 @@ public class Player extends Tank {
         return false;
     }
 
-    protected GridDirection getInput(){
+    protected GridDirection getInput() {
         return input.getDirection();
     }
 

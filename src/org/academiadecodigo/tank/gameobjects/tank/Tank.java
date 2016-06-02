@@ -13,6 +13,7 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
     private boolean isDestroyed;
     public static final int SPEED = 1;
     private GridDirection direction = GridDirection.STILL;
+    private GridDirection previousDirection = GridDirection.STILL;
 
 
 
@@ -25,9 +26,21 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
         return direction;
     }
 
-    public void setDirection(GridDirection direction) {
+    public GridDirection getPreviousDirection() {
+        return previousDirection;
+    }
+
+    protected void setDirection(GridDirection direction) {
         this.direction = direction;
     }
+
+    protected void setPreviousDirection(GridDirection direction) {
+
+        if (direction != GridDirection.STILL && direction != null) {
+            this.previousDirection = direction;
+        }
+    }
+
 
     @Override
     public void hit() {
