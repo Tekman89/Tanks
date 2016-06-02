@@ -27,7 +27,9 @@ public class Player extends Tank {
         if(input.getDirection() != super.getDirection()){
 
             getPos().replace(input.getDirection(), GameObjectType.PLAYER);
+            setDirection(input.getDirection());
         }
+
        System.out.println("player " + super.getPos());
         return super.getPos().move(input.getDirection(), SPEED);
 
