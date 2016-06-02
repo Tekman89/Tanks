@@ -5,6 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.tank.Tank;
 import org.academiadecodigo.tank.grid.Grid;
+import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 
 /**
@@ -18,7 +19,7 @@ public class SimpleGfxGrid  implements Grid {
     private int rows;
     private final int MARGIN = 10;
 
-    private final int CELL_SIZE = MARGIN;
+    private final int CELL_SIZE = MARGIN / 2;
 
 
     public SimpleGfxGrid(int cols, int rows) {
@@ -57,10 +58,10 @@ public class SimpleGfxGrid  implements Grid {
         switch(objectType) {
 
             case ENEMY:
-                return new SimpleGfxGridPosition(1, 2, objectType, this);
+                return new SimpleGfxGridPosition(generateCol(), 0, objectType, this);
 
             case PLAYER:
-                return new SimpleGfxGridPosition(0,1, objectType, this); // TODO set player position
+                return new SimpleGfxGridPosition(1, 2, objectType, this); // TODO set player position
 
 
             default:
@@ -75,8 +76,10 @@ public class SimpleGfxGrid  implements Grid {
         switch (objectType){
 
             case SHELL:
-                System.out.println(myTank.getPos().getCol() * CELL_SIZE + " " + myTank.getPos().getRow() * CELL_SIZE);
-                return new SimpleGfxGridPosition(myTank.getPos().getCol(), myTank.getPos().getRow(), objectType, this);
+                int col = myTank.getPos().getCol() + ((AbstractGridPosition) myTank.getPos()).getWidth()/2;
+                int row = myTank.getPos().getRow() + ((AbstractGridPosition) myTank.getPos()).getHeight()/2;
+                //System.out.println(myTank.getPos().getCol() * CELL_SIZE + " " + myTank.getPos().getRow() * CELL_SIZE);
+                return new SimpleGfxGridPosition(col, row, objectType, this);
 
             default:
                 System.out.println("Pos bug");
@@ -95,7 +98,7 @@ public class SimpleGfxGrid  implements Grid {
             case 1:
                 return cols / 2;
             case 2:
-                return cols - 1;
+                return cols - 6; // 6 é o tamanho do tanque em cell size
             default:
                 System.out.println("Something went wrong with the rng");
                 return -1;

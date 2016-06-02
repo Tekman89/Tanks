@@ -69,8 +69,8 @@ public abstract class AbstractGridPosition implements GridPosition {
             if (!moveInDirection(direction, 1)) {
                 return false;
             }
-            speed--;
 
+            speed--;
         }
 
         return true;
@@ -121,6 +121,7 @@ public abstract class AbstractGridPosition implements GridPosition {
 
         int maxColsRight = distance > getGrid().getCols() - (getCol() + 1) ? getGrid().getCols() - (getCol() + 1) : distance;
         setPos(getCol() + maxColsRight, getRow());
+
         return !(maxColsRight == 0);
 
     }

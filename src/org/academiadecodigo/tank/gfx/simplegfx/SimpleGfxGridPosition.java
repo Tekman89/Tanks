@@ -18,6 +18,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private Shape shape;
     ShapeFactory factory = new ShapeFactory();
+    GameObjectType type;
 
     public SimpleGfxGridPosition(int col, int row, GameObjectType objectType, SimpleGfxGrid grid) {
 
@@ -26,7 +27,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         show();
         super.setHeight(toRows(shape.getHeight()));
         super.setWidth(toRows(shape.getWidth()));
-
+        type = objectType;
     }
 
     private int toPixel(int n) {
@@ -40,33 +41,36 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     public boolean moveDown(int distance) { // TODO: 31/05/16 check the problem in the cols & rows
         int maxRowsDown = 0;
+
         if (shape instanceof Movable) {
 
             int shapeHeight = shape.getHeight() / ((SimpleGfxGrid) getGrid()).getCellSize();
-            maxRowsDown = distance > (getGrid().getRows() + toRows(getGrid().getMARGIN()) - (getRow() + shapeHeight)) ?
-                    getGrid().getRows() + toRows(getGrid().getMARGIN()) - (getRow() + shapeHeight) :
-                    distance;
+            maxRowsDown = distance > (getGrid().getRows() - (getRow() + shapeHeight)) ?
+                    getGrid().getRows() - (getRow() + shapeHeight) : distance;
+
             setPos(0, maxRowsDown);
         }
 
-        System.out.println(maxRowsDown);
             return !(maxRowsDown == 0);
 
     }
 
     public boolean moveUp(int distance) {
         int maxRowsUp = 0;
+
         if (shape instanceof Movable) {
-            maxRowsUp = distance < getRow() - toRows(getGrid().getMARGIN()) ? distance : getRow() - toRows(getGrid().getMARGIN() );
+            maxRowsUp = distance < getRow() ? distance : getRow();
             setPos(0, -maxRowsUp);
         }
+        if(type == GameObjectType.PLAYER){
+        System.out.println("X " + shape.getX() + " Y " + shape.getY());}
         return !(maxRowsUp == 0);
     }
 
     public boolean moveLeft(int distance) {
         int maxColsLeft = 0;
         if (shape instanceof Movable) {
-            maxColsLeft = distance < getCol() - toRows(getGrid().getMARGIN()-1) ? distance : getCol() - toRows(getGrid().getMARGIN() -1);
+            maxColsLeft = distance < getCol()  ? distance : getCol();
             setPos(-maxColsLeft, 0);
         }
         return !(maxColsLeft == 0);
@@ -75,12 +79,13 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     public boolean moveRight(int distance) {
         int maxColsRight = 0;
+
         if (shape instanceof Movable) {
 
             int shapeWidth = shape.getWidth() / ((SimpleGfxGrid) getGrid()).getCellSize();
 
-            maxColsRight = distance > (getGrid().getCols() + toRows(getGrid().getMARGIN()-1) - (getCol() + shapeWidth)) ?
-                    getGrid().getCols() + toRows(getGrid().getMARGIN()-1) - (getCol() + shapeWidth) : distance;
+            maxColsRight = distance > (getGrid().getCols() - (getCol() + shapeWidth)) ?
+                    getGrid().getCols() - (getCol() + shapeWidth) : distance;
 
             setPos(maxColsRight, 0);
 
@@ -140,12 +145,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     @Override
     public void show() {
-        /*if(shape instanceof Rectangle) {
-            ((Rectangle) shape).setColor(Color.BLUE);
-            ((Rectangle) shape).fill();
-        }*/
         shape.draw();
-
     }
 
     @Override
@@ -155,11 +155,4 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     }
 
 
-
-    /*@Override
-    public boolean isAdjacent(AbstractGridPosition position) {
-
-
-        return false;
-    }*/
 }
