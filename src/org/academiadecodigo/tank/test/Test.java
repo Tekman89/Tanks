@@ -1,5 +1,7 @@
 package org.academiadecodigo.tank.test;
 
+import org.academiadecodigo.tank.Colision;
+import org.academiadecodigo.tank.Game;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.gameobjects.ObjectFactory;
@@ -41,26 +43,28 @@ public class Test {
 
     public static int TEST_DELAY = 500;
     public static int TEST_STEP = 800;
+
     public static void main(String[] args) {
 
 
         SimpleGfxGrid g = new SimpleGfxGrid(120, 80);
         g.init();
         ObjectFactory factory = new ObjectFactory(g);
-        GameObjects[] objects = new GameObjects[20];
+
+        LinkedList<GameObjects> linkedList = new LinkedList();
+        linkedList.add(factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX));
 
 
-        for (int i = 0; i < objects.length; i++) {
 
-            if (i == 0){
-                objects[i] = factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX);
-            } else if( i < 19){
-              objects[i] = factory.createObject(GameObjectType.ENEMY);
-            }
+
+
+        for (int i = 0; i < 10; i++) {
+         linkedList.add(factory.createObject(GameObjectType.ENEMY));
 
         }
 
-      //  GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
+
+        //  GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
         // test(10, pos);
 
 //        GridPosition pos2 = new SimpleGfxGridPosition(3, 0, GameObjectType.ENEMY, g);
@@ -70,45 +74,61 @@ public class Test {
 //        System.out.println("vertical: " + pos.isAdjacent((AbstractGridPosition) pos3));
 
 
-
-        while(true){
-            try{
+        while (true) {
+            ListIterator<GameObjects> it = linkedList.listIterator(0);
+            try {
                 Thread.sleep(30);
+                for (int i = 0; i < linkedList.size(); i++) {
 
-                for( int i = 0; i < objects.length; i++) {
+                    if(!it.hasNext()) {
+                        break;
+                    }
+                        GameObjects object = it.next();
 
-                    if(objects[i] instanceof MovableDestroyable){
 
 
-                        if(objects[i] instanceof Shell && !((MovableDestroyable)objects[i]).move()){
-                            objects[i].getPos().hide();
-                            objects[i] = null;
+                    if (object instanceof MovableDestroyable) {
+
+                        Colision.callColision(linkedList);
+//                        ((MovableDestroyable) object).move();
+
+                        if (!((MovableDestroyable) object).move() && object instanceof Shell) {
+
+                            // TODO: 02/06/16 ask collision to check crashes and everything
+
+                            /**
+                             *  linkedList = collision.detectCollision(linkedList);
+                             *
+                             */
+
+                            object.getPos().hide();
+                            object.setDestroyed();
 
                         }
 
-                        if(objects[i] != null) {
-                            ((MovableDestroyable) objects[i]).move();
-                        }
-
-
-                        if(objects[i] instanceof Player){
-                            Player player = (Player) objects[i];
-
-                            if(player.fire() && objects[19] == null){
-                                 objects[19] = factory.createShell(((Tank) objects[0]));
 
 
 
-                                ((Shell) objects[19]).move();
 
+
+                        if (object instanceof Player) {
+                            Player player = (Player)object;
+
+                            if (player.fire()){
+                                it.add(factory.createShell(player));
                             }
-
                         }
 
                     }
+
+                    if(object.isDestroyed()){
+                        object.getPos().hide();
+                        it.remove();
+                    }
+
                 }
 
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.getMessage();
             }
 
@@ -134,7 +154,7 @@ public class Test {
 
             while (cycles > 0) {
 
-                pos.setColor(cycles % 2 == 0? GridColor.BLUE : GridColor.RED);
+                pos.setColor(cycles % 2 == 0 ? GridColor.BLUE : GridColor.RED);
 
                 System.out.println(pos);
                 cycles--;

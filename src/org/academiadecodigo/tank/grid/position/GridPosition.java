@@ -26,7 +26,7 @@ public interface GridPosition {
 
     void hide();
 
-    boolean isAdjacent(AbstractGridPosition position);
+    boolean isAdjacent(GridPosition position);
 
     boolean moveInDirection(GridDirection direction, int distance);
 
