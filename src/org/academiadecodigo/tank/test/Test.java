@@ -8,6 +8,7 @@ import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
+import org.academiadecodigo.tank.utilities.InputType;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -52,7 +53,7 @@ public class Test {
         for (int i = 0; i < objects.length; i++) {
 
             if (i == 0){
-                objects[i] = factory.createObject(GameObjectType.PLAYER);
+                objects[i] = factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX);
             } else if( i < 19){
               objects[i] = factory.createObject(GameObjectType.ENEMY);
             }

@@ -6,6 +6,7 @@ import org.academiadecodigo.tank.gameobjects.tank.Shell;
 import org.academiadecodigo.tank.gameobjects.tank.Tank;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.utilities.Factory;
+import org.academiadecodigo.tank.utilities.InputType;
 import org.academiadecodigo.tank.utilities.RNG;
 
 /**
@@ -24,15 +25,22 @@ public class ObjectFactory implements Factory{
 
     }
 
+    public GameObjects createObject(GameObjectType myObjects, InputType inputType){
 
+        switch (myObjects){
+            case PLAYER:
+                return new Player(grid.makeGridPosition(GameObjectType.PLAYER), inputType);
+            default:
+                System.out.println("Only players are allowed to be controlled by input");
+                return null;
+        }
+
+
+    }
 
     public GameObjects createObject(GameObjectType myObject) {
 
         switch (myObject) {
-
-            case PLAYER:
-
-                return new Player(grid.makeGridPosition(GameObjectType.PLAYER)); // TODO: 27/05/16 add permanent coordinates to be born
 
 
             case ENEMY:
