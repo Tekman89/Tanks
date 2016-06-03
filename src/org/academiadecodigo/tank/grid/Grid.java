@@ -18,7 +18,7 @@ public interface Grid {
 
     public int getMARGIN();
 
-    // public GridPosition makeGridPosition();
+     //public GridPosition makeGridPosition();
 
     //public GridPosition makeGridPosition(int col, int row);
 

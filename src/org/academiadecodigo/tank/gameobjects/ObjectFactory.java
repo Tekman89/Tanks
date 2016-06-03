@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gameobjects;
 
+import org.academiadecodigo.tank.Colision;
 import org.academiadecodigo.tank.gameobjects.tank.Enemy;
 import org.academiadecodigo.tank.gameobjects.tank.Player;
 import org.academiadecodigo.tank.gameobjects.tank.Shell;
@@ -25,11 +26,11 @@ public class ObjectFactory implements Factory{
 
     }
 
-    public GameObjects createObject(GameObjectType myObjects, InputType inputType){
+    public GameObjects createObject(GameObjectType myObjects, InputType inputType, Colision colision){
 
         switch (myObjects){
             case PLAYER:
-                return new Player(grid.makeGridPosition(GameObjectType.PLAYER), inputType);
+                return new Player(grid.makeGridPosition(GameObjectType.PLAYER), inputType, colision);
             default:
                 System.out.println("Only players are allowed to be controlled by input");
                 return null;
@@ -38,14 +39,14 @@ public class ObjectFactory implements Factory{
 
     }
 
-    public GameObjects createObject(GameObjectType myObject) {
+    public GameObjects createObject(GameObjectType myObject, Colision colision) {
 
         switch (myObject) {
 
 
             case ENEMY:
 
-                return new Enemy(grid.makeGridPosition(GameObjectType.ENEMY)); // TODO: 27/05/16 add enemy constructor
+                return new Enemy(grid.makeGridPosition(GameObjectType.ENEMY), colision); // TODO: 27/05/16 add enemy constructor
 
             default:
                 System.out.println("Something went wrong in the factory!");

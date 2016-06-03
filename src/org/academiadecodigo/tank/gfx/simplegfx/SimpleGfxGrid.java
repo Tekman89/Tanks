@@ -58,10 +58,10 @@ public class SimpleGfxGrid  implements Grid {
         switch(objectType) {
 
             case ENEMY:
-                return new SimpleGfxGridPosition(generateCol(), 0, objectType, this);
+                return new SimpleGfxGridPosition(50, 50, objectType, this);
 
             case PLAYER:
-                return new SimpleGfxGridPosition(1, 2, objectType, this); // TODO set player position
+                return new SimpleGfxGridPosition(20, 20, objectType, this); // TODO set player position
 
 
             default:
@@ -76,14 +76,41 @@ public class SimpleGfxGrid  implements Grid {
         switch (objectType){
 
             case SHELL:
-                int col = myTank.getPos().getCol() + ((AbstractGridPosition) myTank.getPos()).getWidth()/2;
-                int row = myTank.getPos().getRow() + ((AbstractGridPosition) myTank.getPos()).getHeight()/2;
-                //System.out.println(myTank.getPos().getCol() * CELL_SIZE + " " + myTank.getPos().getRow() * CELL_SIZE);
-                return new SimpleGfxGridPosition(col, row, objectType, this);
+
+                return shellDirection(myTank);
 
             default:
                 System.out.println("Pos bug");
                 return null;
+        }
+
+    }
+
+
+    private GridPosition shellDirection(Tank myTank){
+
+        switch (myTank.getPreviousDirection()){
+
+            case UP:
+                return new SimpleGfxGridPosition(myTank.getPos().getCol() + ((AbstractGridPosition)myTank.getPos()).getWidth()/2,
+                        myTank.getPos().getRow()-1,
+                        GameObjectType.SHELL, this);
+            case DOWN:
+                return new SimpleGfxGridPosition(myTank.getPos().getCol() + ((AbstractGridPosition)myTank.getPos()).getWidth()/2,
+                        myTank.getPos().getRow()+ 1 + ((AbstractGridPosition)myTank.getPos()).getHeight(),
+                        GameObjectType.SHELL, this);
+            case LEFT:
+                return new SimpleGfxGridPosition(myTank.getPos().getCol() -1,
+                        myTank.getPos().getRow() + ((AbstractGridPosition)myTank.getPos()).getHeight()/2,
+                        GameObjectType.SHELL, this);
+            case RIGHT:
+                return new SimpleGfxGridPosition(myTank.getPos().getCol()+1 + ((AbstractGridPosition)myTank.getPos()).getWidth(),
+                        myTank.getPos().getRow() + ((AbstractGridPosition)myTank.getPos()).getHeight()/2,
+                        GameObjectType.SHELL, this);
+            default:
+                System.out.println("Problem in the shellDirection/SimpleGfxGrid");
+                return null;
+
         }
 
     }
@@ -101,7 +128,7 @@ public class SimpleGfxGrid  implements Grid {
                 return cols - 6; // 6 é o tamanho do tanque em cell size
             default:
                 System.out.println("Something went wrong with the rng");
-                return -1;
+                return 0;
 
         }
 

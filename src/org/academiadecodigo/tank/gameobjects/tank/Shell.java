@@ -13,7 +13,6 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
  */
 public class Shell extends GameObjects implements MovableDestroyable{
 
-    private boolean isDestroyed;
     private Tank myTank;
     private GridDirection direction;
     private final int SPEED = 4;
@@ -45,6 +44,11 @@ public class Shell extends GameObjects implements MovableDestroyable{
     }
 
     @Override
+    public GridDirection getDirection() {
+        return direction;
+    }
+
+    @Override
     public void hit() {
 
 
@@ -60,12 +64,12 @@ public class Shell extends GameObjects implements MovableDestroyable{
 
     @Override
     public boolean isDestroyed() {
-        return isDestroyed;
+        return super.isDestroyed();
     }
 
     @Override
     public void setDestroyed() {
-        isDestroyed = true;
+        super.setDestroyed();
     }
 
 

@@ -26,7 +26,11 @@ public interface GridPosition {
 
     void hide();
 
-    boolean isAdjacent(GridPosition position);
+    boolean isAdjacentRow(GridPosition position);
+
+    boolean isAdjacentCol(GridPosition position);
+
+    boolean isOverlapping(GridPosition position);
 
     boolean moveInDirection(GridDirection direction, int distance);
 
@@ -35,6 +39,14 @@ public interface GridPosition {
     void replace(GridDirection direction, GameObjectType objType);
 
     boolean onEdge();
+
+    int getHeight();
+
+    int getWidth();
+
+    public int getCenterCol();
+
+    public int getCenterRow();
 
 
 }
