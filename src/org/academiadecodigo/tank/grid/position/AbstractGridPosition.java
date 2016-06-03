@@ -3,6 +3,7 @@ package org.academiadecodigo.tank.grid.position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.tank.Colision;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
+import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
@@ -66,7 +67,6 @@ public abstract class AbstractGridPosition implements GridPosition {
 
 
         while (speed > 0) {
-            Colision.checkColision();
             if (!moveInDirection(direction, 1)) {
                 return false;
             }
@@ -127,21 +127,32 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     }
 
-    public boolean isAdjacent(GridPosition position) {
 
+    @Override
+    public boolean isAdjacentRow(GridPosition position) {
 
-        double center2 = width / 2.0;
-        double center1 = height/ 2.0;
+        return Math.abs(getCenterRow() - position.getCenterRow()) <= ((height / 2) + position.getHeight()/2) &&
+                (col + position.getCol() > col + width ||
+                col + width < position.getCol()); //&&
+                //Math.abs(getCenterCol() - position.getCenterCol()) <= ((width / 2) + position.getWidth()/2);
 
-        double centerCol1 = col + center1;
-        double centerCol2 = position.getCol() + center2;
+    }
 
-        double centerRow1 = col + height / 2.0;
-        double centerRow2 = position.getRow() + height / 2.0;
+    @Override
+    public boolean isAdjacentCol(GridPosition position) {
 
+        return Math.abs(getCenterCol() - position.getCenterCol()) == (width / 2 + position.getWidth()) &&
+                (row + position.getRow() > row + height ||
+                row + height < position.getRow());
 
-        return Math.abs(centerCol1 - centerCol2) <= (width/2 + getWidth()/2) &&
-                Math.abs(centerRow1 - centerRow2) <= (height / 2.0 + getHeight() / 2.0);
+    }
+
+    @Override
+    public boolean isOverlapping(GridPosition position) {
+
+        return Math.abs(getCenterCol() - position.getCenterCol()) < (width / 2 +  position.getWidth() / 2) &&
+                Math.abs(getCenterRow() - position.getCenterRow()) < (height / 2.0 + position.getHeight() / 2.0);
+
 
     }
 
@@ -161,8 +172,16 @@ public abstract class AbstractGridPosition implements GridPosition {
         return width;
     }
 
+    public int getCenterCol(){
 
+        return col + height / 2;
 
+    }
+
+    public int getCenterRow(){
+
+        return row + width / 2;
+    }
 
 
     @Override

@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
+import org.academiadecodigo.tank.Colision;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
@@ -16,41 +17,40 @@ public class Enemy extends Tank {
     private final int PROBABILITY = 10;
 
 
-
-    public Enemy(GridPosition pos){
-        super(pos);
+    public Enemy(GridPosition pos, Colision collision) {
+        super(pos, collision);
     }
 
 
-    private GridDirection chooseDirection (){
+    private GridDirection chooseDirection() {
 
-        switch (RNG.rng(4)){
-            case 0 :
-                if(getDirection() != GridDirection.UP){
+        switch (RNG.rng(4)) {
+            case 0:
+                if (getDirection() != GridDirection.UP) {
                     getPos().replace(GridDirection.UP, GameObjectType.ENEMY);
 
                 }
                 super.setDirection(GridDirection.UP);
                 return GridDirection.UP;
 
-            case 1 :
-                if(getDirection() != GridDirection.DOWN){
+            case 1:
+                if (getDirection() != GridDirection.DOWN) {
                     getPos().replace(GridDirection.DOWN, GameObjectType.ENEMY);
 
                 }
                 super.setDirection(GridDirection.DOWN);
                 return GridDirection.DOWN;
 
-            case 2 :
-                if(getDirection() != GridDirection.RIGHT){
+            case 2:
+                if (getDirection() != GridDirection.RIGHT) {
                     getPos().replace(GridDirection.RIGHT, GameObjectType.ENEMY);
 
                 }
                 super.setDirection(GridDirection.RIGHT);
                 return GridDirection.RIGHT;
 
-            case 3 :
-                if(getDirection() != GridDirection.LEFT){
+            case 3:
+                if (getDirection() != GridDirection.LEFT) {
                     getPos().replace(GridDirection.LEFT, GameObjectType.ENEMY);
 
                 }
@@ -71,19 +71,16 @@ public class Enemy extends Tank {
     @Override
     public boolean move() {
 
-        if(RNG.rng(PROBABILITY) < 2 || super.getDirection() == null) {
-           // System.out.println(getPos());
-            return super.getPos().move(chooseDirection(), SPEED);
+        if (RNG.rng(PROBABILITY) < 2 || super.getDirection() == null) {
 
-        } else {
+            super.setDirection(chooseDirection());
 
-            return super.getPos().move(super.getDirection(),SPEED);
         }
 
-    }
-
-    @Override
-    public void setDestroyed() {
+        return super.move();
 
     }
+
 }
+
+

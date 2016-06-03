@@ -1,8 +1,8 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
+import org.academiadecodigo.tank.Colision;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.grid.GridDirection;
-import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 
 /**
@@ -10,18 +10,31 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
  */
 public abstract class Tank extends GameObjects implements MovableDestroyable {
 
-    private boolean isDestroyed;
     public static final int SPEED = 1;
     private GridDirection direction = GridDirection.STILL;
-    private GridDirection previousDirection = GridDirection.STILL;
+    private GridDirection previousDirection = GridDirection.UP;
+
+    private Colision collision;
 
 
 
-    public Tank(GridPosition pos) {
+    public Tank(GridPosition pos, Colision collision) {
         super(pos);
+        this.collision = collision;
     }
 
+    @Override
+    public boolean move() {
 
+        if(collision.isSafe(this)){
+
+          return  getPos().move(direction, SPEED);
+
+        }
+        return getPos().move(direction.oppositeDirection(), SPEED);
+    }
+
+    @Override
     public GridDirection getDirection() {
         return direction;
     }
@@ -44,15 +57,16 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
 
     @Override
     public void hit() {
-       // pos.hide();
+       //pos.hide();
     }
 
     @Override
     public boolean isDestroyed() {
-        return isDestroyed;
+        return super.isDestroyed();
     }
 
-
-
-
+    @Override
+    public void setDestroyed() {
+        super.setDestroyed();
+    }
 }

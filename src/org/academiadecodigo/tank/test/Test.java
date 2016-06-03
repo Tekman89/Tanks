@@ -1,7 +1,6 @@
 package org.academiadecodigo.tank.test;
 
 import org.academiadecodigo.tank.Colision;
-import org.academiadecodigo.tank.Game;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.gameobjects.ObjectFactory;
@@ -12,7 +11,6 @@ import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
 import org.academiadecodigo.tank.utilities.InputType;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -50,16 +48,19 @@ public class Test {
         SimpleGfxGrid g = new SimpleGfxGrid(120, 80);
         g.init();
         ObjectFactory factory = new ObjectFactory(g);
+        Colision colision;
 
         LinkedList<GameObjects> linkedList = new LinkedList();
-        linkedList.add(factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX));
+        colision = new Colision(linkedList);
+        linkedList.add(factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX, colision));
 
 
 
 
 
-        for (int i = 0; i < 10; i++) {
-         linkedList.add(factory.createObject(GameObjectType.ENEMY));
+
+        for (int i = 0; i < 20 ; i++) {
+         linkedList.add(factory.createObject(GameObjectType.ENEMY,colision));
 
         }
 
@@ -77,7 +78,7 @@ public class Test {
         while (true) {
             ListIterator<GameObjects> it = linkedList.listIterator(0);
             try {
-                Thread.sleep(30);
+                Thread.sleep(100);
                 for (int i = 0; i < linkedList.size(); i++) {
 
                     if(!it.hasNext()) {
@@ -89,27 +90,31 @@ public class Test {
 
                     if (object instanceof MovableDestroyable) {
 
-                        Colision.callColision(linkedList);
+
+
 //                        ((MovableDestroyable) object).move();
 
-                        if (!((MovableDestroyable) object).move() && object instanceof Shell) {
+//                        if (!((MovableDestroyable) object).move() && object instanceof Shell) {
+//
+//                            // TODO: 02/06/16 ask collision to check crashes and everything
+//
+//
+//
+//                           object.getPos().hide();
+//                           object.setDestroyed();
+//
+//                        }
 
-                            // TODO: 02/06/16 ask collision to check crashes and everything
 
-                            /**
-                             *  linkedList = collision.detectCollision(linkedList);
-                             *
-                             */
+                        // TO test
+//                        if(object instanceof Enemy){
+//                            continue;
+//                        }
 
-                            object.getPos().hide();
-                            object.setDestroyed();
 
+                        if(!((MovableDestroyable)object).move() && object instanceof Shell){
+                          object.setDestroyed();
                         }
-
-
-
-
-
 
                         if (object instanceof Player) {
                             Player player = (Player)object;
@@ -119,11 +124,21 @@ public class Test {
                             }
                         }
 
+
+                        colision.checkHitTarget();
+
+
                     }
 
                     if(object.isDestroyed()){
+                        System.out.println("Entering the test is destroyed");
                         object.getPos().hide();
-                        it.remove();
+
+                       try{
+                           it.remove();
+                       }catch (Exception e){
+                           System.out.println("boho");
+                       }
                     }
 
                 }

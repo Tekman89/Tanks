@@ -12,6 +12,8 @@ public interface MovableDestroyable extends Destroyable {
 
         boolean move();
 
+        GridDirection getDirection();
+
 
 
 
