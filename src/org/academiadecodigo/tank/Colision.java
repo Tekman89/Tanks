@@ -1,36 +1,38 @@
 package org.academiadecodigo.tank;
 
 import org.academiadecodigo.tank.gameobjects.GameObjects;
-import org.academiadecodigo.tank.gameobjects.StaticObjects;
+import org.academiadecodigo.tank.gameobjects.tank.MovableDestroyable;
+import org.academiadecodigo.tank.gameobjects.tank.Shell;
 import org.academiadecodigo.tank.gameobjects.tank.Tank;
 import org.academiadecodigo.tank.grid.GridDirection;
-import org.academiadecodigo.tank.grid.position.GridPosition;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
 /**
  * Created by codecadet on 29/05/16.
  */
-public final class Colision {
+public class Colision {
 
-    private static LinkedList<GameObjects> mySpecialLinkedList;
+    private LinkedList<GameObjects> mySpecialLinkedList;
 
+    /**
+     * check Colision only for shells
+     * updates the linked list
+     */
 
-    public static LinkedList<GameObjects> callColision(LinkedList<GameObjects> mySpecialList) {
+    public Colision(LinkedList<GameObjects> linkedList) {
 
-        mySpecialLinkedList = mySpecialList;
+        this.mySpecialLinkedList = linkedList;
 
-        return mySpecialLinkedList;
     }
 
-
-    public static void checkColision() {
-
+    public void checkHitTarget() {
 
         ListIterator<GameObjects> it = mySpecialLinkedList.listIterator();
         int counter = 1;
-
 
         while (it.hasNext()) {
 
@@ -41,46 +43,104 @@ public final class Colision {
 
                 GameObjects object2 = it2.next();
 
-                if(object.getPos().isAdjacent(object2.getPos())){
-                    object.setDestroyed();
-                    object2.setDestroyed();
-                    System.out.println("colided");
-                    System.out.println(object);
-                    System.out.println(object2);
+                if (!(object instanceof Shell) && !(object2 instanceof Shell)) {
+                    continue;
                 }
 
+                if (object instanceof Shell && object2 instanceof Shell) {
+
+                    if (hitObject((Shell) object, (Shell) object2)) {
+                        object.setDestroyed();
+                        object2.setDestroyed();
+
+                    }
+
+                }
+
+                if (object instanceof Shell) {
+
+                    if (hitObject(((Shell) object), object2)) {
+                        object.setDestroyed();
+                        object2.setDestroyed();
+                    }
+
+                }
+
+                if (object2 instanceof Shell) {
+
+                    if (hitObject((Shell) object2, object)) {
+                        object.setDestroyed();
+                        object2.setDestroyed();
+                    }
+
+                }
+
+                counter++;
 
             }
-            counter++;
-
 
         }
 
+    }
+
+    private boolean hitObject(Shell object, GameObjects object2) {
+
+        return object.getPos().isOverlapping(object2.getPos()) && !object.whoFired().equals(object2);
 
     }
 
+    private boolean hitObject(Shell object, Shell object2) {
 
-//    public boolean hasColided(Tank object){
-//
-////        for(GameObjects obj: gameObjects) {
-////
-////            if(obj == object) {
-////                continue;
-////            }
-////
-////            if(obj instanceof Tank) {
-////                return object.getPos().isAdjacent(obj.getPos()) &&
-////                        object.getDirection().oppositeDirection() == ((Tank) obj).getDirection();
-////            }
-////
-////            if(obj instanceof StaticObjects) {
-////
-////                return object
-////
-////            }
-////        }
-//
-//
-//
-//    }
+        return object.getPos().isOverlapping(object2.getPos());
+
+    }
+
+    /**
+     * check if is safe to move to the next position
+     *
+     * @return
+     */
+
+
+    public boolean isSafe(Tank tank) {
+
+        Iterator<GameObjects> it = mySpecialLinkedList.listIterator();
+        boolean result = false;
+        while (it.hasNext()) {
+
+            GameObjects object = it.next();
+
+            if (object.equals(tank)) {
+                continue;
+            }
+            /*if (tank.getPos().isAdjacentRow(object.getPos())) {
+
+                System.out.println(tank.getPos().getRow() - object.getPos().getRow() + " Rows " + tank.getPos().getCol());
+
+                System.out.println(tank.getPos().getCenterRow() <= object.getPos().getCenterRow() && tank.getDirection() != GridDirection.DOWN);
+
+                return object instanceof Shell ||
+                        tank.getPos().getCenterRow() < object.getPos().getCenterRow() && (tank.getDirection() != GridDirection.DOWN) ||
+                        tank.getPos().getCenterRow() > object.getPos().getCenterRow() && (tank.getDirection() != GridDirection.UP);
+
+            }
+            if(tank.getPos().isAdjacentCol(object.getPos())) {
+
+                return tank.getPos().getCenterCol() < object.getPos().getCenterCol() && (tank.getDirection() != GridDirection.RIGHT) ||
+                        tank.getPos().getCenterCol() > object.getPos().getCenterCol() && (tank.getDirection() != GridDirection.LEFT);
+            }
+
+
+        }*/
+            int tankX = tank.getPos().getCenterCol();
+            int objX = object.getPos().getCenterCol();
+
+            int tankY = tank.getPos().getCenterRow();
+            int objY = object.getPos().getCenterRow();
+
+            result =  Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight();
+
+        }
+        return result;
+    }
 }

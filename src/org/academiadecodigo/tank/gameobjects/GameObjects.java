@@ -9,6 +9,8 @@ import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
  */
 public abstract class GameObjects implements Destroyable {
 
+
+    private boolean isDestroyed;
     private GridPosition pos;
     // size
 
@@ -21,4 +23,14 @@ public abstract class GameObjects implements Destroyable {
         return pos;
     }
 
+
+    @Override
+    public void setDestroyed() {
+        isDestroyed = true;
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return isDestroyed;
+    }
 }

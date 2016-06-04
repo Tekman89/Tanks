@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
+import org.academiadecodigo.tank.Colision;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gfx.simplegfx.InputGfx;
 import org.academiadecodigo.tank.grid.GridDirection;
@@ -16,8 +17,8 @@ public class Player extends Tank {
     private Input input;
 
 
-    public Player(GridPosition position, InputType inputType) {
-        super(position);
+    public Player(GridPosition position, InputType inputType, Colision colision) {
+        super(position,colision);
         input = InputFactory.newInput(inputType);
 
     }
@@ -25,6 +26,7 @@ public class Player extends Tank {
 
     @Override
     public boolean move() {
+
 
         if (input.getDirection() != super.getDirection()) {
 
@@ -37,7 +39,8 @@ public class Player extends Tank {
             super.setPreviousDirection(super.getDirection());
         }
 
-        return super.getPos().move(input.getDirection(), SPEED);
+
+        return super.move();
 
     }
 
@@ -57,8 +60,4 @@ public class Player extends Tank {
     }
 
 
-    @Override
-    public void setDestroyed() {
-
-    }
 }

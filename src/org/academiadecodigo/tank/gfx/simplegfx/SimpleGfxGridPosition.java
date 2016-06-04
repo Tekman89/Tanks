@@ -17,8 +17,8 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
 public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private Shape shape;
-    ShapeFactory factory = new ShapeFactory();
-    GameObjectType type;
+    private ShapeFactory factory = new ShapeFactory();
+    private GameObjectType type;
 
     public SimpleGfxGridPosition(int col, int row, GameObjectType objectType, SimpleGfxGrid grid) {
 
@@ -62,9 +62,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
             maxRowsUp = distance < getRow() ? distance : getRow();
             setPos(0, -maxRowsUp);
         }
-        if(type == GameObjectType.PLAYER){
-        // System.out.println("X " + shape.getX() + " Y " + shape.getY());
-        }
+
         return !(maxRowsUp == 0);
     }
 
@@ -143,6 +141,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
 
     }
+
+    //@Override
+    //public boolean isAdjacent(GridPosition position) {
+      //  return super.isAdjacent(position);
+    //}
 
     @Override
     public void show() {
