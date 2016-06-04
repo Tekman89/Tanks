@@ -9,6 +9,7 @@ import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
+import org.academiadecodigo.tank.utilities.Factory;
 import org.academiadecodigo.tank.utilities.InputType;
 
 import java.util.LinkedList;
@@ -43,6 +44,19 @@ public class Test {
     public static int TEST_STEP = 800;
 
 
+    public static void createBlocks(int col, int row, int width, int heigth, Factory factory, LinkedList<GameObjects> linkedList) {
+
+        for(int i = row; i < width + row; i += 2) {
+
+            for (int j = col; j < heigth + col; j += 2) {
+
+                linkedList.add(factory.createEnvironment(j, i, GameObjectType.BRICK));
+            }
+        }
+    }
+
+
+
     public static void main(String[] args) {
 
       int timer = 10;
@@ -54,19 +68,29 @@ public class Test {
 
         LinkedList<GameObjects> linkedList = new LinkedList();
         colision = new Colision(linkedList);
+        GameObjects goal = factory.createObject(GameObjectType.GOAL);
+
         linkedList.add(factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX, colision));
 
 
 
 
 
-
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
          linkedList.add(factory.createObject(GameObjectType.ENEMY,colision));
 
         }
 
-        linkedList.add(factory.createObject(GameObjectType.BRICK));
+        linkedList.add(goal);
+
+
+        createBlocks(10,10,10,10,factory,linkedList);
+        createBlocks(goal.getPos().getCol()-3,goal.getPos().getRow(),goal.getPos().getHeight()+3,3,factory,linkedList);
+        createBlocks(goal.getPos().getCol(),goal.getPos().getRow() + goal.getPos().getHeight() , 3,goal.getPos().getWidth() , factory, linkedList);
+        createBlocks(goal.getPos().getCol() +goal.getPos().getWidth()-1, goal.getPos().getRow(), goal.getPos().getHeight() + 3 ,3,factory,linkedList);
+
+
+
 
 
         //  GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
@@ -110,7 +134,7 @@ public class Test {
                             Player player = (Player)object;
 
                             if (player.fire()){
-                                it.add(factory.createShell(player));
+                                it.add(factory.createShell(player, colision));
                             }
                         }
 
@@ -118,7 +142,7 @@ public class Test {
                             Enemy enemy = (Enemy) object;
 
                             if(enemy.fire()){
-                                it.add(factory.createShell(enemy));
+                                it.add(factory.createShell(enemy, colision));
                             }
 
                         }

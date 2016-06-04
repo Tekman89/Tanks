@@ -54,20 +54,29 @@ public class SimpleGfxGrid  implements Grid {
     @Override
     public int getMARGIN(){ return MARGIN;}
 
+
+    @Override
+    public GridPosition makeGridPosition(int col, int row, GameObjectType objectType) {
+        return new SimpleGfxGridPosition(col, row, objectType, this);
+
+    }
+
     @Override
     public GridPosition makeGridPosition(GameObjectType objectType) {
 
         switch(objectType) {
 
             case ENEMY:
-                return new SimpleGfxGridPosition(generateCol(), 0, objectType, this);
+                return new SimpleGfxGridPosition(generateCol(), rows/2 - 6, objectType, this);
 
             case PLAYER:
-                return new SimpleGfxGridPosition(20, 20, objectType, this); // TODO set player position
+                return new SimpleGfxGridPosition(cols/2 - 3, rows - 6, objectType, this); // the 3 is the half the width and the 6 is all the width
 
             case BRICK:
                 return new SimpleGfxGridPosition(40,40,objectType, this);
 
+            case GOAL:
+                return new SimpleGfxGridPosition(cols/2 - 6, 0, objectType, this); // the 6 is half the width of the goal target
 
             default:
                 return null;
@@ -127,17 +136,15 @@ public class SimpleGfxGrid  implements Grid {
     private int generateCol() {
 
 
-        switch (counter%3) {
+        switch (counter%2) {
 
             case 0:
                 counter++;
                 return 0;
             case 1:
                 counter++;
-                return cols / 2;
-            case 2:
-                counter++;
-                return cols - 6; // 6 é o tamanho do tanque em cell size
+                return cols - 6;
+
             default:
                 System.out.println("Something went wrong with the rng");
                 counter++;

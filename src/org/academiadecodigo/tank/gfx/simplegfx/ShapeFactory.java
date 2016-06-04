@@ -86,6 +86,9 @@ public class ShapeFactory {
             case BRICK:
                 return new Picture(x,y, "images/images/walls.png");
 
+            case GOAL:
+                return new Picture(x, y, "images/images/goal.png");
+
 
         }
 
