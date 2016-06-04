@@ -19,6 +19,20 @@ public class Enemy extends Tank {
 
     public Enemy(GridPosition pos, Colision collision) {
         super(pos, collision);
+
+        if (super.getPos().getCol() == 0) {
+            super.setDirection(GridDirection.DOWN);
+
+        }
+        if (super.getPos().getCol() == super.getPos().getGrid().getCols() / 2) {
+            super.setDirection(GridDirection.DOWN);
+
+        } else {
+            super.setDirection(GridDirection.DOWN);
+        }
+
+        super.myType = GameObjectType.ENEMY;
+
     }
 
 
@@ -71,13 +85,21 @@ public class Enemy extends Tank {
     @Override
     public boolean move() {
 
-        if (RNG.rng(PROBABILITY) < 2 || super.getDirection() == null) {
+        if (RNG.rng(PROBABILITY) < 1 && getMovesMade() >= 6 && super.isSafeMove()) {
 
             super.setDirection(chooseDirection());
 
         }
 
         return super.move();
+
+    }
+
+
+    @Override
+    public boolean fire() {
+
+        return RNG.rng(PROBABILITY) < 2 && super.fire();
 
     }
 

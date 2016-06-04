@@ -15,14 +15,19 @@ public class Shell extends GameObjects implements MovableDestroyable{
 
     private Tank myTank;
     private GridDirection direction;
-    private final int SPEED = 4;
+    private final int SPEED = 1;
 
     public Shell (GridPosition pos, Tank tank){
         super(pos);
         this.myTank = tank;
-        this.direction = myTank.getPreviousDirection();
-        //System.out.println(getPos());
 
+        if(tank instanceof Player) {
+            this.direction = myTank.getPreviousDirection();
+
+        } else {
+
+            this.direction = myTank.getDirection();
+        }
     }
 
     public Tank whoFired() {
@@ -35,13 +40,18 @@ public class Shell extends GameObjects implements MovableDestroyable{
 
             Player player = (Player) myTank;
             direction = player.getPreviousDirection();
-            //System.out.println(((AbstractGridPosition) getPos()).getHeight() + " " + ((AbstractGridPosition) getPos()).getWidth());
-
 
         }
-        //System.out.println("shell " + getPos());
         return getPos().move(direction, SPEED);
     }
+
+
+
+    public boolean sameType(GameObjects object){
+
+        return object instanceof Tank && myTank.getMyType() == ((Tank) object).getMyType();
+    }
+
 
     @Override
     public GridDirection getDirection() {
@@ -50,17 +60,7 @@ public class Shell extends GameObjects implements MovableDestroyable{
 
     @Override
     public void hit() {
-
-
     }
-
-//    public boolean onEdge(){
-//
-//        System.out.println(getPos().onEdge());
-//        return getPos().onEdge();
-//    }
-
-
 
     @Override
     public boolean isDestroyed() {

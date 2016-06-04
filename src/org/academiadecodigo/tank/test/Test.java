@@ -42,8 +42,10 @@ public class Test {
     public static int TEST_DELAY = 500;
     public static int TEST_STEP = 800;
 
+
     public static void main(String[] args) {
 
+      int timer = 10;
 
         SimpleGfxGrid g = new SimpleGfxGrid(120, 80);
         g.init();
@@ -59,7 +61,7 @@ public class Test {
 
 
 
-        for (int i = 0; i < 20 ; i++) {
+        for (int i = 0; i < 3; i++) {
          linkedList.add(factory.createObject(GameObjectType.ENEMY,colision));
 
         }
@@ -78,7 +80,7 @@ public class Test {
         while (true) {
             ListIterator<GameObjects> it = linkedList.listIterator(0);
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
                 for (int i = 0; i < linkedList.size(); i++) {
 
                     if(!it.hasNext()) {
@@ -91,36 +93,22 @@ public class Test {
                     if (object instanceof MovableDestroyable) {
 
 
-
-//                        ((MovableDestroyable) object).move();
-
-//                        if (!((MovableDestroyable) object).move() && object instanceof Shell) {
-//
-//                            // TODO: 02/06/16 ask collision to check crashes and everything
-//
-//
-//
-//                           object.getPos().hide();
-//                           object.setDestroyed();
-//
-//                        }
-
-
-                        // TO test
-//                        if(object instanceof Enemy){
-//                            continue;
-//                        }
+                        /**
+                         *
+                         *  Shell will disappear when it reaches the edge
+                         *
+                         */
 
 
                         if(!((MovableDestroyable)object).move() && object instanceof Shell){
                           object.setDestroyed();
                         }
 
-                        if (object instanceof Player) {
-                            Player player = (Player)object;
+                        if (object instanceof Tank) {
+                            Tank tank = (Tank) object;
 
-                            if (player.fire()){
-                                it.add(factory.createShell(player));
+                            if (tank.fire()){
+                                it.add(factory.createShell(tank));
                             }
                         }
 
@@ -131,13 +119,12 @@ public class Test {
                     }
 
                     if(object.isDestroyed()){
-                        System.out.println("Entering the test is destroyed");
                         object.getPos().hide();
 
                        try{
                            it.remove();
                        }catch (Exception e){
-                           System.out.println("boho");
+                           System.out.println("Fuck u");;
                        }
                     }
 
@@ -147,7 +134,7 @@ public class Test {
                 e.getMessage();
             }
 
-
+            timer--;
         }
 
 

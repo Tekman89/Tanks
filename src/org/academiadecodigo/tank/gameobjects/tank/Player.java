@@ -18,8 +18,10 @@ public class Player extends Tank {
 
 
     public Player(GridPosition position, InputType inputType, Colision colision) {
-        super(position,colision);
+        super(position, colision);
         input = InputFactory.newInput(inputType);
+
+        super.myType = GameObjectType.PLAYER;
 
     }
 
@@ -33,9 +35,8 @@ public class Player extends Tank {
             getPos().replace(input.getDirection(), GameObjectType.PLAYER);
             setDirection(input.getDirection());
         }
-        //System.out.println("player " + super.getPos());
 
-        if(super.getDirection() != GridDirection.STILL || super.getDirection() != null){
+        if (super.getDirection() != GridDirection.STILL || super.getDirection() != null) {
             super.setPreviousDirection(super.getDirection());
         }
 
@@ -44,15 +45,11 @@ public class Player extends Tank {
 
     }
 
-
+    @Override
     public boolean fire() {
-        if (input.getFire()) {
-            //System.out.println("Entering here");
 
-            return true;
-        }
+        return input.getFire() && super.fire();
 
-        return false;
     }
 
     protected GridDirection getInput() {
