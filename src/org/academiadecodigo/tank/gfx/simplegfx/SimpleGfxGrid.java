@@ -65,6 +65,9 @@ public class SimpleGfxGrid  implements Grid {
             case PLAYER:
                 return new SimpleGfxGridPosition(20, 20, objectType, this); // TODO set player position
 
+            case BRICK:
+                return new SimpleGfxGridPosition(40,40,objectType, this);
+
 
             default:
                 return null;

@@ -36,6 +36,7 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
             return getPos().move(direction, SPEED);
 
         }
+
         return getPos().move(direction.oppositeDirection(),SPEED);
     }
 
@@ -58,6 +59,7 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
             this.previousDirection = direction;
         }
     }
+
 
 
     protected int getMovesMade() {
@@ -91,9 +93,10 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
         super.setDestroyed();
     }
 
-    public boolean fire(){
-        return super.getPos().getCol() > 0 && super.getPos().getCol() < super.getPos().getGrid().getCols() - super.getPos().getWidth() &&
-                super.getPos().getRow() > 0 && super.getPos().getRow() < super.getPos().getGrid().getRows() - super.getPos().getHeight();
+    public boolean fire() {
+
+         return super.getPos().getCol() > 0 && super.getPos().getCol() < super.getPos().getGrid().getCols() - super.getPos().getWidth() &&
+                    super.getPos().getRow() > 0 && super.getPos().getRow() < super.getPos().getGrid().getRows() - super.getPos().getHeight();
     }
 
     @Override

@@ -15,15 +15,16 @@ public class Shell extends GameObjects implements MovableDestroyable{
 
     private Tank myTank;
     private GridDirection direction;
-    private final int SPEED = 1;
+    private final int SPEED = 2;
 
     public Shell (GridPosition pos, Tank tank){
         super(pos);
         this.myTank = tank;
 
-        if(tank instanceof Player) {
-            this.direction = myTank.getPreviousDirection();
 
+        if(tank.getDirection() == GridDirection.STILL) {
+
+            this.direction = myTank.getPreviousDirection();
         } else {
 
             this.direction = myTank.getDirection();

@@ -128,12 +128,14 @@ public abstract class AbstractGridPosition implements GridPosition {
     }
 
 
-
     @Override
     public boolean isOverlapping(GridPosition position) {
 
-        return Math.sqrt(Math.abs(col - position.getCol())*Math.abs(col - position.getCol()) + Math.abs(row - position.getRow())* Math.abs(row - position.getRow())) <=
-                height/2 + position.getHeight()/2;
+
+
+        return Math.sqrt(Math.abs(getCenterCol() - position.getCenterCol()) * Math.abs(getCenterCol() - position.getCenterCol())
+                + Math.abs(getCenterRow() - position.getCenterRow()) * Math.abs(getCenterRow() - position.getCenterRow())) <
+                height / 2 + position.getHeight() / 2;
 
 
     }
@@ -154,15 +156,15 @@ public abstract class AbstractGridPosition implements GridPosition {
         return width;
     }
 
-    public int getCenterCol(){
+    public int getCenterCol() {
 
-        return col + height / 2;
+        return col + width / 2;
 
     }
 
-    public int getCenterRow(){
+    public int getCenterRow() {
 
-        return row + width / 2;
+        return row + height / 2;
     }
 
 

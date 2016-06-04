@@ -31,19 +31,24 @@ public class Colision {
     public void checkHitTarget() {
 
         ListIterator<GameObjects> it = mySpecialLinkedList.listIterator();
-        int counter = 1;
 
         while (it.hasNext()) {
 
-            ListIterator<GameObjects> it2 = mySpecialLinkedList.listIterator(counter);
+            ListIterator<GameObjects> it2 = mySpecialLinkedList.listIterator();
             GameObjects object = it.next();
 
             while (it2.hasNext()) {
 
                 GameObjects object2 = it2.next();
 
+                if(object.equals(object2)){
+                    continue;
+                }
+
                 if(object.getPos().isOverlapping(object2.getPos())){
-                    System.out.println(object2);
+                    System.out.println(Math.sqrt(Math.abs(object.getPos().getCenterCol() - object2.getPos().getCenterCol()) * Math.abs(object.getPos().getCenterCol() - object2.getPos().getCenterCol())
+                            + Math.abs(object.getPos().getCenterRow() - object2.getPos().getCenterRow()) * Math.abs(object.getPos().getCenterRow() - object2.getPos().getCenterRow())));
+
                 }
 
                 if (!(object instanceof Shell) && !(object2 instanceof Shell)) {
@@ -83,7 +88,6 @@ public class Colision {
 
                 }
 
-                counter++;
 
             }
 
@@ -93,7 +97,7 @@ public class Colision {
 
     private boolean hitObject(Shell object, GameObjects object2) {
 
-        return object.getPos().isOverlapping(object2.getPos());
+        return object.getPos().isOverlapping(object2.getPos()) && !object.whoFired().equals(object2);
 
     }
 

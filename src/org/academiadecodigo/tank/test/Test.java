@@ -66,6 +66,8 @@ public class Test {
 
         }
 
+        linkedList.add(factory.createObject(GameObjectType.BRICK));
+
 
         //  GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
         // test(10, pos);
@@ -104,12 +106,21 @@ public class Test {
                           object.setDestroyed();
                         }
 
-                        if (object instanceof Tank) {
-                            Tank tank = (Tank) object;
+                        if (object instanceof Player) {
+                            Player player = (Player)object;
 
-                            if (tank.fire()){
-                                it.add(factory.createShell(tank));
+                            if (player.fire()){
+                                it.add(factory.createShell(player));
                             }
+                        }
+
+                        if (object instanceof Enemy ){
+                            Enemy enemy = (Enemy) object;
+
+                            if(enemy.fire()){
+                                it.add(factory.createShell(enemy));
+                            }
+
                         }
 
 

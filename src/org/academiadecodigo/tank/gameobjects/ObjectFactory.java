@@ -36,6 +36,11 @@ public class ObjectFactory implements Factory{
                 return null;
         }
 
+    }
+
+    public GameObjects createObject(GameObjectType myObject){
+
+        return new Brick(grid.makeGridPosition(GameObjectType.BRICK));
 
     }
 
@@ -45,7 +50,6 @@ public class ObjectFactory implements Factory{
 
 
             case ENEMY:
-
                 return new Enemy(grid.makeGridPosition(GameObjectType.ENEMY), colision); // TODO: 27/05/16 add enemy constructor
 
             default:

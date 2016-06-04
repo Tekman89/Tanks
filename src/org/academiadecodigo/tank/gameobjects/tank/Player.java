@@ -15,6 +15,7 @@ import org.academiadecodigo.tank.utilities.InputType;
 public class Player extends Tank {
 
     private Input input;
+    private int delay = 2;
 
 
     public Player(GridPosition position, InputType inputType, Colision colision) {
@@ -45,11 +46,17 @@ public class Player extends Tank {
 
     }
 
+
     @Override
     public boolean fire() {
 
-        return input.getFire() && super.fire();
+        if(delay == 0 ) {
+            delay = 2;
+            return input.getFire() && super.fire();
+        }
 
+        delay--;
+        return false;
     }
 
     protected GridDirection getInput() {

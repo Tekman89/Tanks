@@ -15,20 +15,21 @@ public class Enemy extends Tank {
 
 
     private final int PROBABILITY = 10;
+    private int delay = 2;
 
 
     public Enemy(GridPosition pos, Colision collision) {
         super(pos, collision);
 
         if (super.getPos().getCol() == 0) {
-            super.setDirection(GridDirection.DOWN);
+            super.setDirection(GridDirection.STILL);
 
         }
         if (super.getPos().getCol() == super.getPos().getGrid().getCols() / 2) {
-            super.setDirection(GridDirection.DOWN);
+            super.setDirection(GridDirection.STILL);
 
         } else {
-            super.setDirection(GridDirection.DOWN);
+            super.setDirection(GridDirection.STILL);
         }
 
         super.myType = GameObjectType.ENEMY;
@@ -91,15 +92,21 @@ public class Enemy extends Tank {
 
         }
 
-        return super.move();
+       return super.move();
+
 
     }
-
 
     @Override
     public boolean fire() {
 
-        return RNG.rng(PROBABILITY) < 2 && super.fire();
+        if(delay == 0) {
+            delay = 2;
+            return RNG.rng(PROBABILITY) < 2 && super.fire();
+        }
+
+        delay--;
+        return false;
 
     }
 
