@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e27bb08d-b9af-4aa2-ad6a-65401bb737ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/Destroyable.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/Destroyable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/GameObjectType.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/GameObjectType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/GameObjects.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/GameObjects.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/ObjectFactory.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/ObjectFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/StaticObjects.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/StaticObjects.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Enemy.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Enemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/MovableDestroyable.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/MovableDestroyable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Player.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Shell.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Shell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Tank.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Tank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/InputGfx.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/InputGfx.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/ShapeFactory.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/ShapeFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/SimpleGFXgridColor.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/SimpleGFXgridColor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/SimpleGfxGrid.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/SimpleGfxGrid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/SimpleGfxGridPosition.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gfx/simplegfx/SimpleGfxGridPosition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/utilities/Factory.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/utilities/Factory.java" />
-    </list>
+    <list default="true" id="e27bb08d-b9af-4aa2-ad6a-65401bb737ef" name="Default" comment="" />
     <ignored path="Tanks.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -207,7 +189,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="-165" />
+    <option name="y" value="571" />
     <option name="width" value="1920" />
     <option name="height" value="977" />
   </component>
@@ -866,7 +849,7 @@
       <workItem from="1464857346483" duration="18977000" />
       <workItem from="1464942583244" duration="30323000" />
       <workItem from="1465047609694" duration="28741000" />
-      <workItem from="1465134814468" duration="703000" />
+      <workItem from="1465134814468" duration="774000" />
     </task>
     <task id="LOCAL-00001" summary="Added the input interface, the input factory is missing still">
       <created>1464874338395</created>
@@ -893,7 +876,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89090000" />
+    <option name="totallyTimeSpent" value="89161000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -905,8 +888,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="977" extended-state="6" />
-    <editor active="true" />
+    <frame x="-165" y="571" width="1920" height="977" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
