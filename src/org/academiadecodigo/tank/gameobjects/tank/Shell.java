@@ -17,11 +17,16 @@ public class Shell extends GameObjects implements MovableDestroyable{
     private GridDirection direction;
     private final int SPEED = 4;
 
+    /**
+     * Constructs a new Shell
+     *
+     * @param pos initial Shell position in the grid
+     * @param tank connect the Shell with a Tank type
+     */
     public Shell (GridPosition pos, Tank tank){
         super(pos);
         this.myTank = tank;
-        this.direction = myTank.getPreviousDirection();
-        //System.out.println(getPos());
+        this.direction = myTank.getPreviousDirection();//See #move()
 
     }
 
@@ -29,18 +34,20 @@ public class Shell extends GameObjects implements MovableDestroyable{
         return myTank;
     }
 
+    /**
+     * Condition for the Shell fetch Player direction
+     *
+     * @return the direction and speed of the Shell
+     */
     public boolean move(){
 
         if(myTank instanceof Player && direction == GridDirection.STILL){
 
             Player player = (Player) myTank;
             direction = player.getPreviousDirection();
-            //System.out.println(((AbstractGridPosition) getPos()).getHeight() + " " + ((AbstractGridPosition) getPos()).getWidth());
-
 
         }
-        //System.out.println("shell " + getPos());
-        return getPos().move(direction, SPEED);
+        return getPos().move(direction, SPEED);//TODO-Comment- rephrase the doc
     }
 
     @Override
@@ -49,8 +56,7 @@ public class Shell extends GameObjects implements MovableDestroyable{
     }
 
     @Override
-    public void hit() {
-
+    public void hit() {//TODO-Comment- see if the method is used.
 
     }
 
@@ -60,13 +66,17 @@ public class Shell extends GameObjects implements MovableDestroyable{
 //        return getPos().onEdge();
 //    }
 
-
-
+    /**
+     * @return //TODO-Comment-
+     */
     @Override
     public boolean isDestroyed() {
         return super.isDestroyed();
     }
 
+    /**
+     * @see GameObjects#setDestroyed()
+     */
     @Override
     public void setDestroyed() {
         super.setDestroyed();

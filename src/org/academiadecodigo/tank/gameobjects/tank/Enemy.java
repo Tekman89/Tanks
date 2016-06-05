@@ -11,16 +11,33 @@ import org.academiadecodigo.tank.utilities.RNG;
 /**
  * Created by codecadet on 23/05/16.
  */
+
+
+/**
+ * Specify Enemy class from Tanks
+ *
+ * @Constant PROBABILITY set the scope of the Random Generator
+ */
 public class Enemy extends Tank {
 
 
     private final int PROBABILITY = 10;
 
-
+    /**
+     * Constructs a new Enemy
+     *
+     * @param pos initial Enemy position in the grid
+     * @param collision  Check the state of collision
+     */
     public Enemy(GridPosition pos, Colision collision) {
         super(pos, collision);
     }
 
+/**
+ * Get a random direction on the grid to the Enemy
+ *
+ * @return corresponding Grid direction for the Enemy to move
+*/
 
     private GridDirection chooseDirection() {
 

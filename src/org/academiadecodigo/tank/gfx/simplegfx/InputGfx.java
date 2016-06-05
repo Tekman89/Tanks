@@ -9,6 +9,10 @@ import org.academiadecodigo.tank.grid.GridDirection;
 /**
  * Created by codecadet on 24/05/16.
  */
+
+/**
+ * Keyboard events
+ */
 public class InputGfx implements KeyboardHandler, org.academiadecodigo.tank.utilities.Input {
 
     private Keyboard myKey = new Keyboard(this);
@@ -30,13 +34,10 @@ public class InputGfx implements KeyboardHandler, org.academiadecodigo.tank.util
         setEvent();
     }
 
-
+    /**
+     * Set the keyboard event types
+     */
     public void setEvent() {
-
-        /*
-         * set the event types
-         */
-
 
         leftPress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         leftReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
@@ -50,11 +51,9 @@ public class InputGfx implements KeyboardHandler, org.academiadecodigo.tank.util
         spaceRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
 
-        /*
-         * set the keys for those events
+        /**
+         * Set the keys for the keyboard events
          */
-
-
         leftPress.setKey(KeyboardEvent.KEY_LEFT);
         leftReleased.setKey(KeyboardEvent.KEY_LEFT);
         rightPress.setKey(KeyboardEvent.KEY_RIGHT);
@@ -66,10 +65,9 @@ public class InputGfx implements KeyboardHandler, org.academiadecodigo.tank.util
         spacePress.setKey(KeyboardEvent.KEY_SPACE);
         spaceRelease.setKey(KeyboardEvent.KEY_SPACE);
 
-        /*
-         * set the listeners
+        /**
+         * Set the listeners for the keyboard events
          */
-
         myKey.addEventListener(leftPress);
         myKey.addEventListener(leftReleased);
         myKey.addEventListener(rightPress);
@@ -84,17 +82,24 @@ public class InputGfx implements KeyboardHandler, org.academiadecodigo.tank.util
 
     }
 
-
     public GridDirection getDirection() {
 
         return this.direction;
 
     }
 
+    /**
+     * @return fire value
+     */
     public boolean getFire(){
         return fire;
     }
 
+    /**
+     * Set the type of key pressed associated with the event cases
+     *
+     * @param keyboardEvent
+     */
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -117,11 +122,14 @@ public class InputGfx implements KeyboardHandler, org.academiadecodigo.tank.util
             case KeyboardEvent.KEY_SPACE:
                 fire = true;
                 break;
-
-
         }
     }
 
+    /**
+     * Set the type of key released associated with the event cases
+     *
+     * @param keyboardEvent
+     */
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 

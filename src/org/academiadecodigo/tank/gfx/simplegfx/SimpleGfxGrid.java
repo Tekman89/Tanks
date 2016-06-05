@@ -11,6 +11,10 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
 /**
  * Created by codecadet on 24/05/16.
  */
+
+/**
+ *Specify a SimpleGfxGrid from Grid
+ */
 public class SimpleGfxGrid  implements Grid {
 
 
@@ -21,7 +25,11 @@ public class SimpleGfxGrid  implements Grid {
 
     private final int CELL_SIZE = MARGIN / 2;
 
-
+    /**
+     * Constructs a grid with a certain number of columns and rows
+     * @param cols grid columns
+     * @param rows grid rows
+     */
     public SimpleGfxGrid(int cols, int rows) {
         this.cols = cols;
         this.rows = rows;
@@ -34,12 +42,17 @@ public class SimpleGfxGrid  implements Grid {
         grid.setColor(Color.GRAY);
         grid.fill();
     }
-
+    /**
+     * @see Grid#getCols()
+     */
     @Override
     public int getCols() {
         return cols;
     }
 
+    /**
+     *@see Grid#getRows()
+     */
     @Override
     public int getRows() {
         return rows;
@@ -49,9 +62,19 @@ public class SimpleGfxGrid  implements Grid {
         return CELL_SIZE;
     }
 
+    /**
+     *
+     * @see Grid#getMARGIN()
+     */
     @Override
     public int getMARGIN(){ return MARGIN;}
 
+    /**
+     * Creates a grid position and refer it to an object type
+     *
+     * @param objectType type of objects that will get a position on the grid
+     * @return a position for the object type in the grid
+     */
     @Override
     public GridPosition makeGridPosition(GameObjectType objectType) {
 
@@ -70,6 +93,13 @@ public class SimpleGfxGrid  implements Grid {
 
     }
 
+    /**
+     * Creates a grid position and refer it to an object type
+     *
+     * @param objectType type of object that will get a position on the grid
+     * @param myTank object of the tank type
+     * @return a position for the object type in the grid
+     */
     @Override
     public GridPosition makeGridPosition(GameObjectType objectType, Tank myTank){
 
@@ -86,7 +116,12 @@ public class SimpleGfxGrid  implements Grid {
 
     }
 
-
+    /**
+     * Based on the previous direction of myTank, create a new direction for the Shell
+     *
+     * @param myTank object of the tank type
+     * @return Shell position
+     */
     private GridPosition shellDirection(Tank myTank){
 
         switch (myTank.getPreviousDirection()){
@@ -115,7 +150,11 @@ public class SimpleGfxGrid  implements Grid {
 
     }
 
-
+    /**
+     * Generates random set with a specified number of columns
+     *
+     * @return a certain number of columns
+     */
     private int generateCol() {
 
         switch ((int) Math.floor(Math.random() * 3)) {
@@ -125,7 +164,7 @@ public class SimpleGfxGrid  implements Grid {
             case 1:
                 return cols / 2;
             case 2:
-                return cols - 6; // 6 é o tamanho do tanque em cell size
+                return cols - 6; // 6 is the size of the tank in cell size
             default:
                 System.out.println("Something went wrong with the rng");
                 return 0;
