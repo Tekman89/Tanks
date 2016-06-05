@@ -103,7 +103,7 @@ public class Enemy extends Tank {
     @Override
     public boolean move() {
 
-        if (RNG.rng(PROBABILITY) < 1 && getMovesMade() >= 6 && super.isSafeMove()) {
+        if (RNG.rng(PROBABILITY) < 1 && getMovesMade() >= 6) {
 
             super.setDirection(chooseDirection());
 

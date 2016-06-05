@@ -15,7 +15,7 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
     private GridDirection direction = GridDirection.DOWN;
     private GridDirection previousDirection = GridDirection.UP;
     private int movesMade;
-    private boolean safeMove;
+    private boolean safeMove = true;
     protected GameObjectType myType;
 
     private Colision collision;
@@ -33,14 +33,15 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
 
         if (safeMove) {
             movesMade++;
+            getPos().move(direction, SPEED);
 
-
-        }else {
-            setDirection(direction.oppositeDirection());
-            movesMade++;
         }
-
-        return getPos().move(direction, SPEED);
+//        }else {
+//            setDirection(direction.oppositeDirection());
+//            movesMade++;
+//        }
+        return false;
+        //return getPos().move(direction, SPEED);
     }
 
     @Override

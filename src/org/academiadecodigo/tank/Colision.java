@@ -7,6 +7,8 @@ import org.academiadecodigo.tank.gameobjects.tank.Enemy;
 import org.academiadecodigo.tank.gameobjects.tank.Player;
 import org.academiadecodigo.tank.gameobjects.tank.Shell;
 import org.academiadecodigo.tank.gameobjects.tank.Tank;
+import org.academiadecodigo.tank.grid.GridDirection;
+import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -113,26 +115,54 @@ public class Colision {
 
         Iterator<GameObjects> it = mySpecialLinkedList.listIterator();
         boolean safeAll = true;
+        boolean safeRow = true;
         while (it.hasNext()) {
 
             GameObjects object = it.next();
+           // (object instanceof Enemy && tank instanceof Enemy)
 
-            if (object.equals(tank) || (object instanceof Enemy && tank instanceof Enemy) ) {
+            if (object.equals(tank)) {
                 continue;
             }
+            // if tank is in adjacent cell to another object, checks if has forbidden direction and if true set safe property to false
+            if(((AbstractGridPosition)tank.getPos()).adjacentCol(object.getPos())) {
 
-            int tankX = tank.getPos().getCenterCol();
-            int objX = object.getPos().getCenterCol();
-
-            int tankY = tank.getPos().getCenterRow();
-            int objY = object.getPos().getCenterRow();
-
-
-            if (!(Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight()-1) && !(object instanceof Shell)) {
-                safeAll = false;
+                safeAll = !(tank.getPos().getCol() > object.getPos().getCol() &&
+                        tank.getDirection() == GridDirection.LEFT ||
+                        tank.getPos().getCol() < object.getPos().getCol() &&
+                        tank.getDirection() == GridDirection.RIGHT);
             }
-        }
-        tank.setSafeMove(safeAll);
+
+
+            if(((AbstractGridPosition) tank.getPos()).adjacentRow(object.getPos()))  {
+
+                safeRow = !(tank.getPos().getRow() < object.getPos().getRow() &&
+                          tank.getDirection() == GridDirection.DOWN ||
+                          tank.getPos().getRow() > object.getPos().getRow() &&
+                                  tank.getDirection() == GridDirection.UP);
+            }
+
+            }
+            if(!safeRow || !safeAll) {
+                tank.setSafeMove(false);
+            } else {
+                tank.setSafeMove(true);
+            }
+
+
+
+//            int tankX = tank.getPos().getCenterCol();
+//            int objX = object.getPos().getCenterCol();
+//
+//            int tankY = tank.getPos().getCenterRow();
+//            int objY = object.getPos().getCenterRow();
+//
+//
+//            if (!(Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight()-1) && !(object instanceof Shell)) {
+//                safeAll = false;
+//            }
+//        }
+//        tank.setSafeMove(safeAll);
     }
 
 
