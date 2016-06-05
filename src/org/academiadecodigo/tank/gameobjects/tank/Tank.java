@@ -1,6 +1,7 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
 import org.academiadecodigo.tank.Colision;
+import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.grid.GridDirection;
 import org.academiadecodigo.tank.grid.position.GridPosition;
@@ -13,9 +14,11 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
     public static final int SPEED = 1;
     private GridDirection direction = GridDirection.STILL;
     private GridDirection previousDirection = GridDirection.UP;
+    private int movesMade;
+    private boolean safeMove;
+    protected GameObjectType myType;
 
     private Colision collision;
-
 
 
     public Tank(GridPosition pos, Colision collision) {
@@ -26,12 +29,15 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
     @Override
     public boolean move() {
 
-        if(collision.isSafe(this)){
+        collision.isSafe(this);
 
-          return  getPos().move(direction, SPEED);
+        if (safeMove) {
+            movesMade++;
+            return getPos().move(direction, SPEED);
 
         }
-        return getPos().move(direction.oppositeDirection(), SPEED);
+
+        return getPos().move(direction.oppositeDirection(),SPEED);
     }
 
     @Override
@@ -55,9 +61,26 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
     }
 
 
+
+    protected int getMovesMade() {
+        return movesMade;
+    }
+
+    public void setSafeMove(boolean safeMove) {
+        this.safeMove = safeMove;
+    }
+
+    public boolean isSafeMove() {
+        return safeMove;
+    }
+
+    public GameObjectType getMyType() {
+        return myType;
+    }
+
     @Override
     public void hit() {
-       //pos.hide();
+        //pos.hide();
     }
 
     @Override
@@ -68,5 +91,18 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
     @Override
     public void setDestroyed() {
         super.setDestroyed();
+    }
+
+    public boolean fire() {
+
+         return super.getPos().getCol() > 0 && super.getPos().getCol() < super.getPos().getGrid().getCols() - super.getPos().getWidth() &&
+                    super.getPos().getRow() > 0 && super.getPos().getRow() < super.getPos().getGrid().getRows() - super.getPos().getHeight();
+    }
+
+    @Override
+    public String toString() {
+        return "Tank{" +
+                "myType=" + myType +
+                '}';
     }
 }

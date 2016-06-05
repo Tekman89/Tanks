@@ -7,7 +7,8 @@ public enum GameObjectType {
 
     PLAYER,
     ENEMY,
-    SHELL;
+    SHELL,
+    BRICK;
 
 
 }

@@ -15,11 +15,14 @@ import org.academiadecodigo.tank.utilities.InputType;
 public class Player extends Tank {
 
     private Input input;
+    private int delay = 2;
 
 
     public Player(GridPosition position, InputType inputType, Colision colision) {
-        super(position,colision);
+        super(position, colision);
         input = InputFactory.newInput(inputType);
+
+        super.myType = GameObjectType.PLAYER;
 
     }
 
@@ -33,9 +36,8 @@ public class Player extends Tank {
             getPos().replace(input.getDirection(), GameObjectType.PLAYER);
             setDirection(input.getDirection());
         }
-        //System.out.println("player " + super.getPos());
 
-        if(super.getDirection() != GridDirection.STILL || super.getDirection() != null){
+        if (super.getDirection() != GridDirection.STILL || super.getDirection() != null) {
             super.setPreviousDirection(super.getDirection());
         }
 
@@ -45,13 +47,15 @@ public class Player extends Tank {
     }
 
 
+    @Override
     public boolean fire() {
-        if (input.getFire()) {
-            //System.out.println("Entering here");
 
-            return true;
+        if(delay == 0 ) {
+            delay = 2;
+            return input.getFire() && super.fire();
         }
 
+        delay--;
         return false;
     }
 
