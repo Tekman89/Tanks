@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e27bb08d-b9af-4aa2-ad6a-65401bb737ef" name="Default" comment="Start of the enviroment&#10;">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/Colision.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/Collision.java" />
+    <list default="true" id="e27bb08d-b9af-4aa2-ad6a-65401bb737ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/Game.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/ObjectFactory.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/ObjectFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Enemy.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Enemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Player.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Shell.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Shell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Tank.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/gameobjects/tank/Tank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/grid/position/AbstractGridPosition.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/grid/position/AbstractGridPosition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/academiadecodigo/tank/test/Test.java" afterPath="$PROJECT_DIR$/src/org/academiadecodigo/tank/test/Test.java" />
     </list>
     <list id="cd571c7e-f8f9-412c-a8f2-ff8af9238b0a" name="Other tanks firing (cherry picked from commit 54666f8)" comment="Other tanks firing&#10;(cherry picked from commit 54666f8)" />
     <ignored path="Tanks.iws" />
@@ -936,7 +927,7 @@
       <workItem from="1464942583244" duration="30370000" />
       <workItem from="1465047648185" duration="28796000" />
       <workItem from="1465135782017" duration="12952000" />
-      <workItem from="1465152586404" duration="11295000" />
+      <workItem from="1465152586404" duration="11309000" />
     </task>
     <task id="LOCAL-00001" summary="Added the input interface, the input factory is missing still">
       <created>1464874338395</created>
@@ -994,11 +985,18 @@
       <option name="project" value="LOCAL" />
       <updated>1465164884067</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Start of the enviroment&#10;">
+      <created>1465169985226</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1465169985226</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112736000" />
+    <option name="totallyTimeSpent" value="112750000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
