@@ -40,9 +40,18 @@ public class ObjectFactory implements Factory{
 
     public GameObjects createObject(GameObjectType myObject){
 
-        return new Brick(grid.makeGridPosition(GameObjectType.BRICK));
+        return new StaticGameObject(grid.makeGridPosition(myObject), myObject);
 
     }
+
+
+    @Override
+    public GameObjects createEnvironment(int col, int row, GameObjectType brick){
+        System.out.println(col + " " + row);
+        return new StaticGameObject(grid.makeGridPosition(col, row, brick), brick);
+    }
+
+
 
     public GameObjects createObject(GameObjectType myObject, Colision colision) {
 
@@ -60,8 +69,8 @@ public class ObjectFactory implements Factory{
 
     }
 
-    public GameObjects createShell(Tank tank) {
-        return new Shell(grid.makeGridPosition(GameObjectType.SHELL, tank), tank);
+    public GameObjects createShell(Tank tank, Colision colision) {
+        return new Shell(grid.makeGridPosition(GameObjectType.SHELL, tank), tank, colision);
     }
 
 }

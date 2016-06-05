@@ -8,7 +8,8 @@ public enum GameObjectType {
     PLAYER,
     ENEMY,
     SHELL,
-    BRICK;
+    BRICK,
+    GOAL;
 
 
 }

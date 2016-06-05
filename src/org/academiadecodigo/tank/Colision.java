@@ -41,14 +41,8 @@ public class Colision {
 
                 GameObjects object2 = it2.next();
 
-                if(object.equals(object2)){
+                if (object.equals(object2)) {
                     continue;
-                }
-
-                if(object.getPos().isOverlapping(object2.getPos())){
-                    System.out.println(Math.sqrt(Math.abs(object.getPos().getCenterCol() - object2.getPos().getCenterCol()) * Math.abs(object.getPos().getCenterCol() - object2.getPos().getCenterCol())
-                            + Math.abs(object.getPos().getCenterRow() - object2.getPos().getCenterRow()) * Math.abs(object.getPos().getCenterRow() - object2.getPos().getCenterRow())));
-
                 }
 
                 if (!(object instanceof Shell) && !(object2 instanceof Shell)) {
@@ -68,8 +62,8 @@ public class Colision {
                 if (object instanceof Shell) {
 
 
-                    if (hitObject(((Shell) object), object2)) {
-                        System.out.println("entered the first");
+                    if (hitObject(((Shell) object), object2) && !((Shell) object).sameType(object2)) {
+
                         object.setDestroyed();
                         object2.setDestroyed();
                     }
@@ -79,9 +73,8 @@ public class Colision {
                 if (object2 instanceof Shell) {
 
 
-                    if (hitObject((Shell) object2, object)) {
+                    if (hitObject((Shell) object2, object) && !((Shell) object2).sameType(object)) {
 
-                        System.out.println("entered");
                         object.setDestroyed();
                         object2.setDestroyed();
                     }
@@ -132,7 +125,7 @@ public class Colision {
             int objY = object.getPos().getCenterRow();
 
 
-            if(!(Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight()) && !(object instanceof Shell)){
+            if (!(Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight()) && !(object instanceof Shell)) {
                 safeAll = false;
             }
         }

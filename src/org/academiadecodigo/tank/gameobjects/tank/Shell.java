@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
+import org.academiadecodigo.tank.Colision;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
@@ -15,12 +16,13 @@ public class Shell extends GameObjects implements MovableDestroyable{
 
     private Tank myTank;
     private GridDirection direction;
-    private final int SPEED = 2;
+    private final int SPEED = 1;
+    private Colision collision;
 
-    public Shell (GridPosition pos, Tank tank){
+    public Shell (GridPosition pos, Tank tank, Colision collision){
         super(pos);
         this.myTank = tank;
-
+        this.collision = collision;
 
         if(tank.getDirection() == GridDirection.STILL) {
 
@@ -43,7 +45,13 @@ public class Shell extends GameObjects implements MovableDestroyable{
             direction = player.getPreviousDirection();
 
         }
-        return getPos().move(direction, SPEED);
+
+        for (int i = 0; i < SPEED ; i++) {
+            collision.checkHitTarget();
+            getPos().move(direction,1);
+        }
+
+        return getPos().move(direction, 1);
     }
 
 
