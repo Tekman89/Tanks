@@ -13,22 +13,11 @@ import java.util.Spliterator;
 /**
  * Created by codecadet on 27/05/16.
  */
-
-/**
- * A Factory for The different Shapes types
- */
 public class ShapeFactory {
 
     // TODO: 31/05/16 in accordance with the direction add a different picture.
 
-    /**
-     * Creates a new Shape for each direction and for each object type
-     *
-     * @param shape that receives a position X and Y
-     * @param objectType
-     * @param direction
-     * @return a new shape - Picture
-     */
+
     public Shape createShape(Shape shape, GameObjectType objectType, GridDirection direction) {
 
         if (objectType == GameObjectType.PLAYER) {
@@ -72,31 +61,42 @@ public class ShapeFactory {
 
     }
 
-    /**
-     * Create the initial shape at a given position
-     *
-     * @param x axis shape position in the grid
-     * @param y axis shape position in the grid
-     * @param objectType
-     * @param grid //TODO-Comment- How do you explain the grid here
-     * @return a new shape - Picture
-     */
     public Shape createShape(int x, int y, GameObjectType objectType, SimpleGfxGrid grid) {
 
 
         switch (objectType) {
 
             case ENEMY:
+                int width = 10;
+                int height = 10;
+                //return new Rectangle(x, y, 3 * grid.getCellSize(), 3 * grid.getCellSize() );
                 return new Picture(x, y, "images/images/Enemy_Tank3_D.png");
 
+
+            //return new Rectangle(0, 0, width, height);
+
             case PLAYER:
+                int n = 10;
+                //return new Rectangle(x, y, 6 * grid.getCellSize(), 6 * grid.getCellSize() );
                 return new Picture(x, y, "images/images/Player_Tank_U.png");
 
             case SHELL:
                 return new Picture(x, y, "images/images/sprite_bullet.png");
 
+            case BRICK:
+                return new Picture(x,y, "images/images/walls.png");
+
+            case GOAL:
+                return new Picture(x, y, "images/images/goal.png");
+
+
         }
+
 
         return new Picture(10,10,"images/images/Player_Tank2.png" );
     }
+
+
+
+
 }

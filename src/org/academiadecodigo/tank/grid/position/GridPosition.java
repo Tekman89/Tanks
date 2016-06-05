@@ -1,6 +1,7 @@
 package org.academiadecodigo.tank.grid.position;
 
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
+import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
 
@@ -26,10 +27,6 @@ public interface GridPosition {
 
     void hide();
 
-    boolean isAdjacentRow(GridPosition position);
-
-    boolean isAdjacentCol(GridPosition position);
-
     boolean isOverlapping(GridPosition position);
 
     boolean moveInDirection(GridDirection direction, int distance);
@@ -47,6 +44,8 @@ public interface GridPosition {
     public int getCenterCol();
 
     public int getCenterRow();
+
+    public Grid getGrid();
 
 
 }

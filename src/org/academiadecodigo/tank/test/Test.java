@@ -9,6 +9,7 @@ import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
+import org.academiadecodigo.tank.utilities.Factory;
 import org.academiadecodigo.tank.utilities.InputType;
 
 import java.util.LinkedList;
@@ -42,8 +43,23 @@ public class Test {
     public static int TEST_DELAY = 500;
     public static int TEST_STEP = 800;
 
+
+    public static void createBlocks(int col, int row, int width, int heigth, Factory factory, LinkedList<GameObjects> linkedList) {
+
+        for(int i = row; i < width + row; i += 2) {
+
+            for (int j = col; j < heigth + col; j += 2) {
+
+                linkedList.add(factory.createEnvironment(j, i, GameObjectType.BRICK));
+            }
+        }
+    }
+
+
+
     public static void main(String[] args) {
 
+      int timer = 10;
 
         SimpleGfxGrid g = new SimpleGfxGrid(120, 80);
         g.init();
@@ -52,17 +68,29 @@ public class Test {
 
         LinkedList<GameObjects> linkedList = new LinkedList();
         colision = new Colision(linkedList);
+        GameObjects goal = factory.createObject(GameObjectType.GOAL);
+
         linkedList.add(factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX, colision));
 
 
 
 
 
-
-        for (int i = 0; i < 20 ; i++) {
+        for (int i = 0; i < 2; i++) {
          linkedList.add(factory.createObject(GameObjectType.ENEMY,colision));
 
         }
+
+        linkedList.add(goal);
+
+
+        createBlocks(10,10,10,10,factory,linkedList);
+        createBlocks(goal.getPos().getCol()-3,goal.getPos().getRow(),goal.getPos().getHeight()+3,3,factory,linkedList);
+        createBlocks(goal.getPos().getCol(),goal.getPos().getRow() + goal.getPos().getHeight() , 3,goal.getPos().getWidth() , factory, linkedList);
+        createBlocks(goal.getPos().getCol() +goal.getPos().getWidth()-1, goal.getPos().getRow(), goal.getPos().getHeight() + 3 ,3,factory,linkedList);
+
+
+
 
 
         //  GridPosition pos = new SimpleGfxGridPosition(0, 0, GameObjectType.ENEMY, g);
@@ -78,7 +106,7 @@ public class Test {
         while (true) {
             ListIterator<GameObjects> it = linkedList.listIterator(0);
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
                 for (int i = 0; i < linkedList.size(); i++) {
 
                     if(!it.hasNext()) {
@@ -91,25 +119,11 @@ public class Test {
                     if (object instanceof MovableDestroyable) {
 
 
-
-//                        ((MovableDestroyable) object).move();
-
-//                        if (!((MovableDestroyable) object).move() && object instanceof Shell) {
-//
-//                            // TODO: 02/06/16 ask collision to check crashes and everything
-//
-//
-//
-//                           object.getPos().hide();
-//                           object.setDestroyed();
-//
-//                        }
-
-
-                        // TO test
-//                        if(object instanceof Enemy){
-//                            continue;
-//                        }
+                        /**
+                         *
+                         *  Shell will disappear when it reaches the edge
+                         *
+                         */
 
 
                         if(!((MovableDestroyable)object).move() && object instanceof Shell){
@@ -120,8 +134,17 @@ public class Test {
                             Player player = (Player)object;
 
                             if (player.fire()){
-                                it.add(factory.createShell(player));
+                                it.add(factory.createShell(player, colision));
                             }
+                        }
+
+                        if (object instanceof Enemy ){
+                            Enemy enemy = (Enemy) object;
+
+                            if(enemy.fire()){
+                                it.add(factory.createShell(enemy, colision));
+                            }
+
                         }
 
 
@@ -131,13 +154,12 @@ public class Test {
                     }
 
                     if(object.isDestroyed()){
-                        System.out.println("Entering the test is destroyed");
                         object.getPos().hide();
 
                        try{
                            it.remove();
                        }catch (Exception e){
-                           System.out.println("boho");
+                           System.out.println("Fuck u");;
                        }
                     }
 
@@ -147,7 +169,7 @@ public class Test {
                 e.getMessage();
             }
 
-
+            timer--;
         }
 
 

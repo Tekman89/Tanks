@@ -1,5 +1,6 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
+import org.academiadecodigo.tank.Colision;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
@@ -15,30 +16,27 @@ public class Shell extends GameObjects implements MovableDestroyable{
 
     private Tank myTank;
     private GridDirection direction;
-    private final int SPEED = 4;
+    private final int SPEED = 1;
+    private Colision collision;
 
-    /**
-     * Constructs a new Shell
-     *
-     * @param pos initial Shell position in the grid
-     * @param tank connect the Shell with a Tank type
-     */
-    public Shell (GridPosition pos, Tank tank){
+    public Shell (GridPosition pos, Tank tank, Colision collision){
         super(pos);
         this.myTank = tank;
-        this.direction = myTank.getPreviousDirection();//See #move()
+        this.collision = collision;
 
+        if(tank.getDirection() == GridDirection.STILL) {
+
+            this.direction = myTank.getPreviousDirection();
+        } else {
+
+            this.direction = myTank.getDirection();
+        }
     }
 
     public Tank whoFired() {
         return myTank;
     }
 
-    /**
-     * Condition for the Shell fetch Player direction
-     *
-     * @return the direction and speed of the Shell
-     */
     public boolean move(){
 
         if(myTank instanceof Player && direction == GridDirection.STILL){
@@ -47,8 +45,22 @@ public class Shell extends GameObjects implements MovableDestroyable{
             direction = player.getPreviousDirection();
 
         }
-        return getPos().move(direction, SPEED);//TODO-Comment- rephrase the doc
+
+        for (int i = 0; i < SPEED ; i++) {
+            collision.checkHitTarget();
+            getPos().move(direction,1);
+        }
+
+        return getPos().move(direction, 1);
     }
+
+
+
+    public boolean sameType(GameObjects object){
+
+        return object instanceof Tank && myTank.getMyType() == ((Tank) object).getMyType();
+    }
+
 
     @Override
     public GridDirection getDirection() {
@@ -56,27 +68,14 @@ public class Shell extends GameObjects implements MovableDestroyable{
     }
 
     @Override
-    public void hit() {//TODO-Comment- see if the method is used.
-
+    public void hit() {
     }
 
-//    public boolean onEdge(){
-//
-//        System.out.println(getPos().onEdge());
-//        return getPos().onEdge();
-//    }
-
-    /**
-     * @return //TODO-Comment-
-     */
     @Override
     public boolean isDestroyed() {
         return super.isDestroyed();
     }
 
-    /**
-     * @see GameObjects#setDestroyed()
-     */
     @Override
     public void setDestroyed() {
         super.setDestroyed();

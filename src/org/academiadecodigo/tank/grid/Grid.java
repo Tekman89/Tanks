@@ -20,7 +20,7 @@ public interface Grid {
 
      //public GridPosition makeGridPosition();
 
-    //public GridPosition makeGridPosition(int col, int row);
+    public GridPosition makeGridPosition(int col, int row, GameObjectType objectType);
 
     public GridPosition makeGridPosition(GameObjectType objectType);
 

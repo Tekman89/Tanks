@@ -22,6 +22,7 @@ public class Enemy extends Tank {
 
 
     private final int PROBABILITY = 10;
+    private int delay = 2;
 
     /**
      * Constructs a new Enemy
@@ -31,6 +32,20 @@ public class Enemy extends Tank {
      */
     public Enemy(GridPosition pos, Colision collision) {
         super(pos, collision);
+
+        if (super.getPos().getCol() == 0) {
+            super.setDirection(GridDirection.STILL);
+
+        }
+        if (super.getPos().getCol() == super.getPos().getGrid().getCols() / 2) {
+            super.setDirection(GridDirection.STILL);
+
+        } else {
+            super.setDirection(GridDirection.STILL);
+        }
+
+        super.myType = GameObjectType.ENEMY;
+
     }
 
 /**
@@ -88,13 +103,27 @@ public class Enemy extends Tank {
     @Override
     public boolean move() {
 
-        if (RNG.rng(PROBABILITY) < 2 || super.getDirection() == null) {
+        if (RNG.rng(PROBABILITY) < 1 && getMovesMade() >= 6 && super.isSafeMove()) {
 
             super.setDirection(chooseDirection());
 
         }
 
-        return super.move();
+       return super.move();
+
+
+    }
+
+    @Override
+    public boolean fire() {
+
+        if(delay == 0) {
+            delay = 2;
+            return RNG.rng(PROBABILITY) < 2 && super.fire();
+        }
+
+        delay--;
+        return false;
 
     }
 

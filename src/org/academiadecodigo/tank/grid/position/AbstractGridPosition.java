@@ -129,29 +129,12 @@ public abstract class AbstractGridPosition implements GridPosition {
 
 
     @Override
-    public boolean isAdjacentRow(GridPosition position) {
-
-        return Math.abs(getCenterRow() - position.getCenterRow()) <= ((height / 2) + position.getHeight()/2) &&
-                (col + position.getCol() > col + width ||
-                col + width < position.getCol()); //&&
-                //Math.abs(getCenterCol() - position.getCenterCol()) <= ((width / 2) + position.getWidth()/2);
-
-    }
-
-    @Override
-    public boolean isAdjacentCol(GridPosition position) {
-
-        return Math.abs(getCenterCol() - position.getCenterCol()) == (width / 2 + position.getWidth()) &&
-                (row + position.getRow() > row + height ||
-                row + height < position.getRow());
-
-    }
-
-    @Override
     public boolean isOverlapping(GridPosition position) {
 
-        return Math.abs(getCenterCol() - position.getCenterCol()) < (width / 2 +  position.getWidth() / 2) &&
-                Math.abs(getCenterRow() - position.getCenterRow()) < (height / 2.0 + position.getHeight() / 2.0);
+
+        return Math.sqrt(Math.abs(getCenterCol() - position.getCenterCol()) * Math.abs(getCenterCol() - position.getCenterCol())
+                + Math.abs(getCenterRow() - position.getCenterRow()) * Math.abs(getCenterRow() - position.getCenterRow())) <=
+                height / 2 + position.getHeight() / 2;
 
 
     }
@@ -172,15 +155,15 @@ public abstract class AbstractGridPosition implements GridPosition {
         return width;
     }
 
-    public int getCenterCol(){
+    public int getCenterCol() {
 
-        return col + height / 2;
+        return col + width / 2;
 
     }
 
-    public int getCenterRow(){
+    public int getCenterRow() {
 
-        return row + width / 2;
+        return row + height / 2;
     }
 
 

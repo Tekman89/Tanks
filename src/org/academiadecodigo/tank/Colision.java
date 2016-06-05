@@ -1,11 +1,10 @@
 package org.academiadecodigo.tank;
 
 import org.academiadecodigo.tank.gameobjects.GameObjects;
-import org.academiadecodigo.tank.gameobjects.tank.MovableDestroyable;
+import org.academiadecodigo.tank.gameobjects.tank.Enemy;
+import org.academiadecodigo.tank.gameobjects.tank.Player;
 import org.academiadecodigo.tank.gameobjects.tank.Shell;
 import org.academiadecodigo.tank.gameobjects.tank.Tank;
-import org.academiadecodigo.tank.grid.GridDirection;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -32,16 +31,19 @@ public class Colision {
     public void checkHitTarget() {
 
         ListIterator<GameObjects> it = mySpecialLinkedList.listIterator();
-        int counter = 1;
 
         while (it.hasNext()) {
 
-            ListIterator<GameObjects> it2 = mySpecialLinkedList.listIterator(counter);
+            ListIterator<GameObjects> it2 = mySpecialLinkedList.listIterator();
             GameObjects object = it.next();
 
             while (it2.hasNext()) {
 
                 GameObjects object2 = it2.next();
+
+                if (object.equals(object2)) {
+                    continue;
+                }
 
                 if (!(object instanceof Shell) && !(object2 instanceof Shell)) {
                     continue;
@@ -59,7 +61,9 @@ public class Colision {
 
                 if (object instanceof Shell) {
 
-                    if (hitObject(((Shell) object), object2)) {
+
+                    if (hitObject(((Shell) object), object2) && !((Shell) object).sameType(object2)) {
+
                         object.setDestroyed();
                         object2.setDestroyed();
                     }
@@ -68,14 +72,15 @@ public class Colision {
 
                 if (object2 instanceof Shell) {
 
-                    if (hitObject((Shell) object2, object)) {
+
+                    if (hitObject((Shell) object2, object) && !((Shell) object2).sameType(object)) {
+
                         object.setDestroyed();
                         object2.setDestroyed();
                     }
 
                 }
 
-                counter++;
 
             }
 
@@ -102,10 +107,10 @@ public class Colision {
      */
 
 
-    public boolean isSafe(Tank tank) {
+    public void isSafe(Tank tank) {
 
         Iterator<GameObjects> it = mySpecialLinkedList.listIterator();
-        boolean result = false;
+        boolean safeAll = true;
         while (it.hasNext()) {
 
             GameObjects object = it.next();
@@ -113,34 +118,17 @@ public class Colision {
             if (object.equals(tank)) {
                 continue;
             }
-            /*if (tank.getPos().isAdjacentRow(object.getPos())) {
-
-                System.out.println(tank.getPos().getRow() - object.getPos().getRow() + " Rows " + tank.getPos().getCol());
-
-                System.out.println(tank.getPos().getCenterRow() <= object.getPos().getCenterRow() && tank.getDirection() != GridDirection.DOWN);
-
-                return object instanceof Shell ||
-                        tank.getPos().getCenterRow() < object.getPos().getCenterRow() && (tank.getDirection() != GridDirection.DOWN) ||
-                        tank.getPos().getCenterRow() > object.getPos().getCenterRow() && (tank.getDirection() != GridDirection.UP);
-
-            }
-            if(tank.getPos().isAdjacentCol(object.getPos())) {
-
-                return tank.getPos().getCenterCol() < object.getPos().getCenterCol() && (tank.getDirection() != GridDirection.RIGHT) ||
-                        tank.getPos().getCenterCol() > object.getPos().getCenterCol() && (tank.getDirection() != GridDirection.LEFT);
-            }
-
-
-        }*/
             int tankX = tank.getPos().getCenterCol();
             int objX = object.getPos().getCenterCol();
 
             int tankY = tank.getPos().getCenterRow();
             int objY = object.getPos().getCenterRow();
 
-            result =  Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight();
 
+            if (!(Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight()) && !(object instanceof Shell)) {
+                safeAll = false;
+            }
         }
-        return result;
+        tank.setSafeMove(safeAll);
     }
 }
