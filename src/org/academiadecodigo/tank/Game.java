@@ -21,12 +21,13 @@ import java.util.ListIterator;
 public class Game {
 
 
-    private Colision colision;
+    private Collision collision;
     private ObjectFactory factory;
     private LinkedList<GameObjects> objectsList;
     private Grid grid;
     private GameObjects goal;
-    private int maxEnemies;
+    private int maxEnemies = 4;
+    private int currentEnemies;
     private GameObjects player;
     private boolean win;
 
@@ -41,9 +42,7 @@ public class Game {
         grid.init();
         factory = new ObjectFactory(grid);
         objectsList = new LinkedList<>();
-        colision = new Colision(objectsList);
-
-
+        collision = new Collision(objectsList);
 
         goal = factory.createObject(GameObjectType.GOAL);
         objectsList.add(goal);
@@ -52,13 +51,7 @@ public class Game {
 
     }
 
-
-
     private void intro() {
-
-
-
-
 
 
     }
@@ -70,7 +63,6 @@ public class Game {
 
             case 1:
 
-
                 createBlocks(goal.getPos().getCol() - 4, goal.getPos().getRow(), goal.getPos().getHeight() + 3, 3, factory, objectsList,1);
                 createBlocks(goal.getPos().getCol(), goal.getPos().getRow() + 1 + goal.getPos().getHeight(), 3, goal.getPos().getWidth(), factory, objectsList,1);
                 createBlocks(goal.getPos().getCol() + goal.getPos().getWidth(), goal.getPos().getRow(), goal.getPos().getHeight() + 3, 3, factory, objectsList,1);
@@ -78,9 +70,7 @@ public class Game {
                 createBlocks(grid.getCols() - 20, grid.getRows()/2, 6,20, factory,objectsList,2);
                 createBlocks(grid.getCols()/2 - 5, grid.getRows()/2 - 13, 26, 10, factory,objectsList,2);
 
-
                 maxEnemies = 4;
-
 
         }
 
@@ -100,11 +90,12 @@ public class Game {
 
     private void createTanks() {
 
-        player = factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX, colision);
+        player = factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX, collision);
         objectsList.add(player);
 
         for (int i = 0; i < 1; i++) {
-            objectsList.add(factory.createObject(GameObjectType.ENEMY, colision));
+            objectsList.add(factory.createObject(GameObjectType.ENEMY, collision));
+            currentEnemies++;
 
         }
 
@@ -115,7 +106,6 @@ public class Game {
 
         int counter = 0;
 
-
         createTanks();
 
         while (true) {
@@ -124,6 +114,7 @@ public class Game {
 
             try {
                 Thread.sleep(50);
+
                 for (int i = 0; i < objectsList.size(); i++) {
 
                     if (!it.hasNext()) {
@@ -132,10 +123,10 @@ public class Game {
 
                     GameObjects object = it.next();
 
-                    if(((counter++) % 20000 == 0)){
-                        it.add(factory.createObject(GameObjectType.ENEMY, colision));
+                    if(currentEnemies < maxEnemies && ((counter++) % 2000 == 0)){
+                        it.add(factory.createObject(GameObjectType.ENEMY, collision));
+                        currentEnemies++;
                     }
-
 
                     if (object instanceof MovableDestroyable) {
 
@@ -148,7 +139,7 @@ public class Game {
                             Player player = (Player) object;
 
                             if (player.fire()) {
-                                it.add(factory.createShell(player, colision));
+                                it.add(factory.createShell(player, collision));
                             }
                         }
 
@@ -156,25 +147,23 @@ public class Game {
                             Enemy enemy = (Enemy) object;
 
                             if (enemy.fire()) {
-                                it.add(factory.createShell(enemy, colision));
+                                it.add(factory.createShell(enemy, collision));
                             }
 
                         }
-
-
-                        colision.checkHitTarget();
-
-
+                        collision.checkHitTarget();
                     }
 
                     if (object.isDestroyed()) {
+
+                        if(object instanceof Enemy) { currentEnemies--; }
                         object.getPos().hide();
 
 
                         try {
                             it.remove();
                         } catch (Exception e) {
-                            System.out.println("Fuck u");
+                            System.out.println("Exception in remove");
                         }
                     }
 
@@ -188,13 +177,11 @@ public class Game {
                     break;
                 }
 
-
             } catch (InterruptedException e) {
                 e.getMessage();
             }
 
         }
-
 
         if (!win) {
             System.out.println("Defeat");
@@ -210,7 +197,7 @@ public class Game {
 
     private boolean checkVictory() {
 
-        return !player.isDestroyed() && colision.reachGoal();
+        return !player.isDestroyed() && collision.reachGoal();
 
     }
 

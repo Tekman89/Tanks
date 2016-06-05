@@ -1,8 +1,7 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
-import org.academiadecodigo.tank.Colision;
+import org.academiadecodigo.tank.Collision;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
-import org.academiadecodigo.tank.gfx.simplegfx.InputGfx;
 import org.academiadecodigo.tank.grid.GridDirection;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.utilities.Input;
@@ -18,8 +17,8 @@ public class Player extends Tank {
     private int delay = 2;
 
 
-    public Player(GridPosition position, InputType inputType, Colision colision) {
-        super(position, colision);
+    public Player(GridPosition position, InputType inputType, Collision collision) {
+        super(position, collision);
         input = InputFactory.newInput(inputType);
 
         super.myType = GameObjectType.PLAYER;

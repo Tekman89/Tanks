@@ -1,10 +1,8 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
-import org.academiadecodigo.tank.Colision;
+import org.academiadecodigo.tank.Collision;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
-import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
-import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 import org.academiadecodigo.tank.utilities.RNG;
 
@@ -30,7 +28,7 @@ public class Enemy extends Tank {
      * @param pos initial Enemy position in the grid
      * @param collision  Check the state of collision
      */
-    public Enemy(GridPosition pos, Colision collision) {
+    public Enemy(GridPosition pos, Collision collision) {
         super(pos, collision);
 
         if (super.getPos().getCol() == 0) {
@@ -110,8 +108,6 @@ public class Enemy extends Tank {
         }
 
        return super.move();
-
-
     }
 
     @Override

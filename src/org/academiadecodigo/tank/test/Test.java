@@ -1,6 +1,6 @@
 //package org.academiadecodigo.tank.test;
 //
-//import org.academiadecodigo.tank.Colision;
+//import org.academiadecodigo.tank.Collision;
 //import org.academiadecodigo.tank.gameobjects.GameObjectType;
 //import org.academiadecodigo.tank.gameobjects.GameObjects;
 //import org.academiadecodigo.tank.gameobjects.ObjectFactory;
@@ -64,10 +64,10 @@
 //        SimpleGfxGrid g = new SimpleGfxGrid(120, 80);
 //        g.init();
 //        ObjectFactory factory = new ObjectFactory(g);
-//        Colision colision;
+//        Collision colision;
 //
 //        LinkedList<GameObjects> linkedList = new LinkedList();
-//        colision = new Colision(linkedList);
+//        colision = new Collision(linkedList);
 //        GameObjects goal = factory.createObject(GameObjectType.GOAL);
 //
 //        linkedList.add(factory.createObject(GameObjectType.PLAYER, InputType.SIMPLEGFX, colision));

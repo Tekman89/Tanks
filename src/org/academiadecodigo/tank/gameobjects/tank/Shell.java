@@ -1,12 +1,8 @@
 package org.academiadecodigo.tank.gameobjects.tank;
 
-import org.academiadecodigo.tank.Colision;
-import org.academiadecodigo.tank.gameobjects.GameObjectType;
+import org.academiadecodigo.tank.Collision;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
-import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
-import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
 import org.academiadecodigo.tank.grid.GridDirection;
-import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 
 /**
@@ -17,9 +13,9 @@ public class Shell extends GameObjects implements MovableDestroyable{
     private Tank myTank;
     private GridDirection direction;
     private final int SPEED = 1;
-    private Colision collision;
+    private Collision collision;
 
-    public Shell (GridPosition pos, Tank tank, Colision collision){
+    public Shell (GridPosition pos, Tank tank, Collision collision){
         super(pos);
         this.myTank = tank;
         this.collision = collision;

@@ -1,13 +1,8 @@
 package org.academiadecodigo.tank.grid.position;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.tank.Colision;
-import org.academiadecodigo.tank.gameobjects.GameObjectType;
-import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
-import org.ietf.jgss.GSSContext;
 
 /**
  * Created by codecadet on 23/05/16.

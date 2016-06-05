@@ -17,16 +17,16 @@ import java.util.ListIterator;
 /**
  * Created by codecadet on 29/05/16.
  */
-public class Colision {
+public class Collision {
 
     private LinkedList<GameObjects> mySpecialLinkedList;
 
     /**
-     * check Colision only for shells
+     * check Collision only for shells
      * updates the linked list
      */
 
-    public Colision(LinkedList<GameObjects> linkedList) {
+    public Collision(LinkedList<GameObjects> linkedList) {
 
         this.mySpecialLinkedList = linkedList;
 
@@ -82,14 +82,9 @@ public class Colision {
                         object.setDestroyed();
                         object2.setDestroyed();
                     }
-
                 }
-
-
             }
-
         }
-
     }
 
     private boolean hitObject(Shell object, GameObjects object2) {
@@ -105,7 +100,7 @@ public class Colision {
     }
 
     /**
-     * check if is safe to move to the next position
+     * check if it's safe to move to the next position
      *
      * @return
      */
@@ -114,55 +109,42 @@ public class Colision {
     public void isSafe(Tank tank) {
 
         Iterator<GameObjects> it = mySpecialLinkedList.listIterator();
-        boolean safeAll = true;
+        boolean safeCol = true;
         boolean safeRow = true;
         while (it.hasNext()) {
 
             GameObjects object = it.next();
-           // (object instanceof Enemy && tank instanceof Enemy)
 
-            if (object.equals(tank)) {
+            if (object.equals(tank) || object instanceof StaticGameObject && ((StaticGameObject) object).getGameObjectType() == GameObjectType.GOAL) {
                 continue;
             }
+
             // if tank is in adjacent cell to another object, checks if has forbidden direction and if true set safe property to false
             if(((AbstractGridPosition)tank.getPos()).adjacentCol(object.getPos())) {
 
-                safeAll = !(tank.getPos().getCol() > object.getPos().getCol() &&
-                        tank.getDirection() == GridDirection.LEFT ||
-                        tank.getPos().getCol() < object.getPos().getCol() &&
-                        tank.getDirection() == GridDirection.RIGHT);
+                safeCol = !(tank.getPos().getCol() > object.getPos().getCol() &&
+                            tank.getDirection() == GridDirection.LEFT ||
+                            tank.getPos().getCol() < object.getPos().getCol() &&
+                            tank.getDirection() == GridDirection.RIGHT);
             }
 
 
             if(((AbstractGridPosition) tank.getPos()).adjacentRow(object.getPos()))  {
 
                 safeRow = !(tank.getPos().getRow() < object.getPos().getRow() &&
-                          tank.getDirection() == GridDirection.DOWN ||
-                          tank.getPos().getRow() > object.getPos().getRow() &&
-                                  tank.getDirection() == GridDirection.UP);
+                            tank.getDirection() == GridDirection.DOWN ||
+                            tank.getPos().getRow() > object.getPos().getRow() &&
+                                    tank.getDirection() == GridDirection.UP);
+
             }
 
             }
-            if(!safeRow || !safeAll) {
+            if(!safeRow || !safeCol) {
                 tank.setSafeMove(false);
             } else {
                 tank.setSafeMove(true);
             }
 
-
-
-//            int tankX = tank.getPos().getCenterCol();
-//            int objX = object.getPos().getCenterCol();
-//
-//            int tankY = tank.getPos().getCenterRow();
-//            int objY = object.getPos().getCenterRow();
-//
-//
-//            if (!(Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight()-1) && !(object instanceof Shell)) {
-//                safeAll = false;
-//            }
-//        }
-//        tank.setSafeMove(safeAll);
     }
 
 
@@ -177,14 +159,11 @@ public class Colision {
 
             GameObjects object = it.next();
 
-
             if(object instanceof Player){
                 player = object;
             } else if(object instanceof StaticGameObject && ((StaticGameObject) object).getGameObjectType() == GameObjectType.GOAL) {
                 goal = object;
             }
-
-
 
         }
 
