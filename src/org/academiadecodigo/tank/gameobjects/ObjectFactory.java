@@ -47,7 +47,6 @@ public class ObjectFactory implements Factory{
 
     @Override
     public GameObjects createEnvironment(int col, int row, GameObjectType brick){
-        System.out.println(col + " " + row);
         return new StaticGameObject(grid.makeGridPosition(col, row, brick), brick);
     }
 

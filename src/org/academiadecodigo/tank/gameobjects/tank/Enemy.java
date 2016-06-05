@@ -22,14 +22,14 @@ public class Enemy extends Tank {
         super(pos, collision);
 
         if (super.getPos().getCol() == 0) {
-            super.setDirection(GridDirection.STILL);
+            super.setDirection(GridDirection.DOWN);
 
         }
         if (super.getPos().getCol() == super.getPos().getGrid().getCols() / 2) {
-            super.setDirection(GridDirection.STILL);
+            super.setDirection(GridDirection.DOWN);
 
         } else {
-            super.setDirection(GridDirection.STILL);
+            super.setDirection(GridDirection.DOWN);
         }
 
         super.myType = GameObjectType.ENEMY;

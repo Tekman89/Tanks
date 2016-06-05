@@ -12,7 +12,7 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
 public abstract class Tank extends GameObjects implements MovableDestroyable {
 
     public static final int SPEED = 1;
-    private GridDirection direction = GridDirection.STILL;
+    private GridDirection direction = GridDirection.DOWN;
     private GridDirection previousDirection = GridDirection.UP;
     private int movesMade;
     private boolean safeMove;
@@ -33,11 +33,14 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
 
         if (safeMove) {
             movesMade++;
-            return getPos().move(direction, SPEED);
 
+
+        }else {
+            setDirection(direction.oppositeDirection());
+            movesMade++;
         }
 
-        return getPos().move(direction.oppositeDirection(),SPEED);
+        return getPos().move(direction, SPEED);
     }
 
     @Override
@@ -78,10 +81,6 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
         return myType;
     }
 
-    @Override
-    public void hit() {
-        //pos.hide();
-    }
 
     @Override
     public boolean isDestroyed() {

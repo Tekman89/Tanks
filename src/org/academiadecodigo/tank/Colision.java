@@ -1,6 +1,8 @@
 package org.academiadecodigo.tank;
 
+import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.GameObjects;
+import org.academiadecodigo.tank.gameobjects.StaticGameObject;
 import org.academiadecodigo.tank.gameobjects.tank.Enemy;
 import org.academiadecodigo.tank.gameobjects.tank.Player;
 import org.academiadecodigo.tank.gameobjects.tank.Shell;
@@ -115,9 +117,10 @@ public class Colision {
 
             GameObjects object = it.next();
 
-            if (object.equals(tank)) {
+            if (object.equals(tank) || (object instanceof Enemy && tank instanceof Enemy) ) {
                 continue;
             }
+
             int tankX = tank.getPos().getCenterCol();
             int objX = object.getPos().getCenterCol();
 
@@ -125,10 +128,42 @@ public class Colision {
             int objY = object.getPos().getCenterRow();
 
 
-            if (!(Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight()) && !(object instanceof Shell)) {
+            if (!(Math.sqrt((Math.abs(tankX - objX)) * Math.abs(tankX - objX) + Math.abs(tankY - objY) * Math.abs(tankY - objY)) >= tank.getPos().getHeight()-1) && !(object instanceof Shell)) {
                 safeAll = false;
             }
         }
         tank.setSafeMove(safeAll);
+    }
+
+
+    public boolean reachGoal(){
+
+        ListIterator<GameObjects> it = mySpecialLinkedList.listIterator();
+
+        GameObjects player = null;
+        GameObjects goal = null;
+
+        while(it.hasNext()){
+
+            GameObjects object = it.next();
+
+
+            if(object instanceof Player){
+                player = object;
+            } else if(object instanceof StaticGameObject && ((StaticGameObject) object).getGameObjectType() == GameObjectType.GOAL) {
+                goal = object;
+            }
+
+
+
+        }
+
+        if(player != null && goal != null) {
+            return Math.sqrt((Math.abs(player.getPos().getCenterCol() - goal.getPos().getCenterCol())) *
+                    Math.abs(player.getPos().getCenterCol() - goal.getPos().getCenterCol())) + Math.abs(player.getPos().getCenterRow() -
+                    goal.getPos().getCenterRow()) * Math.abs(player.getPos().getCenterRow() - goal.getPos().getCenterRow()) <= player.getPos().getHeight();
+        }
+
+        return false;
     }
 }
