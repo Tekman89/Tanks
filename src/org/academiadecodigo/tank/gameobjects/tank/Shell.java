@@ -67,9 +67,6 @@ public class Shell extends GameObjects implements MovableDestroyable{
         return direction;
     }
 
-    @Override
-    public void hit() {
-    }
 
     @Override
     public boolean isDestroyed() {

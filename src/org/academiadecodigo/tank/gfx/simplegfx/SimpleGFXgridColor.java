@@ -9,7 +9,9 @@ import java.util.Map;
  * Created by codecadet on 24/05/16.
  */
 public class SimpleGFXgridColor {
-
+    /**
+     * Map Grid colors to SimpleGFXgrid colors
+     */
         private static final Map<GridColor, Color> colorMap = new EnumMap<GridColor, Color>(GridColor.class);
 
         static {
@@ -21,6 +23,12 @@ public class SimpleGFXgridColor {
 
         }
 
+    /**
+     * Get a SimpleGFXgridColor getColor from a grid getColor
+     *
+     * @param color the grid getColor
+     * @return the SimpleGFXgridColor getColor
+     */
         public static Color getColor(GridColor color) {
             return colorMap.get(color);
         }

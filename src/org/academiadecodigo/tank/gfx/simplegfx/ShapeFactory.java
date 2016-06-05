@@ -89,6 +89,9 @@ public class ShapeFactory {
             case GOAL:
                 return new Picture(x, y, "images/images/goal.png");
 
+            case BACKGROUND:
+                return new Picture(x,y, "images/entry.png");
+
 
         }
 

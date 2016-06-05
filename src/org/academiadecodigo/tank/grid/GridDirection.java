@@ -30,6 +30,27 @@ public enum GridDirection {
                 return STILL;
         }
     }
+
+    public GridDirection turnRight(){
+
+
+        switch (this){
+
+            case UP:
+                return RIGHT;
+            case RIGHT:
+                return DOWN;
+            case DOWN:
+                return LEFT;
+            case LEFT:
+                return UP;
+            default:
+                return STILL;
+
+        }
+
+    }
+
 }
 
 
