@@ -20,6 +20,14 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     private ShapeFactory factory = new ShapeFactory();
     private GameObjectType type;
 
+    /**
+     * Creates a new position for an object type in the SimpleGfxGrid ata specified column and row
+     *
+     * @param col the column number
+     * @param row the row number
+     * @param objectType the object type tha will be displayed
+     * @param grid the grid in which the position will be displayed
+     */
     public SimpleGfxGridPosition(int col, int row, GameObjectType objectType, SimpleGfxGrid grid) {
 
         super(col, row, grid);
@@ -30,15 +38,32 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         type = objectType;
     }
 
+    /**
+     * Utility that gets the n integer converted to pixels
+     *
+     * @param n integer to be converted
+     * @return Pixel value of integer n
+     */
     private int toPixel(int n) {
         return n * ((SimpleGfxGrid) getGrid()).getCellSize();
     }
 
+    /**
+     * Utility that gets the n integer converted to rows
+     *
+     * @param n integer to be converted
+     * @return Row value of integer n
+     */
     private int toRows(int n) {
         return n / (((SimpleGfxGrid) getGrid()).getCellSize());
     }
 
-
+    /**
+     *
+     *
+     * @param distance
+     * @return
+     */
     public boolean moveDown(int distance) { // TODO: 31/05/16 check the problem in the cols & rows
         int maxRowsDown = 0;
 
@@ -55,6 +80,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     }
 
+    /**
+     *
+     * @param distance
+     * @return
+     */
     public boolean moveUp(int distance) {
         int maxRowsUp = 0;
 
@@ -66,6 +96,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         return !(maxRowsUp == 0);
     }
 
+    /**
+     *
+     * @param distance
+     * @return
+     */
     public boolean moveLeft(int distance) {
         int maxColsLeft = 0;
         if (shape instanceof Movable) {
@@ -76,6 +111,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     }
 
+    /**
+     *
+     * @param distance
+     * @return
+     */
     public boolean moveRight(int distance) {
         int maxColsRight = 0;
 
