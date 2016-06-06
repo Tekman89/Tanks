@@ -36,12 +36,8 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
             getPos().move(direction, SPEED);
 
         }
-//        }else {
-//            setDirection(direction.oppositeDirection());
-//            movesMade++;
-//        }
+
         return false;
-        //return getPos().move(direction, SPEED);
     }
 
     @Override

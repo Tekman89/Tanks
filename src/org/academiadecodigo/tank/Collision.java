@@ -113,6 +113,7 @@ public class Collision {
             }
 
             // if tank is in adjacent cell to another object, checks if has forbidden direction and if true set safe property to false
+
             if(((AbstractGridPosition)tank.getPos()).adjacentCol(object.getPos())) {
 
                 safeCol = !(tank.getPos().getCol() >= object.getPos().getCol() &&
@@ -160,10 +161,7 @@ public class Collision {
         if(player != null && goal != null) {
 
            return player.getPos().isOverlapping(goal.getPos());
-            /*return Math.sqrt((Math.abs(player.getPos().getCenterCol() - goal.getPos().getCenterCol())) *
-                    Math.abs(player.getPos().getCenterCol() - goal.getPos().getCenterCol())) + Math.abs(player.getPos().getCenterRow() -
-                    goal.getPos().getCenterRow()) * Math.abs(player.getPos().getCenterRow() - goal.getPos().getCenterRow()) <= player.getPos().getHeight();
-        */
+
         }
 
         return false;

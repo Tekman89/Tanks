@@ -9,7 +9,6 @@ import org.academiadecodigo.tank.gameobjects.tank.Player;
 import org.academiadecodigo.tank.gameobjects.tank.Shell;
 import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.tank.grid.Grid;
-import org.academiadecodigo.tank.utilities.Factory;
 import org.academiadecodigo.tank.utilities.InputType;
 
 import java.util.LinkedList;
@@ -77,7 +76,7 @@ public class Game {
     }
 
 
-    private void createBlocks(int col, int row, int width, int heigth, Factory factory, LinkedList<GameObjects> linkedList, int howMany) {
+    private void createBlocks(int col, int row, int width, int heigth, ObjectFactory factory, LinkedList<GameObjects> linkedList, int howMany) {
 
         for (int i = row; i < width + row; i += howMany) {
 

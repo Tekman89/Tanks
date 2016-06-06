@@ -66,15 +66,12 @@ public class ShapeFactory {
             case ENEMY:
                 int width = 10;
                 int height = 10;
-                //return new Rectangle(x, y, 6 * grid.getCellSize(), 6 * grid.getCellSize() );
                 return new Picture(x, y, "images/images/Enemy_Tank3_D.png");
 
 
-            //return new Rectangle(0, 0, width, height);
 
             case PLAYER:
                 int n = 10;
-                //return new Rectangle(x, y, 6 * grid.getCellSize(), 6 * grid.getCellSize() );
                 return new Picture(x, y, "images/images/Player_Tank_U.png");
 
             case SHELL:

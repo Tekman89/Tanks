@@ -6,13 +6,12 @@ import org.academiadecodigo.tank.gameobjects.tank.Player;
 import org.academiadecodigo.tank.gameobjects.tank.Shell;
 import org.academiadecodigo.tank.gameobjects.tank.Tank;
 import org.academiadecodigo.tank.grid.Grid;
-import org.academiadecodigo.tank.utilities.Factory;
 import org.academiadecodigo.tank.utilities.InputType;
 
 /**
  * Created by codecadet on 23/05/16.
  */
-public class ObjectFactory implements Factory{
+public class ObjectFactory {
 
 
     private Grid grid;
@@ -44,7 +43,6 @@ public class ObjectFactory implements Factory{
     }
 
 
-    @Override
     public GameObjects createEnvironment(int col, int row, GameObjectType brick){
         return new StaticGameObject(grid.makeGridPosition(col, row, brick), brick);
     }

@@ -9,7 +9,6 @@
 //import org.academiadecodigo.tank.grid.position.GridPosition;
 //import org.academiadecodigo.tank.grid.GridColor;
 //import org.academiadecodigo.tank.grid.GridDirection;
-//import org.academiadecodigo.tank.utilities.Factory;
 //import org.academiadecodigo.tank.utilities.InputType;
 //
 //import java.util.LinkedList;
@@ -44,7 +43,7 @@
 //    public static int TEST_STEP = 800;
 //
 //
-//    public static void createBlocks(int col, int row, int width, int heigth, Factory factory, LinkedList<GameObjects> linkedList) {
+//    public static void createBlocks(int col, int row, int width, int heigth, ObjectFactory factory, LinkedList<GameObjects> linkedList) {
 //
 //        for(int i = row; i < width + row; i += 2) {
 //
