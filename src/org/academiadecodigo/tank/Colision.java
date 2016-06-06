@@ -18,16 +18,20 @@ public class Colision {
     private LinkedList<GameObjects> mySpecialLinkedList;
 
     /**
-     * check Colision only for shells
-     * updates the linked list
+     * Verify is Shell has collided with other object
+     *
+     * @param linkedList list of all the game objects
      */
-
     public Colision(LinkedList<GameObjects> linkedList) {
 
         this.mySpecialLinkedList = linkedList;
 
     }
 
+    /**
+     * Checks if a shell has hit an object from the linked list
+     *
+     */
     public void checkHitTarget() {
 
         ListIterator<GameObjects> it = mySpecialLinkedList.listIterator();
@@ -88,6 +92,13 @@ public class Colision {
 
     }
 
+    /**
+     * Verifies if a object overlaps object2
+     *
+     * @param object of Shell type
+     * @param object2
+     * @return true is have overlapped
+     */
     private boolean hitObject(Shell object, GameObjects object2) {
 
         return object.getPos().isOverlapping(object2.getPos()) && !object.whoFired().equals(object2);
@@ -100,12 +111,12 @@ public class Colision {
 
     }
 
-    /**
-     * check if is safe to move to the next position
-     *
-     * @return
-     */
 
+    /**
+     * Check if it is safe to move to the next position
+     *
+     * @param tank object from tank class
+     */
 
     public void isSafe(Tank tank) {
 

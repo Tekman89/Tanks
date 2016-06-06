@@ -9,6 +9,13 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
 /**
  * Created by codecadet on 23/05/16.
  */
+
+/**
+ * Base skelleton for the Player and Enemy
+ *
+ * @see Player
+ * @see Enemy
+ */
 public abstract class Tank extends GameObjects implements MovableDestroyable {
 
     public static final int SPEED = 1;
@@ -20,11 +27,23 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
 
     private Colision collision;
 
-
+    /**
+     * Construct Tank class
+     *
+     * @param pos initial Tank position in the grid
+     * @param collision Check the state of collision
+     */
     public Tank(GridPosition pos, Colision collision) {
         super(pos);
         this.collision = collision;
     }
+
+    /**
+     * Check if already exists an object in the position the Tank wants to move or it
+     * came across the grid limit
+     *
+     * @return if false move the object on the opposite direction, move in the given direction
+     */
 
     @Override
     public boolean move() {
@@ -40,19 +59,35 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
         return getPos().move(direction.oppositeDirection(),SPEED);
     }
 
+    /**
+     * @return a new direction
+     */
     @Override
     public GridDirection getDirection() {
         return direction;
     }
 
+    /**
+     * @return a new direction that is the previous one
+     */
     public GridDirection getPreviousDirection() {
         return previousDirection;
     }
 
+    /**
+     * Assign a grid direction as property
+     *
+     * @param direction of GridDirection type
+     */
     protected void setDirection(GridDirection direction) {
         this.direction = direction;
     }
 
+    /**
+     * Assign a grid direction different from Null as previous direction(gets rid of null pointer exception)
+     *
+     * @param direction
+     */
     protected void setPreviousDirection(GridDirection direction) {
 
         if (direction != GridDirection.STILL && direction != null) {
@@ -66,7 +101,7 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
         return movesMade;
     }
 
-    public void setSafeMove(boolean safeMove) {
+    public void setSafeMove(boolean safeMove) {//TODO-comment- Ver a o que isto faz
         this.safeMove = safeMove;
     }
 
@@ -83,16 +118,28 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
         //pos.hide();
     }
 
+    /**
+     *
+     * @see GameObjects#isDestroyed()
+     */
     @Override
     public boolean isDestroyed() {
         return super.isDestroyed();
     }
 
+    /**
+     * @see GameObjects#setDestroyed()
+     */
     @Override
     public void setDestroyed() {
         super.setDestroyed();
     }
 
+    /**
+     * Restricts the Tank fire in the grid limit
+     *
+     * @return if true the tank will fire
+     */
     public boolean fire() {
 
          return super.getPos().getCol() > 0 && super.getPos().getCol() < super.getPos().getGrid().getCols() - super.getPos().getWidth() &&

@@ -11,6 +11,12 @@ import org.academiadecodigo.tank.grid.GridDirection;
 /**
  * Created by codecadet on 23/05/16.
  */
+
+/**
+ * Base skelleton for a grid position
+ *
+ * @see GridPosition
+ */
 public abstract class AbstractGridPosition implements GridPosition {
 
     private int col;
@@ -20,7 +26,13 @@ public abstract class AbstractGridPosition implements GridPosition {
     private int height;
     private int width;
 
-
+    /**
+     * Construct a new grid position at a specific column and row
+     *
+     * @param col   the column of the grid position
+     * @param row   the row of the grid position
+     * @param grid  the grid in which the position will be displayed
+     */
     public AbstractGridPosition(int col, int row, Grid grid) {
 
         this.col = col;
@@ -29,6 +41,9 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     }
 
+    /**
+     * @see GridPosition#setPos(int, int)
+     */
     public void setPos(int col, int row) {
 
         this.col = col;
@@ -47,17 +62,26 @@ public abstract class AbstractGridPosition implements GridPosition {
         return grid;
     }
 
+    /**
+     * @see GridPosition#getCol()
+     */
     public int getCol() {
 
         return col;
     }
 
+    /**
+     * @see GridPosition#getRow()
+     */
     public int getRow() {
 
         return row;
 
     }
 
+    /**
+     * @see GridPosition#getColor()
+     */
     public GridColor getColor() {
 
         return color;
@@ -77,7 +101,9 @@ public abstract class AbstractGridPosition implements GridPosition {
         return true;
 
     }
-
+    /**
+     * @see GridPosition#moveInDirection(GridDirection, int)
+     */
     public boolean moveInDirection(GridDirection direction, int distance) {
         switch (direction) {
 
@@ -97,6 +123,12 @@ public abstract class AbstractGridPosition implements GridPosition {
         return false;
     }
 
+    /**
+     * Condition that allow the object to move the position up
+     *
+     * @param distance the number of positions to move
+     * @return false if the objects can't move further up
+     */
     public boolean moveUp(int distance) {
 
         int maxRowsUp = distance < getRow() ? distance : getRow();
@@ -104,6 +136,12 @@ public abstract class AbstractGridPosition implements GridPosition {
         return !(maxRowsUp == 0);
     }
 
+    /**
+     * Condition that allow the object to move the position down
+     *
+     * @param distance the number of positions to move
+     * @return false if the objects can't move further down
+     */
     public boolean moveDown(int distance) {
 
         int maxRowsDown = distance > getGrid().getRows() - (getRow() + 1) ? getGrid().getRows() - (getRow() + 1) : distance;
@@ -111,6 +149,12 @@ public abstract class AbstractGridPosition implements GridPosition {
         return !(maxRowsDown == 0);
     }
 
+    /**
+     * Condition that allow the object to move the position to the left
+     *
+     * @param distance the number of positions to move
+     * @return false if the objects can't move further left
+     */
     public boolean moveLeft(int distance) {
 
         int maxColsLeft = distance < getCol() ? distance : getCol();
@@ -118,6 +162,12 @@ public abstract class AbstractGridPosition implements GridPosition {
         return !(maxColsLeft == 0);
     }
 
+    /**
+     * Condition that allow the object to move the position right
+     *
+     * @param distance the number of positions to move
+     * @return false if the objects can't move further right
+     */
     public boolean moveRight(int distance) {
 
         int maxColsRight = distance > getGrid().getCols() - (getCol() + 1) ? getGrid().getCols() - (getCol() + 1) : distance;
@@ -127,7 +177,12 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     }
 
-
+    /**
+     * Condition that evaluates if two objects are overlapping
+     *
+     * @param position is an object of the type GridPosition that carries the coordinates of another object on the Grid
+     * @return true in the objects are overlapping
+     */
     @Override
     public boolean isOverlapping(GridPosition position) {
 
@@ -157,15 +212,20 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     public int getCenterCol() {
 
-        return col + width / 2;
+        return col + width / 2; // get center position of one side of the object
 
     }
 
     public int getCenterRow() {
 
-        return row + height / 2;
+        return row + height / 2;// get center position of the other side of the object
+
     }
 
+    /**
+     * @see GridPosition#onEdge()
+     * @return if its on edge in the for sides of the grid
+     */
 
     @Override
     public boolean onEdge() {

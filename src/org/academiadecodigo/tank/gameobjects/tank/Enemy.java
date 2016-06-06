@@ -17,6 +17,7 @@ import org.academiadecodigo.tank.utilities.RNG;
  * Specify Enemy class from Tanks
  *
  * @Constant PROBABILITY set the scope of the Random Generator
+ *
  */
 public class Enemy extends Tank {
 
@@ -25,24 +26,17 @@ public class Enemy extends Tank {
     private int delay = 2;
 
     /**
-     * Constructs a new Enemy
+     * Constructs a new Enemy in a still direction
      *
      * @param pos initial Enemy position in the grid
      * @param collision  Check the state of collision
      */
+
     public Enemy(GridPosition pos, Colision collision) {
         super(pos, collision);
 
-        if (super.getPos().getCol() == 0) {
-            super.setDirection(GridDirection.STILL);
 
-        }
-        if (super.getPos().getCol() == super.getPos().getGrid().getCols() / 2) {
             super.setDirection(GridDirection.STILL);
-
-        } else {
-            super.setDirection(GridDirection.STILL);
-        }
 
         super.myType = GameObjectType.ENEMY;
 
@@ -97,7 +91,10 @@ public class Enemy extends Tank {
     }
 
     /**
-     * Weight defined to choose a new direction
+     * Weight defined to choose a new initial direction
+     *
+     * and change direction only after 6 ticks
+     * @return if the object can move
      */
 
     @Override
@@ -114,6 +111,12 @@ public class Enemy extends Tank {
 
     }
 
+    /**
+     * Fire method, with a delay which prevents continuous fire
+     * and weighs the amount of fire events the enemy has
+     *
+     * @return if the enemy can fire
+     */
     @Override
     public boolean fire() {
 

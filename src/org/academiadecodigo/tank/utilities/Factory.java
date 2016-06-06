@@ -6,6 +6,10 @@ import org.academiadecodigo.tank.gameobjects.GameObjects;
 /**
  * Created by codecadet on 27/05/16.
  */
+
+/**
+ * Creates new environment items
+ */
 public interface Factory {
 
 

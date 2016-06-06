@@ -59,10 +59,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     }
 
     /**
+     * Condition to move the object until the max lower size of the grid
+     * (used to stop moving when reaches it)
      *
-     *
-     * @param distance
-     * @return
+     * @param distance the number of positions that the object might move
+     * @return if reached the most lower point of the grid
      */
     public boolean moveDown(int distance) { // TODO: 31/05/16 check the problem in the cols & rows
         int maxRowsDown = 0;
@@ -81,9 +82,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     }
 
     /**
+     * Condition to move the object until the max upper size of the grid
+     * (used to stop moving when reaches it)
      *
-     * @param distance
-     * @return
+     * @param distance the number of positions that the object might move
+     * @return if reached the most upper point of the grid
      */
     public boolean moveUp(int distance) {
         int maxRowsUp = 0;
@@ -97,9 +100,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     }
 
     /**
+     * Condition to move the object until the max west size of the grid
+     * (used to stop moving when reaches it)
      *
-     * @param distance
-     * @return
+     * @param distance the number of positions that the object might move
+     * @return if reached the most western point of the grid
      */
     public boolean moveLeft(int distance) {
         int maxColsLeft = 0;
@@ -112,9 +117,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     }
 
     /**
+     * Condition to move the object until the max east size of the grid
+     * (used to stop moving when reaches it)
      *
-     * @param distance
-     * @return
+     * @param distance the number of positions that the object might move
+     * @return if reached the most eastern point of the grid
      */
     public boolean moveRight(int distance) {
         int maxColsRight = 0;
@@ -132,6 +139,12 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         return !(maxColsRight == 0);
     }
 
+    /**
+     * Updates the shape position on the grid
+     *
+     * @param deltaCol distance the object will be moved in cols
+     * @param deltaRow distance the object will be moved in rows
+     */
     @Override
     public void setPos(int deltaCol, int deltaRow) {
 
@@ -141,6 +154,13 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         }
     }
+
+    /**
+     * Updates the shape according to direction that the object will have
+     *
+     * @param direction
+     * @param objType type of object that will get its shape updated
+     */
     @Override
     public void replace(GridDirection direction, GameObjectType objType) {
 
