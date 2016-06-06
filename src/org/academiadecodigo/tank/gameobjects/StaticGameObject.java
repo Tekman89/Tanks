@@ -26,9 +26,15 @@ public class StaticGameObject extends GameObjects {
      * @see GameObjects#setDestroyed()
      */
     @Override
-    public void hit() {
-        super.setDestroyed();
+    public void setDestroyed() {
+
+        if(getGameObjectType() != GameObjectType.GOAL) {
+            super.setDestroyed();
+        }
     }
 
+    public GameObjectType getGameObjectType() {
 
+        return gameObjectType;
+    }
 }

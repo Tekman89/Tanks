@@ -20,6 +20,7 @@ public class Player extends Tank {
     private Input input;
     private int delay = 2;
 
+<<<<<<< HEAD
     /**
      * Constructs a new Player
      *
@@ -29,6 +30,11 @@ public class Player extends Tank {
      */
     public Player(GridPosition position, InputType inputType, Colision colision) {
         super(position, colision);
+=======
+
+    public Player(GridPosition position, InputType inputType, Collision collision) {
+        super(position, collision);
+>>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
         input = InputFactory.newInput(inputType);
         super.myType = GameObjectType.PLAYER;
 

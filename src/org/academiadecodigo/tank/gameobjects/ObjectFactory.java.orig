@@ -11,6 +11,10 @@ import org.academiadecodigo.tank.utilities.InputType;
 /**
  * Created by codecadet on 23/05/16.
  */
+<<<<<<< HEAD
+=======
+public class ObjectFactory {
+>>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
 
 /**
  * A Factory for the different Object types
@@ -30,6 +34,7 @@ public class ObjectFactory implements Factory{
 
     }
 
+<<<<<<< HEAD
     /**
      * Creates a new PLAYER
      * requires an input property
@@ -40,6 +45,9 @@ public class ObjectFactory implements Factory{
      * @return a new object - PLAYER
      */
     public GameObjects createObject(GameObjectType myObjects, InputType inputType, Colision colision){
+=======
+    public GameObjects createObject(GameObjectType myObjects, InputType inputType, Collision collision){
+>>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
 
         switch (myObjects){
             case PLAYER:
@@ -63,6 +71,7 @@ public class ObjectFactory implements Factory{
 
     }
 
+<<<<<<< HEAD
     /**
      * Creates a new Environment
      *
@@ -72,10 +81,14 @@ public class ObjectFactory implements Factory{
      * @return A static game Object in the grid
      */
     @Override
+=======
+
+>>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
     public GameObjects createEnvironment(int col, int row, GameObjectType brick){
         return new StaticGameObject(grid.makeGridPosition(col, row, brick), brick);
     }
 
+<<<<<<< HEAD
     /**
      * Creates a new ENEMY
      *
@@ -84,6 +97,11 @@ public class ObjectFactory implements Factory{
      * @return a new object- ENEMY
      */
     public GameObjects createObject(GameObjectType myObject, Colision colision) {
+=======
+
+
+    public GameObjects createObject(GameObjectType myObject, Collision collision) {
+>>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
 
         switch (myObject) {
 
@@ -96,6 +114,7 @@ public class ObjectFactory implements Factory{
         }
     }
 
+<<<<<<< HEAD
     /**
      * Creates a new Shell
      * requires a tank to be created
@@ -106,6 +125,10 @@ public class ObjectFactory implements Factory{
      */
     public GameObjects createShell(Tank tank, Colision colision) {
         return new Shell(grid.makeGridPosition(GameObjectType.SHELL, tank), tank, colision);
+=======
+    public GameObjects createShell(Tank tank, Collision collision) {
+        return new Shell(grid.makeGridPosition(GameObjectType.SHELL, tank), tank, collision);
+>>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
     }
 
 }

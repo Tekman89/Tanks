@@ -1,12 +1,12 @@
 package org.academiadecodigo.tank.gfx.simplegfx;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.graphics.Shape;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tank.gameobjects.GameObjectType;
 import org.academiadecodigo.tank.gameobjects.tank.Tank;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.grid.GridDirection;
-import org.academiadecodigo.tank.grid.position.AbstractGridPosition;
 import org.academiadecodigo.tank.grid.position.GridPosition;
 
 /**
@@ -19,11 +19,12 @@ import org.academiadecodigo.tank.grid.position.GridPosition;
 public class SimpleGfxGrid  implements Grid {
 
 
-    private Rectangle grid;
+    private Shape grid;
     private int cols;
     private int rows;
     private final int MARGIN = 10;
     private int counter;
+
 
     private final int CELL_SIZE = MARGIN / 2;
 
@@ -38,11 +39,16 @@ public class SimpleGfxGrid  implements Grid {
         grid = new Rectangle(MARGIN, MARGIN, cols * CELL_SIZE, rows * CELL_SIZE);
     }
 
+    public SimpleGfxGrid(){
+        grid = new Picture(MARGIN,MARGIN, "images/Background.png");
+        cols = grid.getWidth()/CELL_SIZE;
+        rows = grid.getHeight()/CELL_SIZE;
+    }
+
 
     @Override
     public void init() {
-        grid.setColor(Color.GRAY);
-        grid.fill();
+        grid.draw();
     }
     /**
      * @see Grid#getCols()
@@ -96,7 +102,7 @@ public class SimpleGfxGrid  implements Grid {
         switch(objectType) {
 
             case ENEMY:
-                return new SimpleGfxGridPosition(generateCol(), rows/2 - 6, objectType, this);
+                return new SimpleGfxGridPosition(generateCol(), generateRow(), objectType, this);
 
             case PLAYER:
                 return new SimpleGfxGridPosition(cols/2 - 3, rows - 6, objectType, this); // the 3 is the half the width and the 6 is all the width
@@ -181,18 +187,39 @@ public class SimpleGfxGrid  implements Grid {
     private int generateCol() {
 
 
+
+
         switch (counter%2) {
 
             case 0:
-                counter++;
                 return 0;
             case 1:
-                counter++;
                 return cols - 6;
+            default:
+                System.out.println("Something went wrong with the rng");
+                return 0;
+
+        }
+
+    }
+
+    private int generateRow(){
+
+
+
+        switch (counter%2) {
+
+
+
+            case 0:
+                counter++;
+                return rows/4;
+            case 1:
+                counter++;
+                return rows - rows/4;
 
             default:
                 System.out.println("Something went wrong with the rng");
-                counter++;
                 return 0;
 
         }

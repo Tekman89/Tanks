@@ -5,8 +5,6 @@ package org.academiadecodigo.tank.gameobjects;
  */
 public interface Destroyable {
 
-    void hit();
-
     /**
      *  Get whether the object is destroyed
      *

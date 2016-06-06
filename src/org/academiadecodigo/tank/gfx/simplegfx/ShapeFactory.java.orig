@@ -14,6 +14,7 @@ import org.academiadecodigo.tank.grid.GridDirection;
  */
 public class ShapeFactory {
 
+<<<<<<< HEAD
     /**
      * Creates a new Shape for each direction and for each object type
      *
@@ -22,6 +23,9 @@ public class ShapeFactory {
      * @param direction
      * @return a new shape - Picture
      */
+=======
+
+>>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
     public Shape createShape(Shape shape, GameObjectType objectType, GridDirection direction) {
 
         if (objectType == GameObjectType.PLAYER) {
@@ -80,8 +84,19 @@ public class ShapeFactory {
         switch (objectType) {
 
             case ENEMY:
+<<<<<<< HEAD
                 return new Picture(x, y, "images/images/Enemy_Tank3_D.png");
             case PLAYER:
+=======
+                int width = 10;
+                int height = 10;
+                return new Picture(x, y, "images/images/Enemy_Tank3_D.png");
+
+
+
+            case PLAYER:
+                int n = 10;
+>>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
                 return new Picture(x, y, "images/images/Player_Tank_U.png");
 
             case SHELL:

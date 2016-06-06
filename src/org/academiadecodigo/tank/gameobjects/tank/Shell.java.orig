@@ -15,6 +15,7 @@ public class Shell extends GameObjects implements MovableDestroyable{
     private final int SPEED = 1;
     private Collision collision;
 
+<<<<<<< HEAD
     /**
      * Constructs a new Shell and give it the direction of the tank
      *
@@ -23,6 +24,9 @@ public class Shell extends GameObjects implements MovableDestroyable{
      * @param collision set the reference for the collision object
      */
     public Shell (GridPosition pos, Tank tank, Colision collision){
+=======
+    public Shell (GridPosition pos, Tank tank, Collision collision){
+>>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
         super(pos);
         this.myTank = tank;
         this.collision = collision;

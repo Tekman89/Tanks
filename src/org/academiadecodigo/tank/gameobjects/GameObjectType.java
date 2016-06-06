@@ -13,7 +13,8 @@ public enum GameObjectType {
     ENEMY,
     SHELL,
     BRICK,
-    GOAL;
+    GOAL,
+    BACKGROUND;
 
 
 }

@@ -1,9 +1,5 @@
 package org.academiadecodigo.tank.grid.position;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.tank.Colision;
-import org.academiadecodigo.tank.gameobjects.GameObjectType;
-import org.academiadecodigo.tank.gfx.simplegfx.SimpleGfxGridPosition;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.grid.GridColor;
 import org.academiadecodigo.tank.grid.GridDirection;
@@ -186,13 +182,27 @@ public abstract class AbstractGridPosition implements GridPosition {
     @Override
     public boolean isOverlapping(GridPosition position) {
 
+        return adjacentCol(position) || adjacentRow(position);
 
-        return Math.sqrt(Math.abs(getCenterCol() - position.getCenterCol()) * Math.abs(getCenterCol() - position.getCenterCol())
-                + Math.abs(getCenterRow() - position.getCenterRow()) * Math.abs(getCenterRow() - position.getCenterRow())) <=
-                height / 2 + position.getHeight() / 2;
 
 
     }
+
+
+    public boolean adjacentCol(GridPosition pos) {
+        return Math.abs(getCenterCol() - pos.getCol()) <= width/2 + pos.getWidth()/2 &&
+                 Math.abs(getCenterRow() - pos.getCenterRow()) <= height/2 + pos.getHeight()/2;
+
+
+    }
+
+    public boolean adjacentRow(GridPosition pos) {
+        return Math.abs(getCenterRow() - pos.getCenterRow()) <= height/2 + pos.getHeight()/2 &&
+                Math.abs(getCenterCol() - pos.getCol()) <= width/2 + pos.getWidth()/2;
+
+    }
+
+
 
     protected void setHeight(int height) {
         this.height = height;
