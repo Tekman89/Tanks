@@ -58,24 +58,19 @@ public class Collision {
                     if (hitObject((Shell) object, (Shell) object2)) {
                         object.setDestroyed();
                         object2.setDestroyed();
-
                     }
-
                 }
 
                 if (object instanceof Shell) {
-
 
                     if (hitObject(((Shell) object), object2) && !((Shell) object).sameType(object2)) {
 
                         object.setDestroyed();
                         object2.setDestroyed();
                     }
-
                 }
 
                 if (object2 instanceof Shell) {
-
 
                     if (hitObject((Shell) object2, object) && !((Shell) object2).sameType(object)) {
 
@@ -90,13 +85,11 @@ public class Collision {
     private boolean hitObject(Shell object, GameObjects object2) {
 
         return object.getPos().isOverlapping(object2.getPos()) && !object.whoFired().equals(object2);
-
     }
 
     private boolean hitObject(Shell object, Shell object2) {
 
         return object.getPos().isOverlapping(object2.getPos());
-
     }
 
     /**
@@ -122,29 +115,26 @@ public class Collision {
             // if tank is in adjacent cell to another object, checks if has forbidden direction and if true set safe property to false
             if(((AbstractGridPosition)tank.getPos()).adjacentCol(object.getPos())) {
 
-                safeCol = !(tank.getPos().getCol() > object.getPos().getCol() &&
+                safeCol = !(tank.getPos().getCol() >= object.getPos().getCol() &&
                             tank.getDirection() == GridDirection.LEFT ||
-                            tank.getPos().getCol() < object.getPos().getCol() &&
+                            tank.getPos().getCol() <= object.getPos().getCol() &&
                             tank.getDirection() == GridDirection.RIGHT);
             }
 
-
             if(((AbstractGridPosition) tank.getPos()).adjacentRow(object.getPos()))  {
 
-                safeRow = !(tank.getPos().getRow() < object.getPos().getRow() &&
+                safeRow = !(tank.getPos().getRow() <= object.getPos().getRow() &&
                             tank.getDirection() == GridDirection.DOWN ||
-                            tank.getPos().getRow() > object.getPos().getRow() &&
+                            tank.getPos().getRow() >= object.getPos().getRow() &&
                                     tank.getDirection() == GridDirection.UP);
 
             }
-
-            }
-            if(!safeRow || !safeCol) {
-                tank.setSafeMove(false);
-            } else {
-                tank.setSafeMove(true);
-            }
-
+        }
+        if(!safeRow || !safeCol) {
+            tank.setSafeMove(false);
+        } else {
+            tank.setSafeMove(true);
+        }
     }
 
 
@@ -168,9 +158,12 @@ public class Collision {
         }
 
         if(player != null && goal != null) {
-            return Math.sqrt((Math.abs(player.getPos().getCenterCol() - goal.getPos().getCenterCol())) *
+
+           return player.getPos().isOverlapping(goal.getPos());
+            /*return Math.sqrt((Math.abs(player.getPos().getCenterCol() - goal.getPos().getCenterCol())) *
                     Math.abs(player.getPos().getCenterCol() - goal.getPos().getCenterCol())) + Math.abs(player.getPos().getCenterRow() -
                     goal.getPos().getCenterRow()) * Math.abs(player.getPos().getCenterRow() - goal.getPos().getCenterRow()) <= player.getPos().getHeight();
+        */
         }
 
         return false;

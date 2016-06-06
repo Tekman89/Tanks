@@ -8,14 +8,11 @@ import org.academiadecodigo.tank.gameobjects.GameObjects;
 import org.academiadecodigo.tank.grid.Grid;
 import org.academiadecodigo.tank.grid.GridDirection;
 
-import java.util.Spliterator;
 
 /**
  * Created by codecadet on 27/05/16.
  */
 public class ShapeFactory {
-
-    // TODO: 31/05/16 in accordance with the direction add a different picture.
 
 
     public Shape createShape(Shape shape, GameObjectType objectType, GridDirection direction) {

@@ -64,7 +64,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      * @param distance
      * @return
      */
-    public boolean moveDown(int distance) { // TODO: 31/05/16 check the problem in the cols & rows
+    public boolean moveDown(int distance) {
         int maxRowsDown = 0;
 
         if (shape instanceof Movable) {
@@ -75,9 +75,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
             setPos(0, maxRowsDown);
         }
-
             return !(maxRowsDown == 0);
-
     }
 
     /**
@@ -182,10 +180,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     }
 
-    //@Override
-    //public boolean isAdjacent(GridPosition position) {
-      //  return super.isAdjacent(position);
-    //}
 
     @Override
     public void show() {
