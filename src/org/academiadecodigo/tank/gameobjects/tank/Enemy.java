@@ -29,31 +29,12 @@ public class Enemy extends Tank {
      * @param pos initial Enemy position in the grid
      * @param collision  Check the state of collision
      */
-<<<<<<< HEAD
 
-    public Enemy(GridPosition pos, Colision collision) {
-        super(pos, collision);
-
-
-            super.setDirection(GridDirection.STILL);
-
-=======
     public Enemy(GridPosition pos, Collision collision) {
         super(pos, collision);
 
-        if (super.getPos().getCol() == 0) {
-            super.setDirection(GridDirection.DOWN);
 
-        }
-        if (super.getPos().getCol() == super.getPos().getGrid().getCols() / 2) {
-            super.setDirection(GridDirection.DOWN);
-
-        } else {
-            super.setDirection(GridDirection.DOWN);
-        }
-
->>>>>>> 0a5d8479e2ea5e22ad5293fbb731874ad62b36a1
-        super.myType = GameObjectType.ENEMY;
+        super.setDirection(GridDirection.DOWN);
 
     }
 

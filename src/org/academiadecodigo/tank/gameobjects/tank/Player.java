@@ -27,7 +27,7 @@ public class Player extends Tank {
      * @param inputType get the Player waiting to the Keyboard input
      * @param colision Check the state of collision
      */
-    public Player(GridPosition position, InputType inputType, Colision colision) {
+    public Player(GridPosition position, InputType inputType, Collision colision) {
         super(position, colision);
         input = InputFactory.newInput(inputType);
         super.myType = GameObjectType.PLAYER;

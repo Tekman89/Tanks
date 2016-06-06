@@ -22,7 +22,6 @@ public class Collision {
     private LinkedList<GameObjects> mySpecialLinkedList;
 
     /**
-     * Verify is Shell has collided with other object
      *
      * @param linkedList list of all the game objects
      */
@@ -88,11 +87,11 @@ public class Collision {
     }
 
     /**
-     * Verifies if a object overlaps object2
+     *
      *
      * @param object of Shell type
      * @param object2
-     * @return true is have overlapped
+     * @return true if have overlapped
      */
     private boolean hitObject(Shell object, GameObjects object2) {
 

@@ -22,7 +22,7 @@ public class Shell extends GameObjects implements MovableDestroyable{
      * @param tank connect the Shell with a Tank type
      * @param collision set the reference for the collision object
      */
-    public Shell (GridPosition pos, Tank tank, Colision collision){
+    public Shell (GridPosition pos, Tank tank, Collision collision){
         super(pos);
         this.myTank = tank;
         this.collision = collision;

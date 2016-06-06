@@ -40,7 +40,7 @@ public class SimpleGfxGrid  implements Grid {
     }
 
     public SimpleGfxGrid(){
-        grid = new Picture(MARGIN,MARGIN, "images/Background.png");
+        grid = new Picture(MARGIN,MARGIN, "resources/images/Background.png");
         cols = grid.getWidth()/CELL_SIZE;
         rows = grid.getHeight()/CELL_SIZE;
     }

@@ -25,7 +25,7 @@ public class Game {
     private LinkedList<GameObjects> objectsList;
     private Grid grid;
     private GameObjects goal;
-    private int maxEnemies = 4;
+    private int maxEnemies;
     private int currentEnemies;
     private GameObjects player;
     private boolean win;
@@ -46,11 +46,6 @@ public class Game {
         goal = factory.createObject(GameObjectType.GOAL);
         objectsList.add(goal);
         generateLevel(1);
-
-
-    }
-
-    private void intro() {
 
 
     }
@@ -81,6 +76,7 @@ public class Game {
         for (int i = row; i < width + row; i += howMany) {
 
             for (int j = col; j < heigth + col; j += howMany) {
+
                 linkedList.add(factory.createEnvironment(j, i, GameObjectType.BRICK));
             }
         }
@@ -134,7 +130,7 @@ public class Game {
                             object.setDestroyed();
                         }
 
-                        if (object instanceof Player) {
+                        if (object instanceof Player) { // needs cleanup
                             Player player = (Player) object;
 
                             if (player.fire()) {
@@ -155,7 +151,10 @@ public class Game {
 
                     if (object.isDestroyed()) {
 
-                        if(object instanceof Enemy) { currentEnemies--; }
+                        if(object instanceof Enemy) {
+                            currentEnemies--;
+                        }
+
                         object.getPos().hide();
 
 

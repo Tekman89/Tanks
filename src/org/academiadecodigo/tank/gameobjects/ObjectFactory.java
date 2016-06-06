@@ -15,7 +15,7 @@ import org.academiadecodigo.tank.utilities.InputType;
 /**
  * A Factory for the different Object types
  */
-public class ObjectFactory implements Factory{
+public class ObjectFactory {
 
     private Grid grid;
 
@@ -39,11 +39,11 @@ public class ObjectFactory implements Factory{
      * @param colision  receive an collision argument//TODO-Comment- explicar melhor
      * @return a new object - PLAYER
      */
-    public GameObjects createObject(GameObjectType myObjects, InputType inputType, Colision colision){
+    public GameObjects createObject(GameObjectType myObjects, InputType inputType, Collision colision){
 
         switch (myObjects){
             case PLAYER:
-                return new Player(grid.makeGridPosition(GameObjectType.PLAYER), inputType, collision);
+                return new Player(grid.makeGridPosition(GameObjectType.PLAYER), inputType, colision);
             default:
                 System.out.println("Only players are allowed to be controlled by input");
                 return null;
@@ -71,7 +71,7 @@ public class ObjectFactory implements Factory{
      * @param brick Object type that Environment will get
      * @return A static game Object in the grid
      */
-    @Override
+
     public GameObjects createEnvironment(int col, int row, GameObjectType brick){
         return new StaticGameObject(grid.makeGridPosition(col, row, brick), brick);
     }
@@ -83,12 +83,12 @@ public class ObjectFactory implements Factory{
      * @param colision check the state of collision
      * @return a new object- ENEMY
      */
-    public GameObjects createObject(GameObjectType myObject, Colision colision) {
+    public GameObjects createObject(GameObjectType myObject, Collision colision) {
 
         switch (myObject) {
 
             case ENEMY:
-                return new Enemy(grid.makeGridPosition(GameObjectType.ENEMY), collision);
+                return new Enemy(grid.makeGridPosition(GameObjectType.ENEMY), colision);
 
             default:
                 System.out.println("Something went wrong in the factory!");
@@ -104,7 +104,7 @@ public class ObjectFactory implements Factory{
      * @param colision  receive an collision argument Todo explain argument colision
      * @return a new object - Shell
      */
-    public GameObjects createShell(Tank tank, Colision colision) {
+    public GameObjects createShell(Tank tank, Collision colision) {
         return new Shell(grid.makeGridPosition(GameObjectType.SHELL, tank), tank, colision);
     }
 

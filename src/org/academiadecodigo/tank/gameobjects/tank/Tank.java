@@ -33,7 +33,7 @@ public abstract class Tank extends GameObjects implements MovableDestroyable {
      * @param pos initial Tank position in the grid
      * @param collision Check the state of collision
      */
-    public Tank(GridPosition pos, Colision collision) {
+    public Tank(GridPosition pos, Collision collision) {
         super(pos);
         this.collision = collision;
     }
